@@ -163,3 +163,7 @@ greymatter/
 ├── README.md             # This file
 └── USER_GUIDE.md         # Detailed user documentation
 ```
+
+
+## License
+This software is licensed under the MIT license found at [LICENSE](LICENSE).
