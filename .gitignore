@@ -1,0 +1,58 @@
+# Build directory
+build/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Compiled objects
+*.o
+*.obj
+*.elf
+*.bin
+*.hex
+*.map
+*.lst
+
+# Pico SDK outputs
+*.uf2
+*.dis
+*.pio.h
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+compile_commands.json
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Dependency files
+*.d
+
+# Archive files
+*.a
+*.lib
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Python bytecode (for any build scripts)
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment files
+.env
+.env.local
