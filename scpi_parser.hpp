@@ -27,6 +27,17 @@ enum class ScpiCommandType {
     FAULT_QUERY,     // FAULT?
     SYST_ERR_QUERY,  // SYST:ERR?
     PULSE_LDAC,      // LDAC
+
+#ifdef DEBUG_SPI_MODE
+    // Debug commands (only available in debug build)
+    DEBUG_TRACE,         // DEBUG:TRACE <level>  - Set trace verbosity (0-3)
+    DEBUG_STEP_MODE,     // DEBUG:STEP:MODE <0|1> - Enable/disable step mode
+    DEBUG_STEP,          // DEBUG:STEP - Advance one step
+    DEBUG_LOOPBACK,      // DEBUG:LOOPBACK <0|1> - Enable/disable loopback pins
+    DEBUG_STATUS,        // DEBUG:STATUS? - Query debug mode status
+    DEBUG_TEST_BYTE,     // DEBUG:TEST:BYTE <hex> - Send a test byte and show trace
+    DEBUG_TEST_EXPANDER, // DEBUG:TEST:EXPANDER <addr> - Test IO expander communication
+#endif
 };
 
 // Parsed SCPI command structure
@@ -62,6 +73,10 @@ private:
     bool parse_common_command(const char* cmd, ScpiCommand& result);
     bool parse_board_command(const char* cmd, ScpiCommand& result);
     bool parse_system_command(const char* cmd, ScpiCommand& result);
+
+#ifdef DEBUG_SPI_MODE
+    bool parse_debug_command(const char* cmd, ScpiCommand& result);
+#endif
 
     // Extract numeric index from string like "BOARD3" -> 3
     int extract_index(const char* str, const char* prefix);

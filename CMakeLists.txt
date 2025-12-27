@@ -6,6 +6,14 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 pico_sdk_init()
 
+# Debug SPI Mode - enables 1 Hz bit-banged SPI for LED debugging
+option(DEBUG_SPI_MODE "Enable 1 Hz bit-banged SPI for LED debugging" OFF)
+if(DEBUG_SPI_MODE)
+    add_compile_definitions(DEBUG_SPI_MODE=1)
+    message(STATUS "Debug SPI mode ENABLED - 1 Hz bit-banged SPI")
+else()
+    message(STATUS "Debug SPI mode disabled - normal 10 MHz hardware SPI")
+endif()
 
 add_executable(greymatter
     main.cpp
@@ -17,6 +25,7 @@ add_executable(greymatter
     ltc2664.cpp
     board_manager.cpp
     scpi_parser.cpp
+    debug_spi.cpp
 )
 
 pico_enable_stdio_usb(greymatter 1)

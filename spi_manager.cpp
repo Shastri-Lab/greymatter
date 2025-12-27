@@ -2,6 +2,10 @@
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
 
+#ifdef DEBUG_SPI_MODE
+#include "debug_spi.hpp"
+#endif
+
 void SpiManager::init_gpio() {
     // Step 1: Enable level shifter FIRST (before any downstream communication)
     // TXB0106 OE is active-high
@@ -34,6 +38,10 @@ void SpiManager::reset_io_expanders() {
 }
 
 void SpiManager::init_spi() {
+#ifdef DEBUG_SPI_MODE
+    // In debug mode, use bit-banged GPIO instead of hardware SPI
+    g_debug_spi.init();
+#else
     // Initialize SPI peripheral
     spi_inst_t* spi = SPI_CONFIG::get_spi_instance();
     spi_init(spi, SPI_CONFIG::BAUDRATE);
@@ -50,6 +58,7 @@ void SpiManager::init_spi() {
                    SPI_CPOL_0,  // Clock polarity: idle low
                    SPI_CPHA_0,  // Clock phase: sample on rising edge
                    SPI_MSB_FIRST);
+#endif
 }
 
 void SpiManager::init() {
@@ -83,12 +92,16 @@ void SpiManager::deselect() {
 void SpiManager::raw_transfer(const uint8_t* tx_data, uint8_t* rx_data, size_t len) {
     // Raw SPI transfer without CS management
     // Used for direct IO expander access (which manages its own CS)
+#ifdef DEBUG_SPI_MODE
+    g_debug_spi.transaction(tx_data, rx_data, len);
+#else
     spi_inst_t* spi = SPI_CONFIG::get_spi_instance();
     if (rx_data != nullptr) {
         spi_write_read_blocking(spi, tx_data, rx_data, len);
     } else {
         spi_write_blocking(spi, tx_data, len);
     }
+#endif
 }
 
 void SpiManager::transaction(uint8_t board_id, uint8_t device_id,
@@ -108,12 +121,16 @@ void SpiManager::transaction(uint8_t board_id, uint8_t device_id,
 
     // Step 2: Perform SPI transaction to DAC
     // Note: We do NOT assert GP17 CS here - decoder tree handles CS
+#ifdef DEBUG_SPI_MODE
+    g_debug_spi.transaction(tx_data, rx_data, len);
+#else
     spi_inst_t* spi = SPI_CONFIG::get_spi_instance();
     if (rx_data != nullptr) {
         spi_write_read_blocking(spi, tx_data, rx_data, len);
     } else {
         spi_write_blocking(spi, tx_data, len);
     }
+#endif
 
     // Small delay for DAC to latch data
     sleep_us(1);

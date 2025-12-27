@@ -1,12 +1,24 @@
 #include "io_expander.hpp"
 #include "hardware/gpio.h"
 
+#ifdef DEBUG_SPI_MODE
+#include "debug_spi.hpp"
+#endif
+
 void IoExpander::cs_assert() {
+#ifdef DEBUG_SPI_MODE
+    g_debug_spi.cs_assert();
+#else
     gpio_put(HW_PINS::SPI_CS, 0);
+#endif
 }
 
 void IoExpander::cs_release() {
+#ifdef DEBUG_SPI_MODE
+    g_debug_spi.cs_release();
+#else
     gpio_put(HW_PINS::SPI_CS, 1);
+#endif
 }
 
 void IoExpander::write_register(uint8_t hw_addr, uint8_t reg, uint8_t value) {
@@ -17,7 +29,11 @@ void IoExpander::write_register(uint8_t hw_addr, uint8_t reg, uint8_t value) {
     };
 
     cs_assert();
+#ifdef DEBUG_SPI_MODE
+    g_debug_spi.transaction(tx_buf, nullptr, 3);
+#else
     spi_write_blocking(spi_, tx_buf, 3);
+#endif
     cs_release();
 }
 
@@ -30,7 +46,11 @@ uint8_t IoExpander::read_register(uint8_t hw_addr, uint8_t reg) {
     uint8_t rx_buf[3] = {0};
 
     cs_assert();
+#ifdef DEBUG_SPI_MODE
+    g_debug_spi.transaction(tx_buf, rx_buf, 3);
+#else
     spi_write_read_blocking(spi_, tx_buf, rx_buf, 3);
+#endif
     cs_release();
 
     return rx_buf[2];  // Data is in third byte
@@ -45,7 +65,11 @@ void IoExpander::write_gpio16(uint8_t hw_addr, uint16_t value) {
     };
 
     cs_assert();
+#ifdef DEBUG_SPI_MODE
+    g_debug_spi.transaction(tx_buf, nullptr, 4);
+#else
     spi_write_blocking(spi_, tx_buf, 4);
+#endif
     cs_release();
 
     // Update cache
@@ -64,7 +88,11 @@ uint16_t IoExpander::read_gpio16(uint8_t hw_addr) {
     uint8_t rx_buf[4] = {0};
 
     cs_assert();
+#ifdef DEBUG_SPI_MODE
+    g_debug_spi.transaction(tx_buf, rx_buf, 4);
+#else
     spi_write_read_blocking(spi_, tx_buf, rx_buf, 4);
+#endif
     cs_release();
 
     return rx_buf[2] | (rx_buf[3] << 8);

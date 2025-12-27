@@ -2,6 +2,10 @@
 #include "utils.hpp"
 #include <cstdio>
 
+#ifdef DEBUG_SPI_MODE
+#include "debug_spi.hpp"
+#endif
+
 BoardManager::BoardManager(SpiManager& spi) : spi_(spi) {
     // Initialize DAC pointers and storage
     // Each board has: DAC0=LTC2662, DAC1=LTC2662, DAC2=LTC2664
@@ -263,6 +267,71 @@ std::string BoardManager::execute(const ScpiCommand& cmd) {
         case ScpiCommandType::GET_VOLTAGE:
         case ScpiCommandType::GET_CURRENT:
             return "ERROR:Query not implemented";
+
+#ifdef DEBUG_SPI_MODE
+        case ScpiCommandType::DEBUG_TRACE:
+            g_debug_spi.set_trace_level(static_cast<uint8_t>(cmd.int_value));
+            return "OK";
+
+        case ScpiCommandType::DEBUG_STEP_MODE:
+            g_debug_spi.set_step_mode(cmd.int_value != 0);
+            return "OK";
+
+        case ScpiCommandType::DEBUG_STEP:
+            g_debug_spi.step();
+            return "OK";
+
+        case ScpiCommandType::DEBUG_LOOPBACK:
+            g_debug_spi.set_loopback_enabled(cmd.int_value != 0);
+            return "OK";
+
+        case ScpiCommandType::DEBUG_STATUS: {
+            const char* state_str = "UNKNOWN";
+            switch (g_debug_spi.get_state()) {
+                case DebugSpiState::IDLE: state_str = "IDLE"; break;
+                case DebugSpiState::CS_ASSERT: state_str = "CS_ASSERT"; break;
+                case DebugSpiState::CLK_LOW: state_str = "CLK_LOW"; break;
+                case DebugSpiState::CLK_HIGH: state_str = "CLK_HIGH"; break;
+                case DebugSpiState::CS_RELEASE: state_str = "CS_RELEASE"; break;
+                case DebugSpiState::WAITING_FOR_STEP: state_str = "WAITING"; break;
+            }
+            char buf[128];
+            snprintf(buf, sizeof(buf), "STATE=%s,TRACE=%d,STEP=%d,LOOPBACK=%d,WAITING=%d",
+                     state_str,
+                     g_debug_spi.get_trace_level(),
+                     g_debug_spi.get_step_mode() ? 1 : 0,
+                     g_debug_spi.get_loopback_enabled() ? 1 : 0,
+                     g_debug_spi.is_waiting() ? 1 : 0);
+            return buf;
+        }
+
+        case ScpiCommandType::DEBUG_TEST_BYTE: {
+            uint8_t tx = static_cast<uint8_t>(cmd.int_value);
+            uint8_t rx = 0;
+
+            printf("[DEBUG TEST] Sending byte 0x%02X with CS assertion\r\n", tx);
+            g_debug_spi.cs_assert();
+            g_debug_spi.transaction(&tx, &rx, 1);
+            g_debug_spi.cs_release();
+
+            char buf[32];
+            snprintf(buf, sizeof(buf), "TX=0x%02X,RX=0x%02X", tx, rx);
+            return buf;
+        }
+
+        case ScpiCommandType::DEBUG_TEST_EXPANDER: {
+            uint8_t addr = static_cast<uint8_t>(cmd.int_value & 0x07);
+
+            printf("[DEBUG TEST] Testing IO expander at address %d\r\n", addr);
+
+            // Try to read IOCON register
+            uint8_t reg_value = spi_.io_expander().read_register(addr, MCP23S17::REG_IOCON);
+
+            char buf[64];
+            snprintf(buf, sizeof(buf), "EXPANDER[%d]:IOCON=0x%02X", addr, reg_value);
+            return buf;
+        }
+#endif
 
         default:
             return "ERROR:Unknown command";

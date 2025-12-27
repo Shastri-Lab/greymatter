@@ -270,6 +270,103 @@ bool ScpiParser::parse_board_command(const char* cmd, ScpiCommand& result) {
     return false;
 }
 
+#ifdef DEBUG_SPI_MODE
+bool ScpiParser::parse_debug_command(const char* cmd, ScpiCommand& result) {
+    if (strncasecmp_local(cmd, "DEBUG:", 6) != 0) {
+        return false;
+    }
+    cmd += 6;  // Skip "DEBUG:"
+
+    // DEBUG:TRACE <0-3>
+    if (strncasecmp_local(cmd, "TRACE", 5) == 0) {
+        result.type = ScpiCommandType::DEBUG_TRACE;
+        cmd += 5;
+        cmd = skip_whitespace(cmd);
+        if (!parse_int(cmd, result.int_value)) {
+            result.error_msg = "Invalid trace level (0-3)";
+            return false;
+        }
+        result.has_int = true;
+        result.valid = true;
+        return true;
+    }
+
+    // DEBUG:STEP:MODE <0|1>
+    if (strncasecmp_local(cmd, "STEP:MODE", 9) == 0) {
+        result.type = ScpiCommandType::DEBUG_STEP_MODE;
+        cmd += 9;
+        cmd = skip_whitespace(cmd);
+        if (!parse_int(cmd, result.int_value)) {
+            result.error_msg = "Invalid mode (0 or 1)";
+            return false;
+        }
+        result.has_int = true;
+        result.valid = true;
+        return true;
+    }
+
+    // DEBUG:STEP (no arguments)
+    if (strncasecmp_local(cmd, "STEP", 4) == 0 &&
+        (cmd[4] == '\0' || std::isspace(cmd[4]))) {
+        result.type = ScpiCommandType::DEBUG_STEP;
+        result.valid = true;
+        return true;
+    }
+
+    // DEBUG:LOOPBACK <0|1>
+    if (strncasecmp_local(cmd, "LOOPBACK", 8) == 0) {
+        result.type = ScpiCommandType::DEBUG_LOOPBACK;
+        cmd += 8;
+        cmd = skip_whitespace(cmd);
+        if (!parse_int(cmd, result.int_value)) {
+            result.error_msg = "Invalid value (0 or 1)";
+            return false;
+        }
+        result.has_int = true;
+        result.valid = true;
+        return true;
+    }
+
+    // DEBUG:STATUS?
+    if (strncasecmp_local(cmd, "STATUS?", 7) == 0) {
+        result.type = ScpiCommandType::DEBUG_STATUS;
+        result.is_query = true;
+        result.valid = true;
+        return true;
+    }
+
+    // DEBUG:TEST:BYTE <hex>
+    if (strncasecmp_local(cmd, "TEST:BYTE", 9) == 0) {
+        result.type = ScpiCommandType::DEBUG_TEST_BYTE;
+        cmd += 9;
+        cmd = skip_whitespace(cmd);
+        if (!parse_int(cmd, result.int_value)) {
+            result.error_msg = "Invalid hex byte";
+            return false;
+        }
+        result.has_int = true;
+        result.valid = true;
+        return true;
+    }
+
+    // DEBUG:TEST:EXPANDER <addr>
+    if (strncasecmp_local(cmd, "TEST:EXPANDER", 13) == 0) {
+        result.type = ScpiCommandType::DEBUG_TEST_EXPANDER;
+        cmd += 13;
+        cmd = skip_whitespace(cmd);
+        if (!parse_int(cmd, result.int_value)) {
+            result.error_msg = "Invalid expander address";
+            return false;
+        }
+        result.has_int = true;
+        result.valid = true;
+        return true;
+    }
+
+    return false;
+}
+#endif
+
 ScpiCommand ScpiParser::parse(const std::string& line) {
     return parse(line.c_str());
 }
@@ -297,6 +394,12 @@ ScpiCommand ScpiParser::parse(const char* line) {
     if (parse_board_command(line, result)) {
         return result;
     }
+
+#ifdef DEBUG_SPI_MODE
+    if (parse_debug_command(line, result)) {
+        return result;
+    }
+#endif
 
     result.error_msg = "Unknown command";
     return result;

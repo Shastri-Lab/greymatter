@@ -68,6 +68,13 @@ int main() {
     printf("\r\n");
     printf("GreyMatter DAC Controller v0.1\r\n");
     printf("8 boards x 3 DACs (2x LTC2662 + 1x LTC2664)\r\n");
+#ifdef DEBUG_SPI_MODE
+    printf("*** DEBUG MODE ENABLED ***\r\n");
+    printf("SPI: 1 Hz bit-banged for LED visibility\r\n");
+    printf("Loopback pins: GP0=MOSI, GP1=MISO, GP2=CLK, GP3=CS\r\n");
+    printf("Commands: DEBUG:TRACE, DEBUG:STEP:MODE, DEBUG:STEP, DEBUG:STATUS?\r\n");
+    printf("          DEBUG:TEST:BYTE <hex>, DEBUG:TEST:EXPANDER <addr>\r\n");
+#endif
     printf("Initializing...\r\n");
 
     // Initialize SPI manager (includes GPIO, SPI peripheral, IO expanders)
