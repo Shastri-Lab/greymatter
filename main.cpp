@@ -83,6 +83,7 @@ int main() {
 
     // Initialize board manager with all DACs
     BoardManager board_manager(spi_manager);
+#ifndef DEBUG_SPI_MODE
     board_manager.init_all();
     printf("All DACs initialized.\r\n");
 
@@ -94,6 +95,7 @@ int main() {
     } else {
         printf("No faults detected.\r\n");
     }
+#endif
 
     printf("Ready. Enter SCPI commands:\r\n");
     printf("> ");

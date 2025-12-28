@@ -5,7 +5,9 @@
 #include "io_expander.hpp"  // For HW_PINS namespace
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
+#include "tusb.h"  // For tud_task() to process USB while waiting
 #include <cstdio>
+#include <cstring>
 
 // Global instance
 DebugSpi g_debug_spi;
@@ -129,10 +131,48 @@ void DebugSpi::wait_for_step() {
     state_ = DebugSpiState::WAITING_FOR_STEP;
     step_pending_ = false;
 
-    // Block until step() is called (from main loop processing DEBUG:STEP command)
+    // Local buffer for reading commands while blocked
+    static char step_buf[32];
+    static size_t step_buf_pos = 0;
+
+    // Poll USB input directly since main loop is blocked
     while (!step_pending_) {
+        // Process USB to keep connection alive
+        tud_task();
+
+        // Check for incoming characters
+        int c = getchar_timeout_us(0);
+        if (c != PICO_ERROR_TIMEOUT) {
+            // Echo character
+            putchar(c);
+
+            if (c == '\r' || c == '\n') {
+                if (step_buf_pos > 0) {
+                    step_buf[step_buf_pos] = '\0';
+
+                    // Check for DEBUG:STEP command (case-insensitive would be nice but keep it simple)
+                    if (strcmp(step_buf, "DEBUG:STEP") == 0 ||
+                        strcmp(step_buf, "debug:step") == 0) {
+                        printf("\r\n[DEBUG SPI] STEP received\r\n");
+                        step_pending_ = true;
+                    } else {
+                        printf("\r\n[DEBUG SPI] Unknown command while waiting: '%s'\r\n", step_buf);
+                        printf("[DEBUG SPI] Send DEBUG:STEP to continue\r\n");
+                    }
+                    step_buf_pos = 0;
+                }
+            } else if (c == '\b' || c == 127) {
+                // Handle backspace
+                if (step_buf_pos > 0) {
+                    step_buf_pos--;
+                    printf("\b \b");
+                }
+            } else if (step_buf_pos < sizeof(step_buf) - 1) {
+                step_buf[step_buf_pos++] = static_cast<char>(c);
+            }
+        }
+
         sleep_ms(10);
-        tight_loop_contents();
     }
 
     step_pending_ = false;

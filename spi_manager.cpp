@@ -72,10 +72,10 @@ void SpiManager::init() {
     init_gpio();           // Steps 1-3
     init_spi();            // Step 4
     reset_io_expanders();  // Reset before configuring
-
+#ifndef DEBUG_SPI_MODE
     // Step 5: Initialize IO expanders
     io_expander_.init(SPI_CONFIG::get_spi_instance());
-
+#endif
     initialized_ = true;
 }
 
