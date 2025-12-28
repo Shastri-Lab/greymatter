@@ -23,6 +23,8 @@ enum class ScpiCommandType {
     UPDATE_ALL,      // UPDATE:ALL
     POWER_DOWN,      // BOARD<n>:DAC<m>:CH<c>:PDOWN
     POWER_DOWN_CHIP, // BOARD<n>:DAC<m>:PDOWN
+    SET_RESOLUTION,  // BOARD<n>:DAC<m>:RES <12|16>
+    GET_RESOLUTION,  // BOARD<n>:DAC<m>:RES?
     // System commands
     FAULT_QUERY,     // FAULT?
     SYST_ERR_QUERY,  // SYST:ERR?

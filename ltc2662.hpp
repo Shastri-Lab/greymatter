@@ -32,7 +32,8 @@ constexpr float LTC2662_FS_CURRENT[] = {
     300.0     // 0xF
 };
 
-// LTC2662: 5-channel, 16-bit current-source DAC (up to 300 mA)
+// LTC2662: 5-channel current-source DAC (up to 300 mA)
+// Available in 12-bit (LTC2662-12) and 16-bit (LTC2662-16) variants
 class LTC2662 : public DacDevice {
 public:
     static constexpr uint8_t NUM_CHANNELS = 5;
@@ -40,11 +41,11 @@ public:
     // Default constructor (for array allocation, must call setup() before use)
     LTC2662() = default;
 
-    // Constructor: board_id 0-7, device_id 0-1 (two LTC2662 per board)
-    LTC2662(SpiManager* spi, uint8_t board_id, uint8_t device_id);
+    // Constructor: board_id 0-7, device_id 0-1, resolution 12 or 16 bits
+    LTC2662(SpiManager* spi, uint8_t board_id, uint8_t device_id, uint8_t resolution_bits = 16);
 
     // Setup method (alternative to constructor for pre-allocated objects)
-    void setup(SpiManager* spi, uint8_t board_id, uint8_t device_id);
+    void setup(SpiManager* spi, uint8_t board_id, uint8_t device_id, uint8_t resolution_bits = 16);
 
     // DacDevice interface
     void init() override;
@@ -57,6 +58,8 @@ public:
     void power_down_chip() override;
     uint8_t get_num_channels() const override { return NUM_CHANNELS; }
     const char* get_type_name() const override { return "LTC2662"; }
+    uint8_t get_resolution() const override { return resolution_bits_; }
+    uint16_t get_max_code() const override { return max_code_; }
 
     // LTC2662-specific methods
 
@@ -79,6 +82,8 @@ public:
 
 private:
     uint8_t span_[NUM_CHANNELS] = {0};  // Current span setting per channel
+    uint8_t resolution_bits_ = 16;       // 12 or 16 bit resolution
+    uint16_t max_code_ = 65535;          // 4095 for 12-bit, 65535 for 16-bit
 };
 
 #endif // LTC2662_HPP

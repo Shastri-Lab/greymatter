@@ -28,7 +28,8 @@ constexpr LTC2664SpanInfo LTC2664_SPAN_INFO[] = {
     {-2.5f,  2.5f,  true},   // 0x4: ±2.5V
 };
 
-// LTC2664: 4-channel, 16-bit voltage-output DAC (±10V)
+// LTC2664: 4-channel voltage-output DAC (±10V)
+// Available in 12-bit (LTC2664-12) and 16-bit (LTC2664-16) variants
 class LTC2664 : public DacDevice {
 public:
     static constexpr uint8_t NUM_CHANNELS = 4;
@@ -36,11 +37,11 @@ public:
     // Default constructor (for array allocation, must call setup() before use)
     LTC2664() = default;
 
-    // Constructor: board_id 0-7, device_id 2 (LTC2664 is third DAC on each board)
-    LTC2664(SpiManager* spi, uint8_t board_id, uint8_t device_id);
+    // Constructor: board_id 0-7, device_id 2, resolution 12 or 16 bits
+    LTC2664(SpiManager* spi, uint8_t board_id, uint8_t device_id, uint8_t resolution_bits = 16);
 
     // Setup method (alternative to constructor for pre-allocated objects)
-    void setup(SpiManager* spi, uint8_t board_id, uint8_t device_id);
+    void setup(SpiManager* spi, uint8_t board_id, uint8_t device_id, uint8_t resolution_bits = 16);
 
     // DacDevice interface
     void init() override;
@@ -53,6 +54,8 @@ public:
     void power_down_chip() override;
     uint8_t get_num_channels() const override { return NUM_CHANNELS; }
     const char* get_type_name() const override { return "LTC2664"; }
+    uint8_t get_resolution() const override { return resolution_bits_; }
+    uint16_t get_max_code() const override { return max_code_; }
 
     // LTC2664-specific methods
 
@@ -80,6 +83,8 @@ public:
 
 private:
     uint8_t span_[NUM_CHANNELS] = {0};  // Current span setting per channel
+    uint8_t resolution_bits_ = 16;       // 12 or 16 bit resolution
+    uint16_t max_code_ = 65535;          // 4095 for 12-bit, 65535 for 16-bit
 };
 
 #endif // LTC2664_HPP

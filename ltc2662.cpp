@@ -1,14 +1,16 @@
 #include "ltc2662.hpp"
 #include "spi_manager.hpp"
 
-LTC2662::LTC2662(SpiManager* spi, uint8_t board_id, uint8_t device_id) {
-    setup(spi, board_id, device_id);
+LTC2662::LTC2662(SpiManager* spi, uint8_t board_id, uint8_t device_id, uint8_t resolution_bits) {
+    setup(spi, board_id, device_id, resolution_bits);
 }
 
-void LTC2662::setup(SpiManager* spi, uint8_t board_id, uint8_t device_id) {
+void LTC2662::setup(SpiManager* spi, uint8_t board_id, uint8_t device_id, uint8_t resolution_bits) {
     spi_ = spi;
     board_id_ = board_id;
     device_id_ = device_id;
+    resolution_bits_ = (resolution_bits == 12) ? 12 : 16;  // Only 12 or 16 valid
+    max_code_ = (resolution_bits_ == 12) ? 4095 : 65535;
 }
 
 void LTC2662::init() {
@@ -81,8 +83,8 @@ void LTC2662::set_current_ma(uint8_t channel, float current_ma) {
     if (current_ma < 0.0f) current_ma = 0.0f;
     if (current_ma > fs) current_ma = fs;
 
-    // Convert to 16-bit code: CODE = (I_OUT / I_FS) * 65535
-    uint16_t code = static_cast<uint16_t>((current_ma / fs) * 65535.0f + 0.5f);
+    // Convert to code: CODE = (I_OUT / I_FS) * max_code
+    uint16_t code = static_cast<uint16_t>((current_ma / fs) * static_cast<float>(max_code_) + 0.5f);
 
     write_and_update(channel, code);
 }

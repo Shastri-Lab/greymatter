@@ -1,6 +1,7 @@
 #include "board_manager.hpp"
 #include "utils.hpp"
 #include <cstdio>
+#include <cstring>
 
 #ifdef DEBUG_SPI_MODE
 #include "debug_spi.hpp"
@@ -14,6 +15,12 @@ BoardManager::BoardManager(SpiManager& spi) : spi_(spi) {
         current_dacs_[board][0] = nullptr;
         current_dacs_[board][1] = nullptr;
         voltage_dacs_[board] = nullptr;
+
+        // Set default resolutions
+        resolution_[board][0] = DEFAULT_CURRENT_DAC_RESOLUTION;
+        resolution_[board][1] = DEFAULT_CURRENT_DAC_RESOLUTION;
+        resolution_[board][2] = DEFAULT_VOLTAGE_DAC_RESOLUTION;
+
     }
 }
 
@@ -24,13 +31,13 @@ void BoardManager::init_all() {
         uint8_t idx0 = board * 2;
         uint8_t idx1 = board * 2 + 1;
 
-        current_dac_storage_[idx0].setup(&spi_, board, 0);
-        current_dac_storage_[idx1].setup(&spi_, board, 1);
+        current_dac_storage_[idx0].setup(&spi_, board, 0, resolution_[board][0]);
+        current_dac_storage_[idx1].setup(&spi_, board, 1, resolution_[board][1]);
         current_dacs_[board][0] = &current_dac_storage_[idx0];
         current_dacs_[board][1] = &current_dac_storage_[idx1];
 
         // Setup LTC2664 voltage DAC at device_id 2
-        voltage_dac_storage_[board].setup(&spi_, board, 2);
+        voltage_dac_storage_[board].setup(&spi_, board, 2, resolution_[board][2]);
         voltage_dacs_[board] = &voltage_dac_storage_[board];
 
         // Initialize each DAC
@@ -67,6 +74,16 @@ DacDevice* BoardManager::get_dac(uint8_t board, uint8_t dac) {
 uint8_t BoardManager::get_dac_type(uint8_t board, uint8_t dac) {
     // 0 = LTC2662 (current), 1 = LTC2664 (voltage)
     return (dac == 2) ? 1 : 0;
+}
+
+void BoardManager::set_resolution(uint8_t board, uint8_t dac, uint8_t resolution_bits) {
+    if (board >= NUM_BOARDS || dac >= DACS_PER_BOARD) return;
+    resolution_[board][dac] = (resolution_bits == 12) ? 12 : 16;
+}
+
+uint8_t BoardManager::get_resolution(uint8_t board, uint8_t dac) {
+    if (board >= NUM_BOARDS || dac >= DACS_PER_BOARD) return 16;
+    return resolution_[board][dac];
 }
 
 std::string BoardManager::execute_idn() {
@@ -220,6 +237,46 @@ std::string BoardManager::execute_power_down(const ScpiCommand& cmd) {
     return "OK";
 }
 
+std::string BoardManager::execute_get_resolution(const ScpiCommand& cmd) {
+    if (cmd.board_id < 0 || cmd.dac_id < 0) {
+        return "ERROR:Missing address";
+    }
+
+    DacDevice* dac = get_dac(cmd.board_id, cmd.dac_id);
+    if (!dac) {
+        return "ERROR:DAC not initialized";
+    }
+
+    char buf[16];
+    snprintf(buf, sizeof(buf), "%u", dac->get_resolution());
+    return buf;
+}
+
+std::string BoardManager::execute_set_resolution(const ScpiCommand& cmd) {
+    if (cmd.board_id < 0 || cmd.dac_id < 0) {
+        return "ERROR:Missing address";
+    }
+
+    if (cmd.board_id >= NUM_BOARDS || cmd.dac_id >= DACS_PER_BOARD) {
+        return "ERROR:Invalid board/DAC";
+    }
+
+    uint8_t new_res = static_cast<uint8_t>(cmd.int_value);
+    set_resolution(cmd.board_id, cmd.dac_id, new_res);
+
+    // Re-initialize the specific DAC with new resolution
+    if (cmd.dac_id < 2) {
+        uint8_t idx = cmd.board_id * 2 + cmd.dac_id;
+        current_dac_storage_[idx].setup(&spi_, cmd.board_id, cmd.dac_id, new_res);
+        current_dacs_[cmd.board_id][cmd.dac_id]->init();
+    } else {
+        voltage_dac_storage_[cmd.board_id].setup(&spi_, cmd.board_id, 2, new_res);
+        voltage_dacs_[cmd.board_id]->init();
+    }
+
+    return "OK";
+}
+
 std::string BoardManager::execute(const ScpiCommand& cmd) {
     if (!cmd.valid) {
         return "ERROR:" + cmd.error_msg;
@@ -256,6 +313,12 @@ std::string BoardManager::execute(const ScpiCommand& cmd) {
         case ScpiCommandType::POWER_DOWN:
         case ScpiCommandType::POWER_DOWN_CHIP:
             return execute_power_down(cmd);
+
+        case ScpiCommandType::GET_RESOLUTION:
+            return execute_get_resolution(cmd);
+
+        case ScpiCommandType::SET_RESOLUTION:
+            return execute_set_resolution(cmd);
 
         case ScpiCommandType::PULSE_LDAC:
             spi_.pulse_ldac();

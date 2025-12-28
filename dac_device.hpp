@@ -62,6 +62,12 @@ public:
     // Get the DAC type name
     virtual const char* get_type_name() const = 0;
 
+    // Get the bit resolution (12 or 16)
+    virtual uint8_t get_resolution() const = 0;
+
+    // Get the maximum code value (4095 for 12-bit, 65535 for 16-bit)
+    virtual uint16_t get_max_code() const = 0;
+
 protected:
     // Low-level 24-bit SPI command
     void send_command(uint8_t command, uint8_t address, uint16_t data);

@@ -1,14 +1,16 @@
 #include "ltc2664.hpp"
 #include "spi_manager.hpp"
 
-LTC2664::LTC2664(SpiManager* spi, uint8_t board_id, uint8_t device_id) {
-    setup(spi, board_id, device_id);
+LTC2664::LTC2664(SpiManager* spi, uint8_t board_id, uint8_t device_id, uint8_t resolution_bits) {
+    setup(spi, board_id, device_id, resolution_bits);
 }
 
-void LTC2664::setup(SpiManager* spi, uint8_t board_id, uint8_t device_id) {
+void LTC2664::setup(SpiManager* spi, uint8_t board_id, uint8_t device_id, uint8_t resolution_bits) {
     spi_ = spi;
     board_id_ = board_id;
     device_id_ = device_id;
+    resolution_bits_ = (resolution_bits == 12) ? 12 : 16;  // Only 12 or 16 valid
+    max_code_ = (resolution_bits_ == 12) ? 4095 : 65535;
 }
 
 void LTC2664::init() {
@@ -102,10 +104,10 @@ uint16_t LTC2664::voltage_to_code(uint8_t channel, float voltage) const {
     if (voltage < min_v) voltage = min_v;
     if (voltage > max_v) voltage = max_v;
 
-    // For unipolar: CODE = (V_OUT / V_FS) * 65535
-    // For bipolar: CODE = ((V_OUT - V_MIN) / RANGE) * 65535
+    // For unipolar: CODE = (V_OUT / V_FS) * max_code
+    // For bipolar: CODE = ((V_OUT - V_MIN) / RANGE) * max_code
     float normalized = (voltage - min_v) / range;
-    return static_cast<uint16_t>(normalized * 65535.0f + 0.5f);
+    return static_cast<uint16_t>(normalized * static_cast<float>(max_code_) + 0.5f);
 }
 
 float LTC2664::code_to_voltage(uint8_t channel, uint16_t code) const {
@@ -117,7 +119,7 @@ float LTC2664::code_to_voltage(uint8_t channel, uint16_t code) const {
 
     if (range <= 0.0f) return 0.0f;
 
-    float normalized = static_cast<float>(code) / 65535.0f;
+    float normalized = static_cast<float>(code) / static_cast<float>(max_code_);
     return min_v + (normalized * range);
 }
 

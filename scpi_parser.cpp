@@ -266,6 +266,29 @@ bool ScpiParser::parse_board_command(const char* cmd, ScpiCommand& result) {
         return true;
     }
 
+    if (strncasecmp_local(p, "RES", 3) == 0) {
+        p += 3;
+        if (*p == '?') {
+            result.type = ScpiCommandType::GET_RESOLUTION;
+            result.is_query = true;
+            result.valid = true;
+        } else {
+            result.type = ScpiCommandType::SET_RESOLUTION;
+            p = skip_whitespace(p);
+            if (!parse_int(p, result.int_value)) {
+                result.error_msg = "Invalid resolution value (12 or 16)";
+                return false;
+            }
+            if (result.int_value != 12 && result.int_value != 16) {
+                result.error_msg = "Resolution must be 12 or 16";
+                return false;
+            }
+            result.has_int = true;
+            result.valid = true;
+        }
+        return true;
+    }
+
     result.error_msg = "Unknown DAC command";
     return false;
 }
