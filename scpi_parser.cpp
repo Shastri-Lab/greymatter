@@ -108,6 +108,35 @@ bool ScpiParser::parse_system_command(const char* cmd, ScpiCommand& result) {
         return true;
     }
 
+    // CAL:DATA?
+    if (strncasecmp_local(cmd, "CAL:DATA?", 9) == 0) {
+        result.type = ScpiCommandType::CAL_DATA_QUERY;
+        result.is_query = true;
+        result.valid = true;
+        return true;
+    }
+
+    // CAL:CLEAR
+    if (strncasecmp_local(cmd, "CAL:CLEAR", 9) == 0) {
+        result.type = ScpiCommandType::CAL_CLEAR;
+        result.valid = true;
+        return true;
+    }
+
+    // CAL:SAVE
+    if (strncasecmp_local(cmd, "CAL:SAVE", 8) == 0) {
+        result.type = ScpiCommandType::CAL_SAVE;
+        result.valid = true;
+        return true;
+    }
+
+    // CAL:LOAD
+    if (strncasecmp_local(cmd, "CAL:LOAD", 8) == 0) {
+        result.type = ScpiCommandType::CAL_LOAD;
+        result.valid = true;
+        return true;
+    }
+
     return false;
 }
 
@@ -128,10 +157,40 @@ bool ScpiParser::parse_board_command(const char* cmd, ScpiCommand& result) {
     // Find next colon
     const char* p = std::strchr(cmd, ':');
     if (!p) {
-        result.error_msg = "Expected :DAC after BOARD";
+        result.error_msg = "Expected :DAC or :SN after BOARD";
         return false;
     }
     p++;  // Skip :
+
+    // Check for BOARD<n>:SN (serial number)
+    if (strncasecmp_local(p, "SN", 2) == 0) {
+        p += 2;
+        if (*p == '?') {
+            result.type = ScpiCommandType::GET_SERIAL;
+            result.is_query = true;
+            result.valid = true;
+        } else {
+            result.type = ScpiCommandType::SET_SERIAL;
+            p = skip_whitespace(p);
+            // Read the rest as serial number string (up to newline/null)
+            std::string sn;
+            while (*p && *p != '\n' && *p != '\r') {
+                sn += *p++;
+            }
+            // Trim trailing whitespace
+            while (!sn.empty() && std::isspace(sn.back())) {
+                sn.pop_back();
+            }
+            if (sn.empty()) {
+                result.error_msg = "Serial number required";
+                return false;
+            }
+            result.string_value = sn;
+            result.has_string = true;
+            result.valid = true;
+        }
+        return true;
+    }
 
     // DAC<n>:...
     if (strncasecmp_local(p, "DAC", 3) != 0) {
@@ -227,6 +286,74 @@ bool ScpiParser::parse_board_command(const char* cmd, ScpiCommand& result) {
             result.type = ScpiCommandType::POWER_DOWN;
             result.valid = true;
             return true;
+        }
+
+        // CAL:GAIN, CAL:OFFS, CAL:EN - Calibration commands
+        if (strncasecmp_local(p, "CAL:", 4) == 0) {
+            p += 4;
+
+            // CAL:GAIN
+            if (strncasecmp_local(p, "GAIN", 4) == 0) {
+                p += 4;
+                if (*p == '?') {
+                    result.type = ScpiCommandType::GET_CAL_GAIN;
+                    result.is_query = true;
+                    result.valid = true;
+                } else {
+                    result.type = ScpiCommandType::SET_CAL_GAIN;
+                    p = skip_whitespace(p);
+                    if (!parse_float(p, result.float_value)) {
+                        result.error_msg = "Invalid gain value";
+                        return false;
+                    }
+                    result.has_float = true;
+                    result.valid = true;
+                }
+                return true;
+            }
+
+            // CAL:OFFS (offset)
+            if (strncasecmp_local(p, "OFFS", 4) == 0) {
+                p += 4;
+                if (*p == '?') {
+                    result.type = ScpiCommandType::GET_CAL_OFFSET;
+                    result.is_query = true;
+                    result.valid = true;
+                } else {
+                    result.type = ScpiCommandType::SET_CAL_OFFSET;
+                    p = skip_whitespace(p);
+                    if (!parse_float(p, result.float_value)) {
+                        result.error_msg = "Invalid offset value";
+                        return false;
+                    }
+                    result.has_float = true;
+                    result.valid = true;
+                }
+                return true;
+            }
+
+            // CAL:EN (enable)
+            if (strncasecmp_local(p, "EN", 2) == 0) {
+                p += 2;
+                if (*p == '?') {
+                    result.type = ScpiCommandType::GET_CAL_ENABLE;
+                    result.is_query = true;
+                    result.valid = true;
+                } else {
+                    result.type = ScpiCommandType::SET_CAL_ENABLE;
+                    p = skip_whitespace(p);
+                    if (!parse_int(p, result.int_value)) {
+                        result.error_msg = "Invalid enable value (0 or 1)";
+                        return false;
+                    }
+                    result.has_int = true;
+                    result.valid = true;
+                }
+                return true;
+            }
+
+            result.error_msg = "Unknown calibration command (use GAIN, OFFS, or EN)";
+            return false;
         }
 
         result.error_msg = "Unknown channel command";

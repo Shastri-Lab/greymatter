@@ -19,6 +19,18 @@
 constexpr uint8_t NUM_BOARDS = 8;
 constexpr uint8_t DACS_PER_BOARD = 3;
 
+// Calibration constants
+constexpr uint8_t MAX_CHANNELS_PER_DAC = 5;  // LTC2662 has 5 channels (max)
+constexpr uint8_t SERIAL_NUMBER_MAX_LEN = 32;
+
+// Calibration data for a single channel
+// Calibrated output = (ideal_output * gain) + offset
+struct ChannelCalibration {
+    float gain = 1.0f;      // Gain correction factor (nominally 1.0)
+    float offset = 0.0f;    // Offset correction in physical units (V or mA)
+    bool enabled = false;   // Whether calibration is applied
+};
+
 // Default DAC resolutions (can be overridden per-board)
 // Set to 12 for LTC2662-12/LTC2664-12, 16 for LTC2662-16/LTC2664-16
 constexpr uint8_t DEFAULT_CURRENT_DAC_RESOLUTION = 16;
@@ -53,6 +65,31 @@ public:
     // Get resolution for a specific DAC
     uint8_t get_resolution(uint8_t board, uint8_t dac);
 
+    // Set/get board serial number
+    void set_serial_number(uint8_t board, const std::string& serial);
+    std::string get_serial_number(uint8_t board) const;
+
+    // Set/get channel calibration gain
+    void set_cal_gain(uint8_t board, uint8_t dac, uint8_t channel, float gain);
+    float get_cal_gain(uint8_t board, uint8_t dac, uint8_t channel) const;
+
+    // Set/get channel calibration offset
+    void set_cal_offset(uint8_t board, uint8_t dac, uint8_t channel, float offset);
+    float get_cal_offset(uint8_t board, uint8_t dac, uint8_t channel) const;
+
+    // Enable/disable channel calibration
+    void set_cal_enable(uint8_t board, uint8_t dac, uint8_t channel, bool enable);
+    bool get_cal_enable(uint8_t board, uint8_t dac, uint8_t channel) const;
+
+    // Get calibration structure (for applying calibration in DAC methods)
+    const ChannelCalibration* get_calibration(uint8_t board, uint8_t dac, uint8_t channel) const;
+
+    // Clear all calibration data
+    void clear_all_calibration();
+
+    // Export all calibration data as a formatted string
+    std::string export_calibration_data() const;
+
 private:
     SpiManager& spi_;
     ScpiParser parser_;
@@ -69,6 +106,12 @@ private:
     // Resolution configuration per DAC: [board][dac]
     uint8_t resolution_[NUM_BOARDS][DACS_PER_BOARD];
 
+    // Board serial numbers: [board]
+    char serial_numbers_[NUM_BOARDS][SERIAL_NUMBER_MAX_LEN];
+
+    // Calibration data: [board][dac][channel]
+    ChannelCalibration calibration_[NUM_BOARDS][DACS_PER_BOARD][MAX_CHANNELS_PER_DAC];
+
     // Execute specific command types
     std::string execute_idn();
     std::string execute_fault_query();
@@ -80,6 +123,18 @@ private:
     std::string execute_power_down(const ScpiCommand& cmd);
     std::string execute_get_resolution(const ScpiCommand& cmd);
     std::string execute_set_resolution(const ScpiCommand& cmd);
+    std::string execute_set_serial(const ScpiCommand& cmd);
+    std::string execute_get_serial(const ScpiCommand& cmd);
+    std::string execute_set_cal_gain(const ScpiCommand& cmd);
+    std::string execute_get_cal_gain(const ScpiCommand& cmd);
+    std::string execute_set_cal_offset(const ScpiCommand& cmd);
+    std::string execute_get_cal_offset(const ScpiCommand& cmd);
+    std::string execute_set_cal_enable(const ScpiCommand& cmd);
+    std::string execute_get_cal_enable(const ScpiCommand& cmd);
+    std::string execute_cal_data_query();
+    std::string execute_cal_clear();
+    std::string execute_cal_save();
+    std::string execute_cal_load();
 };
 
 #endif // BOARD_MANAGER_HPP

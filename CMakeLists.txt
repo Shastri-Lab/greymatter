@@ -26,6 +26,7 @@ add_executable(greymatter
     board_manager.cpp
     scpi_parser.cpp
     debug_spi.cpp
+    cal_storage.cpp
 )
 
 pico_enable_stdio_usb(greymatter 1)
@@ -35,4 +36,6 @@ target_link_libraries(greymatter
     pico_stdlib
     hardware_spi
     hardware_gpio
+    hardware_flash
+    hardware_sync
 )

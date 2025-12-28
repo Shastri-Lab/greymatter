@@ -25,6 +25,19 @@ enum class ScpiCommandType {
     POWER_DOWN_CHIP, // BOARD<n>:DAC<m>:PDOWN
     SET_RESOLUTION,  // BOARD<n>:DAC<m>:RES <12|16>
     GET_RESOLUTION,  // BOARD<n>:DAC<m>:RES?
+    // Calibration commands
+    SET_CAL_GAIN,    // BOARD<n>:DAC<m>:CH<c>:CAL:GAIN <value>
+    GET_CAL_GAIN,    // BOARD<n>:DAC<m>:CH<c>:CAL:GAIN?
+    SET_CAL_OFFSET,  // BOARD<n>:DAC<m>:CH<c>:CAL:OFFS <value>
+    GET_CAL_OFFSET,  // BOARD<n>:DAC<m>:CH<c>:CAL:OFFS?
+    SET_CAL_ENABLE,  // BOARD<n>:DAC<m>:CH<c>:CAL:EN <0|1>
+    GET_CAL_ENABLE,  // BOARD<n>:DAC<m>:CH<c>:CAL:EN?
+    SET_SERIAL,      // BOARD<n>:SN <string>
+    GET_SERIAL,      // BOARD<n>:SN?
+    CAL_DATA_QUERY,  // CAL:DATA? - Export all calibration data
+    CAL_CLEAR,       // CAL:CLEAR - Clear all calibration data
+    CAL_SAVE,        // CAL:SAVE - Save calibration to flash
+    CAL_LOAD,        // CAL:LOAD - Load calibration from flash
     // System commands
     FAULT_QUERY,     // FAULT?
     SYST_ERR_QUERY,  // SYST:ERR?
@@ -57,6 +70,10 @@ struct ScpiCommand {
     uint16_t int_value = 0;
     bool has_float = false;
     bool has_int = false;
+
+    // String value (for serial number)
+    std::string string_value;
+    bool has_string = false;
 
     // Error state
     bool valid = false;
