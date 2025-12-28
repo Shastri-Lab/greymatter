@@ -149,31 +149,41 @@ void IoExpander::init(spi_inst_t* spi) {
     sleep_us(10);
 
     // Step 2: Now configure each expander individually
-    // Expander 0: CS bits, D_EN, LDAC, CLR (all outputs on Port A, assumption)
-    // TODO: Adjust based on actual schematic pin assignments
+    // Expander 0: Control signals
+    //   Port A: CS0-CS4 (pins 4-0), D_EN (pin 5) - all outputs
+    //   Port B: LDAC (pin 0), CLR (pin 7) - outputs; other pins unused
     init_expander(EXPANDER_ADDR::EXPANDER_0,
-                  0x00,  // IODIRA: all outputs (CS0-4, D_EN, LDAC, CLR)
-                  0xFF,  // IODIRB: all inputs (or unused - TODO)
+                  0x00,  // IODIRA: all outputs (CS4-CS0 on pins 0-4, D_EN on pin 5)
+                  0x00,  // IODIRB: all outputs (LDAC on pin 0, CLR on pin 7)
                   0x00,  // No interrupts on Port A
-                  0x00,  // No interrupts on Port B (TODO: may need faults here)
-                  0xFF,  // DEFVALA (not used for outputs)
-                  0xFF); // DEFVALB (expect high, fault = low)
+                  0x00,  // No interrupts on Port B
+                  0x00,  // DEFVALA (not used for outputs)
+                  0x00); // DEFVALB (not used for outputs)
 
-    // Expander 1: Fault inputs from DACs 0-15 (assumption)
-    // TODO: Adjust based on actual schematic pin assignments
+    // Set initial state: D_EN=0 (disabled), LDAC=1 (idle), CLR=1 (idle)
+    write_register(EXPANDER_ADDR::EXPANDER_0, MCP23S17::REG_GPIOA, 0x00);
+    write_register(EXPANDER_ADDR::EXPANDER_0, MCP23S17::REG_GPIOB,
+                   (1 << SIGNAL_MAP::LDAC_BIT) | (1 << SIGNAL_MAP::CLR_BIT));
+    expander_cache_[EXPANDER_ADDR::EXPANDER_0] =
+        ((1 << SIGNAL_MAP::LDAC_BIT) | (1 << SIGNAL_MAP::CLR_BIT)) << 8;
+
+    // Expander 1: LTC2662 fault inputs (current DACs)
+    //   Port A: Boards 0-3, DACs 0-1 (pins 0-7 = FAULT_11, FAULT_12, FAULT_21, ...)
+    //   Port B: Boards 4-7, DACs 0-1 (pins 0-7 = FAULT_51, FAULT_52, FAULT_61, ...)
     init_expander(EXPANDER_ADDR::EXPANDER_1,
-                  0xFF,  // IODIRA: all inputs (faults 0-7)
-                  0xFF,  // IODIRB: all inputs (faults 8-15)
+                  0xFF,  // IODIRA: all inputs
+                  0xFF,  // IODIRB: all inputs
                   0xFF,  // Enable interrupts on all Port A pins
                   0xFF,  // Enable interrupts on all Port B pins
                   0xFF,  // DEFVALA: expect high (no fault)
                   0xFF); // DEFVALB: expect high (no fault)
 
-    // Expander 2: Fault inputs from DACs 16-23 + spare (assumption)
-    // TODO: Adjust based on actual schematic pin assignments
+    // Expander 2: LTC2664 temperature fault inputs (voltage DACs)
+    //   Port A: All 8 boards, DAC 2 (pins 0-7 = TEMP_1 through TEMP_8)
+    //   Port B: unused
     init_expander(EXPANDER_ADDR::EXPANDER_2,
-                  0xFF,  // IODIRA: all inputs (faults 16-23)
-                  0xFF,  // IODIRB: all inputs (spare/unused)
+                  0xFF,  // IODIRA: all inputs (temperature faults)
+                  0xFF,  // IODIRB: all inputs (unused, but configure as inputs)
                   0xFF,  // Enable interrupts on all Port A pins
                   0x00,  // No interrupts on Port B (unused)
                   0xFF,  // DEFVALA: expect high (no fault)
@@ -188,90 +198,119 @@ void IoExpander::set_dac_select(uint8_t board_id, uint8_t device_id) {
     // Mapping: board_id (0-7) * 3 + device_id (0-2) = DAC index 0-23
     // CS[4:0] encodes this 5-bit address for the decoder tree
     uint8_t dac_index = (board_id * 3) + device_id;
-    uint8_t cs_bits = dac_index & 0x1F;
 
-    // Build Port A value with CS bits and D_EN
-    // TODO: Update bit positions based on actual schematic
-    uint8_t port_a_value = cs_bits;                         // CS0-CS4 in bits 0-4
-    port_a_value |= (1 << SIGNAL_MAP::D_EN_BIT);           // Enable decoder
+    // Build Port A value with CS bits (bit-reversed) and D_EN
+    // Hardware wiring: CS4→pin0, CS3→pin1, CS2→pin2, CS1→pin3, CS0→pin4
+    // So we need to reverse the bit order of the 5-bit address
+    uint8_t port_a_value = 0;
+    port_a_value |= ((dac_index >> 0) & 1) << SIGNAL_MAP::CS0_BIT;  // CS0 (bit 0 of index) → pin 4
+    port_a_value |= ((dac_index >> 1) & 1) << SIGNAL_MAP::CS1_BIT;  // CS1 (bit 1 of index) → pin 3
+    port_a_value |= ((dac_index >> 2) & 1) << SIGNAL_MAP::CS2_BIT;  // CS2 (bit 2 of index) → pin 2
+    port_a_value |= ((dac_index >> 3) & 1) << SIGNAL_MAP::CS3_BIT;  // CS3 (bit 3 of index) → pin 1
+    port_a_value |= ((dac_index >> 4) & 1) << SIGNAL_MAP::CS4_BIT;  // CS4 (bit 4 of index) → pin 0
+    port_a_value |= (1 << SIGNAL_MAP::D_EN_BIT);                    // Enable decoder tree
 
-    // LDAC and CLR should be idle (high or low depending on polarity - TODO verify)
-    // Assuming active-low for LDAC/CLR, so set them high (inactive)
-    port_a_value |= (1 << SIGNAL_MAP::LDAC_BIT);
-    port_a_value |= (1 << SIGNAL_MAP::CLR_BIT);
+    // Write to the control expander Port A
+    write_register(SIGNAL_MAP::CTRL_EXPANDER, MCP23S17::REG_GPIOA, port_a_value);
 
-    // Write to the CS expander
-    write_register(SIGNAL_MAP::CS_EXPANDER, MCP23S17::REG_GPIOA, port_a_value);
-
-    // Update cache
-    expander_cache_[SIGNAL_MAP::CS_EXPANDER] =
-        (expander_cache_[SIGNAL_MAP::CS_EXPANDER] & 0xFF00) | port_a_value;
+    // Update cache (Port A in low byte)
+    expander_cache_[SIGNAL_MAP::CTRL_EXPANDER] =
+        (expander_cache_[SIGNAL_MAP::CTRL_EXPANDER] & 0xFF00) | port_a_value;
 }
 
 void IoExpander::deselect_dac() {
-    // Clear D_EN to disable decoder tree, keep LDAC/CLR idle
-    uint8_t port_a_value = 0;
-    port_a_value |= (1 << SIGNAL_MAP::LDAC_BIT);  // LDAC idle (high)
-    port_a_value |= (1 << SIGNAL_MAP::CLR_BIT);   // CLR idle (high)
+    // Clear D_EN to disable decoder tree (Port A)
     // D_EN = 0 (disabled), CS bits = 0 (don't care when disabled)
+    uint8_t port_a_value = 0;
 
-    write_register(SIGNAL_MAP::CS_EXPANDER, MCP23S17::REG_GPIOA, port_a_value);
+    write_register(SIGNAL_MAP::CTRL_EXPANDER, MCP23S17::REG_GPIOA, port_a_value);
 
-    // Update cache
-    expander_cache_[SIGNAL_MAP::CS_EXPANDER] =
-        (expander_cache_[SIGNAL_MAP::CS_EXPANDER] & 0xFF00) | port_a_value;
+    // Update cache (Port A in low byte, Port B unchanged)
+    expander_cache_[SIGNAL_MAP::CTRL_EXPANDER] =
+        (expander_cache_[SIGNAL_MAP::CTRL_EXPANDER] & 0xFF00) | port_a_value;
 }
 
 void IoExpander::pulse_ldac() {
-    // Read current value, pulse LDAC low, then restore
-    uint8_t current = expander_cache_[SIGNAL_MAP::CS_EXPANDER] & 0xFF;
+    // LDAC is on Port B, bit 0 (active-low)
+    // Read current Port B value from cache (high byte)
+    uint8_t current_b = (expander_cache_[SIGNAL_MAP::CTRL_EXPANDER] >> 8) & 0xFF;
 
     // Clear LDAC bit (active-low pulse)
-    uint8_t ldac_low = current & ~(1 << SIGNAL_MAP::LDAC_BIT);
-    write_register(SIGNAL_MAP::CS_EXPANDER, MCP23S17::REG_GPIOA, ldac_low);
+    uint8_t ldac_low = current_b & ~(1 << SIGNAL_MAP::LDAC_BIT);
+    write_register(SIGNAL_MAP::CTRL_EXPANDER, MCP23S17::REG_GPIOB, ldac_low);
 
     // Brief delay for LDAC pulse (min ~20ns per datasheet, but add margin)
     sleep_us(1);
 
     // Restore LDAC high
-    write_register(SIGNAL_MAP::CS_EXPANDER, MCP23S17::REG_GPIOA, current);
+    write_register(SIGNAL_MAP::CTRL_EXPANDER, MCP23S17::REG_GPIOB, current_b);
 }
 
 void IoExpander::assert_clear() {
-    // Clear the CLR bit (active-low)
-    uint8_t current = expander_cache_[SIGNAL_MAP::CS_EXPANDER] & 0xFF;
-    uint8_t clr_low = current & ~(1 << SIGNAL_MAP::CLR_BIT);
-    write_register(SIGNAL_MAP::CS_EXPANDER, MCP23S17::REG_GPIOA, clr_low);
+    // CLR is on Port B, bit 7 (active-low)
+    uint8_t current_b = (expander_cache_[SIGNAL_MAP::CTRL_EXPANDER] >> 8) & 0xFF;
+    uint8_t clr_low = current_b & ~(1 << SIGNAL_MAP::CLR_BIT);
+    write_register(SIGNAL_MAP::CTRL_EXPANDER, MCP23S17::REG_GPIOB, clr_low);
 
-    // Update cache
-    expander_cache_[SIGNAL_MAP::CS_EXPANDER] =
-        (expander_cache_[SIGNAL_MAP::CS_EXPANDER] & 0xFF00) | clr_low;
+    // Update cache (Port B in high byte)
+    expander_cache_[SIGNAL_MAP::CTRL_EXPANDER] =
+        (expander_cache_[SIGNAL_MAP::CTRL_EXPANDER] & 0x00FF) | (static_cast<uint16_t>(clr_low) << 8);
 }
 
 void IoExpander::release_clear() {
-    // Set the CLR bit high (inactive)
-    uint8_t current = expander_cache_[SIGNAL_MAP::CS_EXPANDER] & 0xFF;
-    uint8_t clr_high = current | (1 << SIGNAL_MAP::CLR_BIT);
-    write_register(SIGNAL_MAP::CS_EXPANDER, MCP23S17::REG_GPIOA, clr_high);
+    // CLR is on Port B, bit 7 (set high = inactive)
+    uint8_t current_b = (expander_cache_[SIGNAL_MAP::CTRL_EXPANDER] >> 8) & 0xFF;
+    uint8_t clr_high = current_b | (1 << SIGNAL_MAP::CLR_BIT);
+    write_register(SIGNAL_MAP::CTRL_EXPANDER, MCP23S17::REG_GPIOB, clr_high);
 
-    // Update cache
-    expander_cache_[SIGNAL_MAP::CS_EXPANDER] =
-        (expander_cache_[SIGNAL_MAP::CS_EXPANDER] & 0xFF00) | clr_high;
+    // Update cache (Port B in high byte)
+    expander_cache_[SIGNAL_MAP::CTRL_EXPANDER] =
+        (expander_cache_[SIGNAL_MAP::CTRL_EXPANDER] & 0x00FF) | (static_cast<uint16_t>(clr_high) << 8);
 }
 
 uint32_t IoExpander::read_faults() {
     // Read fault inputs from expanders 1 and 2
     // Faults are active-low, so invert to get "1 = fault present"
+    //
+    // Hardware layout:
+    //   Expander 1 Port A: FAULT_11(B0D0), FAULT_12(B0D1), FAULT_21(B1D0), FAULT_22(B1D1),
+    //                      FAULT_31(B2D0), FAULT_32(B2D1), FAULT_41(B3D0), FAULT_42(B3D1)
+    //   Expander 1 Port B: FAULT_51(B4D0), FAULT_52(B4D1), FAULT_61(B5D0), FAULT_62(B5D1),
+    //                      FAULT_71(B6D0), FAULT_72(B6D1), FAULT_81(B7D0), FAULT_82(B7D1)
+    //   Expander 2 Port A: TEMP_1(B0D2), TEMP_2(B1D2), ..., TEMP_8(B7D2)
+    //
+    // Output format: 24-bit mask where bit N = fault on DAC index N
+    //   DAC index = board_id * 3 + device_id
+    //   So bit 0 = B0D0, bit 1 = B0D1, bit 2 = B0D2, bit 3 = B1D0, etc.
 
-    // Expander 1: faults 0-15 (Port A = 0-7, Port B = 8-15)
-    uint16_t exp1 = read_gpio16(EXPANDER_ADDR::EXPANDER_1);
+    uint16_t exp1 = read_gpio16(SIGNAL_MAP::FAULT_EXPANDER);
+    uint8_t exp2_a = read_register(SIGNAL_MAP::TEMP_EXPANDER, MCP23S17::REG_GPIOA);
 
-    // Expander 2: faults 16-23 (Port A only, Port B unused)
-    uint8_t exp2_a = read_register(EXPANDER_ADDR::EXPANDER_2, MCP23S17::REG_GPIOA);
+    // Invert (active-low to active-high)
+    uint16_t ltc2662_faults = ~exp1;      // 16 current DAC faults
+    uint8_t ltc2664_faults = ~exp2_a;     // 8 voltage DAC temperature faults
 
-    // Combine and invert (active-low to active-high)
-    uint32_t raw_faults = exp1 | (static_cast<uint32_t>(exp2_a) << 16);
-    uint32_t faults = ~raw_faults & 0x00FFFFFF;  // Mask to 24 bits
+    // Reorganize bits to match DAC index scheme
+    // For each board, we need: DAC0 fault, DAC1 fault, DAC2 temp fault
+    uint32_t faults = 0;
+
+    for (int board = 0; board < 8; board++) {
+        int dac_base_index = board * 3;
+
+        // LTC2662 faults are at pins (board*2) and (board*2+1) within exp1
+        // Boards 0-3 are in Port A (low byte), Boards 4-7 are in Port B (high byte)
+        int fault_pin_base = board * 2;
+        uint8_t dac0_fault = (ltc2662_faults >> fault_pin_base) & 1;
+        uint8_t dac1_fault = (ltc2662_faults >> (fault_pin_base + 1)) & 1;
+
+        // LTC2664 temperature fault is at pin (board) within exp2_a
+        uint8_t dac2_fault = (ltc2664_faults >> board) & 1;
+
+        // Set output bits
+        faults |= (static_cast<uint32_t>(dac0_fault) << dac_base_index);
+        faults |= (static_cast<uint32_t>(dac1_fault) << (dac_base_index + 1));
+        faults |= (static_cast<uint32_t>(dac2_fault) << (dac_base_index + 2));
+    }
 
     return faults;
 }

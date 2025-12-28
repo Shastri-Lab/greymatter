@@ -90,25 +90,32 @@ namespace EXPANDER_ADDR {
     constexpr uint8_t NUM_EXPANDERS = 3;
 }
 
-// IO Expander Signal Mapping (TODO: populate from schematic)
-// These are placeholders - update when pin assignments are known
+// IO Expander Signal Mapping (from schematic)
 namespace SIGNAL_MAP {
-    // Expander 0: CS bits and control signals (assumption - verify with schematic)
-    constexpr uint8_t CS_EXPANDER = 0;     // Which expander has CS0-CS4, D_EN
-    constexpr uint8_t CS_PORT = 0;         // 0 = Port A, 1 = Port B
+    // Expander 0: Control signals
+    constexpr uint8_t CTRL_EXPANDER = 0;
 
-    // CS bit positions within the port (TODO: verify)
-    constexpr uint8_t CS0_BIT = 0;
-    constexpr uint8_t CS1_BIT = 1;
-    constexpr uint8_t CS2_BIT = 2;
-    constexpr uint8_t CS3_BIT = 3;
-    constexpr uint8_t CS4_BIT = 4;
-    constexpr uint8_t D_EN_BIT = 5;        // Decoder enable
-    constexpr uint8_t LDAC_BIT = 6;        // Load DAC
-    constexpr uint8_t CLR_BIT = 7;         // Clear DAC
+    // Port A: CS bits (active decoder address) and D_EN
+    // Note: CS bits are bit-reversed in hardware (CS4 at pin 0, CS0 at pin 4)
+    constexpr uint8_t CS4_BIT = 0;  // DAC select bit 4 (MSB)
+    constexpr uint8_t CS3_BIT = 1;  // DAC select bit 3
+    constexpr uint8_t CS2_BIT = 2;  // DAC select bit 2
+    constexpr uint8_t CS1_BIT = 3;  // DAC select bit 1
+    constexpr uint8_t CS0_BIT = 4;  // DAC select bit 0 (LSB)
+    constexpr uint8_t D_EN_BIT = 5; // Decoder tree enable
 
-    // Fault inputs (likely on expanders 1 and 2 - TODO: verify)
-    // Faults are active-low from DACs
+    // Port B: LDAC and CLR (active-low)
+    constexpr uint8_t LDAC_BIT = 0; // Load DAC (all DACs, active-low)
+    constexpr uint8_t CLR_BIT = 7;  // Clear DAC (all DACs, active-low)
+
+    // Expander 1: LTC2662 fault inputs (current DACs)
+    // Port A: Boards 0-3, DACs 0-1 (8 faults)
+    // Port B: Boards 4-7, DACs 0-1 (8 faults)
+    constexpr uint8_t FAULT_EXPANDER = 1;
+
+    // Expander 2: LTC2664 temperature fault inputs (voltage DACs)
+    // Port A: All 8 boards, DAC 2 (8 temperature faults)
+    constexpr uint8_t TEMP_EXPANDER = 2;
 }
 
 // Handles MCP23S17 IO expanders for chip select routing and fault monitoring
