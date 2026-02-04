@@ -21,6 +21,7 @@
 constexpr uint8_t NUM_BOARDS = 1;  // Single-board mode: 1 board, 3 DACs
 #else
 constexpr uint8_t NUM_BOARDS = 8;  // Multi-board mode: 8 boards, 24 DACs
+// TODO: in multi-board mode, we should detect NUM_BOARDS somehow from the hardware...
 #endif
 constexpr uint8_t DACS_PER_BOARD = 3;
 

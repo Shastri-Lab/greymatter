@@ -221,9 +221,10 @@ std::string BoardManager::execute_set_span(const ScpiCommand& cmd) {
 
     if (cmd.type == ScpiCommandType::SET_ALL_SPAN) {
         // Set span for all channels
-        for (uint8_t ch = 0; ch < dac->get_num_channels(); ch++) {
-            dac->set_span(ch, static_cast<uint8_t>(cmd.int_value));
-        }
+        // for (uint8_t ch = 0; ch < dac->get_num_channels(); ch++) {
+        //     dac->set_span(ch, static_cast<uint8_t>(cmd.int_value));
+        // }
+        dac->set_span_all(static_cast<uint8_t>(cmd.int_value));
     } else {
         // Need channel for single-channel span
         if (cmd.channel_id < 0) {

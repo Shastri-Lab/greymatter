@@ -8,23 +8,23 @@
 class SpiManager;
 
 // Common DAC command codes (shared between LTC2662 and LTC2664)
-namespace DAC_CMD {
-    constexpr uint8_t WRITE_CODE_N      = 0x0;  // Write code to channel n
-    constexpr uint8_t UPDATE_N          = 0x1;  // Update channel n (power up)
-    constexpr uint8_t WRITE_UPDATE_ALL  = 0x2;  // Write code to n, update all
-    constexpr uint8_t WRITE_UPDATE_N    = 0x3;  // Write code to n, update n
-    constexpr uint8_t POWER_DOWN_N      = 0x4;  // Power down channel n
-    constexpr uint8_t POWER_DOWN_CHIP   = 0x5;  // Power down entire chip
-    constexpr uint8_t WRITE_SPAN_N      = 0x6;  // Write span to channel n
-    constexpr uint8_t CONFIG            = 0x7;  // Configuration command
-    constexpr uint8_t WRITE_CODE_ALL    = 0x8;  // Write code to all channels
-    constexpr uint8_t UPDATE_ALL        = 0x9;  // Update all channels
-    constexpr uint8_t WRITE_UPDATE_ALL2 = 0xA;  // Write code to all, update all
-    constexpr uint8_t MUX               = 0xB;  // Monitor MUX select
-    constexpr uint8_t TOGGLE_SELECT     = 0xC;  // Toggle select
-    constexpr uint8_t GLOBAL_TOGGLE     = 0xD;  // Global toggle
-    constexpr uint8_t WRITE_SPAN_ALL    = 0xE;  // Write span to all channels
-    constexpr uint8_t NOP               = 0xF;  // No operation
+namespace DAC_CMD { // 8 bit numbers, each are prepended with 0000 (presumably)
+    constexpr uint8_t WRITE_CODE_N      = 0x0;  // ✓ 0000 - Write code to channel n
+    constexpr uint8_t UPDATE_N          = 0x1;  // ✓ 0001 - Update channel n (power up)
+    constexpr uint8_t WRITE_UPDATE_ALL  = 0x2;  // ✓ 0010 -  Write code to n, update all
+    constexpr uint8_t WRITE_UPDATE_N    = 0x3;  // ✓ 0011 - Write code to n, update n
+    constexpr uint8_t POWER_DOWN_N      = 0x4;  // ✓ 0100 - Power down channel n
+    constexpr uint8_t POWER_DOWN_CHIP   = 0x5;  // ✓ 0101 - Power down entire chip
+    constexpr uint8_t WRITE_SPAN_N      = 0x6;  // ✓ 0110 Write span to channel n
+    constexpr uint8_t CONFIG            = 0x7;  // ✓ 0111 - Configuration command
+    constexpr uint8_t WRITE_CODE_ALL    = 0x8;  // ✓ 1000 - Write code to all channels
+    constexpr uint8_t UPDATE_ALL        = 0x9;  // ✓ 1001 - Update all channels
+    constexpr uint8_t WRITE_UPDATE_ALL2 = 0xA;  // ✓ 1010 - Write code to all, update all
+    constexpr uint8_t MUX               = 0xB;  // ✓ 1011 - Monitor MUX select
+    constexpr uint8_t TOGGLE_SELECT     = 0xC;  // ✓ 1100 - Toggle select
+    constexpr uint8_t GLOBAL_TOGGLE     = 0xD;  // ✓ 1101 - Global toggle
+    constexpr uint8_t WRITE_SPAN_ALL    = 0xE;  // ✓ 1110 - Write span to all channels
+    constexpr uint8_t NOP               = 0xF;  // ✓ 1111 - No operation
 }
 
 // Abstract DAC interface: one instance per physical DAC chip
@@ -49,6 +49,9 @@ public:
 
     // Set the output span/range for a channel
     virtual void set_span(uint8_t channel, uint8_t span_code) = 0;
+
+    // SEt the output span/range for all channels
+    virtual void set_span_all(uint8_t span_code) = 0;
 
     // Power down a channel
     virtual void power_down(uint8_t channel) = 0;
