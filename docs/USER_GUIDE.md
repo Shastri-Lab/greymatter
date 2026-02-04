@@ -1,6 +1,6 @@
 # GreyMatter DAC Controller - User Guide
 
-This guide provides comprehensive documentation for operating the GreyMatter DAC Controller, including all available commands, addressing schemes, and detailed implementation information.
+This guide provides comprehensive documentation for operating the GreyMatter DAC Controller, including all available commands, addressing schemes, calibration procedures, and detailed implementation information.
 
 ## Table of Contents
 
@@ -9,9 +9,10 @@ This guide provides comprehensive documentation for operating the GreyMatter DAC
 3. [Command Reference](#command-reference)
 4. [Addressing Scheme](#addressing-scheme)
 5. [Span Configuration](#span-configuration)
-6. [Code Flow and Implementation Details](#code-flow-and-implementation-details)
-7. [Hardware Architecture](#hardware-architecture)
-8. [Troubleshooting](#troubleshooting)
+6. [Calibration](#calibration)
+7. [Code Flow and Implementation Details](#code-flow-and-implementation-details)
+8. [Hardware Architecture](#hardware-architecture)
+9. [Troubleshooting](#troubleshooting)
 
 ---
 
@@ -28,8 +29,8 @@ The GreyMatter DAC Controller manages 24 Digital-to-Analog Converters distribute
 
 | DAC Type | Channels | Output Type | Range | Resolution |
 |----------|----------|-------------|-------|------------|
-| LTC2662 | 5 | Current | 3.125 mA - 300 mA | 16-bit |
-| LTC2664 | 4 | Voltage | ±10V / 0-10V | 16-bit |
+| LTC2662 | 5 | Current | 3.125 mA - 300 mA | 12 or 16-bit |
+| LTC2664 | 4 | Voltage | ±10V / 0-10V | 12 or 16-bit |
 
 ---
 
@@ -37,7 +38,7 @@ The GreyMatter DAC Controller manages 24 Digital-to-Analog Converters distribute
 
 ### Connecting
 
-1. Flash the firmware (see [README.md](README.md))
+1. Flash the firmware (see [README.md](../README.md))
 2. Connect via USB serial at **115200 baud**
 3. Wait for the startup banner
 
@@ -56,8 +57,9 @@ On power-up, the controller:
 2. Waits for serial connection
 3. Configures SPI and GPIO peripherals
 4. Initializes all 24 DACs with default spans
-5. Reports any detected faults
-6. Enters command loop
+5. Loads calibration data from flash (if present)
+6. Reports any detected faults
+7. Enters command loop
 
 ### First Commands
 
@@ -113,12 +115,36 @@ All commands follow the SCPI (Standard Commands for Programmable Instruments) st
 | Set Code | `BOARD<n>:DAC<m>:CH<c>:CODE <value>` | `BOARD0:DAC0:CH0:CODE 32767` |
 | Update DAC | `BOARD<n>:DAC<m>:UPDATE` | `BOARD0:DAC0:UPDATE` |
 
+### Resolution Commands
+
+| Command | Format | Description |
+|---------|--------|-------------|
+| Query Resolution | `BOARD<n>:DAC<m>:RES?` | Returns `12` or `16` |
+| Set Resolution | `BOARD<n>:DAC<m>:RES <12\|16>` | Re-initializes DAC with new resolution |
+
 ### Power Management
 
 | Command | Format | Description |
 |---------|--------|-------------|
 | Power Down Channel | `BOARD<n>:DAC<m>:CH<c>:PDOWN` | Powers down single channel |
 | Power Down Chip | `BOARD<n>:DAC<m>:PDOWN` | Powers down entire DAC |
+
+### Calibration Commands
+
+| Command | Description | Response |
+|---------|-------------|----------|
+| `BOARD<n>:SN <string>` | Set board serial number | `OK` |
+| `BOARD<n>:SN?` | Query board serial number | Serial number or `(not set)` |
+| `BOARD<n>:DAC<m>:CH<c>:CAL:GAIN <value>` | Set gain factor | `OK` |
+| `BOARD<n>:DAC<m>:CH<c>:CAL:GAIN?` | Query gain factor | Gain value |
+| `BOARD<n>:DAC<m>:CH<c>:CAL:OFFS <value>` | Set offset | `OK` |
+| `BOARD<n>:DAC<m>:CH<c>:CAL:OFFS?` | Query offset | Offset value |
+| `BOARD<n>:DAC<m>:CH<c>:CAL:EN <0\|1>` | Enable/disable calibration | `OK` |
+| `BOARD<n>:DAC<m>:CH<c>:CAL:EN?` | Query calibration enable | `0` or `1` |
+| `CAL:DATA?` | Export all calibration data | Formatted data string |
+| `CAL:SAVE` | Save calibration to flash | `OK` or error |
+| `CAL:LOAD` | Load calibration from flash | `OK` or error |
+| `CAL:CLEAR` | Clear all calibration data | `OK` |
 
 ### Command Examples
 
@@ -149,14 +175,20 @@ BOARD2:DAC0:SPAN:ALL 7
 
 # === Raw Code Examples ===
 
-# Set mid-scale (32767 = 50% of full scale)
+# Set mid-scale (32767 = 50% of full scale for 16-bit)
 BOARD0:DAC0:CH0:CODE 32767
 
-# Set maximum (65535 = 100% of full scale)
+# Set maximum (65535 = 100% of full scale for 16-bit)
 BOARD0:DAC0:CH0:CODE 65535
 
-# Set minimum (0 = 0% of full scale)
-BOARD0:DAC0:CH0:CODE 0
+
+# === Resolution Examples ===
+
+# Query current resolution
+BOARD0:DAC0:RES?
+
+# Set to 12-bit resolution
+BOARD0:DAC0:RES 12
 
 
 # === System Commands ===
@@ -271,13 +303,285 @@ BOARD0:DAC2:SPAN:ALL 2
 
 **Current Output (LTC2662)**:
 ```
-I_out = (code / 65535) × I_fullscale
+I_out = (code / max_code) × I_fullscale
 ```
 
 **Voltage Output (LTC2664)**:
 ```
-Unipolar: V_out = (code / 65535) × V_max
-Bipolar:  V_out = V_min + (code / 65535) × (V_max - V_min)
+Unipolar: V_out = (code / max_code) × V_max
+Bipolar:  V_out = V_min + (code / max_code) × (V_max - V_min)
+```
+
+Where `max_code` is 4095 for 12-bit or 65535 for 16-bit resolution.
+
+---
+
+## Calibration
+
+The GreyMatter firmware supports two-point linear calibration for each DAC channel to correct for gain and offset errors.
+
+### Calibration Model
+
+```
+calibrated_output = (ideal_output × gain) + offset
+```
+
+Where:
+- `ideal_output` is the requested voltage (V) or current (mA)
+- `gain` is the gain correction factor (nominally 1.0)
+- `offset` is the offset correction in physical units (nominally 0.0)
+
+### Equipment Required
+
+- Keithley Source-Measure Unit (SMU) or equivalent high-precision meter
+  - For voltage DACs (LTC2664): Voltage measurement with at least 6-digit resolution
+  - For current DACs (LTC2662): Current measurement with at least 6-digit resolution
+- Test leads appropriate for the output being measured
+- Temperature-stable environment (allow 30 minutes warm-up)
+
+### Two-Point Calibration Procedure
+
+The goal is to characterize the transfer function of each DAC channel by measuring the actual output at two known setpoints, then computing correction factors.
+
+Given:
+- Point 1: Set `V_set_low`, measure `V_meas_low`
+- Point 2: Set `V_set_high`, measure `V_meas_high`
+
+**Calibration factor calculation:**
+
+```
+gain_cal = (V_set_high - V_set_low) / (V_meas_high - V_meas_low)
+offset_cal = V_set_low - (gain_cal × V_meas_low)
+```
+
+### Procedure for LTC2664 (Voltage DAC)
+
+1. **Setup**
+   - Connect SMU to the voltage output under test
+   - Configure SMU for voltage measurement (high-Z input)
+   - Ensure appropriate span is set for the channel
+
+2. **Set calibration points**
+   - For bipolar spans (±10V, ±5V, ±2.5V): Use 10% and 90% of range
+   - For unipolar spans (0-5V, 0-10V): Use 10% and 90% of range
+
+   Example for ±10V span:
+   ```
+   Low point:  -8.0V (10% from -10V)
+   High point: +8.0V (90% toward +10V)
+   ```
+
+3. **Measure low point**
+   ```
+   BOARD0:DAC2:CH0:VOLT -8.0
+   OK
+   ```
+   Record SMU reading: `V_meas_low = -8.0123` (example)
+
+4. **Measure high point**
+   ```
+   BOARD0:DAC2:CH0:VOLT 8.0
+   OK
+   ```
+   Record SMU reading: `V_meas_high = +7.9987` (example)
+
+5. **Calculate calibration factors**
+   ```
+   gain_cal = (8.0 - (-8.0)) / (7.9987 - (-8.0123))
+           = 16.0 / 16.011
+           = 0.999313
+
+   offset_cal = -8.0 - (0.999313 × (-8.0123))
+             = -8.0 - (-8.0068)
+             = 0.0068
+   ```
+
+6. **Apply calibration**
+   ```
+   BOARD0:DAC2:CH0:CAL:GAIN 0.999313
+   OK
+   BOARD0:DAC2:CH0:CAL:OFFS 0.0068
+   OK
+   BOARD0:DAC2:CH0:CAL:EN 1
+   OK
+   ```
+
+7. **Verify calibration**
+   ```
+   BOARD0:DAC2:CH0:VOLT -8.0
+   ```
+   SMU should now read closer to -8.000V
+
+### Procedure for LTC2662 (Current DAC)
+
+1. **Setup**
+   - Connect SMU to the current output under test
+   - Configure SMU for current measurement (low burden voltage)
+   - Set appropriate span for expected current range
+
+2. **Set calibration points**
+   - Use 10% and 90% of the configured span
+
+   Example for 100mA span:
+   ```
+   Low point:  10.0 mA
+   High point: 90.0 mA
+   ```
+
+3. **Measure low point**
+   ```
+   BOARD0:DAC0:CH0:CURR 10.0
+   OK
+   ```
+   Record SMU reading: `I_meas_low = 10.015` mA (example)
+
+4. **Measure high point**
+   ```
+   BOARD0:DAC0:CH0:CURR 90.0
+   OK
+   ```
+   Record SMU reading: `I_meas_high = 89.985` mA (example)
+
+5. **Calculate calibration factors**
+   ```
+   gain_cal = (90.0 - 10.0) / (89.985 - 10.015)
+           = 80.0 / 79.970
+           = 1.000375
+
+   offset_cal = 10.0 - (1.000375 × 10.015)
+             = 10.0 - 10.0188
+             = -0.0188
+   ```
+
+6. **Apply calibration**
+   ```
+   BOARD0:DAC0:CH0:CAL:GAIN 1.000375
+   OK
+   BOARD0:DAC0:CH0:CAL:OFFS -0.0188
+   OK
+   BOARD0:DAC0:CH0:CAL:EN 1
+   OK
+   ```
+
+7. **Verify calibration**
+   ```
+   BOARD0:DAC0:CH0:CURR 50.0
+   ```
+   SMU should now read closer to 50.000 mA
+
+### Storing Calibration Data
+
+Calibration data is stored in the RP2350's onboard flash memory, in the last 4KB sector (offset 0x1FF000).
+
+**Workflow**:
+1. Perform calibration using the procedures above
+2. Save to flash: `CAL:SAVE`
+3. Calibration persists across power cycles
+
+**Automatic Loading**: On power-up, the firmware automatically loads calibration data from flash if valid data is found.
+
+**Example session**:
+```
+# Set calibration for a channel
+BOARD0:DAC2:CH0:CAL:GAIN 0.999313
+OK
+BOARD0:DAC2:CH0:CAL:OFFS 0.0068
+OK
+BOARD0:DAC2:CH0:CAL:EN 1
+OK
+
+# Save to flash
+CAL:SAVE
+OK
+
+# Power cycle the device...
+
+# After power-up, verify calibration was loaded
+BOARD0:DAC2:CH0:CAL:GAIN?
+0.999313
+BOARD0:DAC2:CH0:CAL:EN?
+1
+```
+
+### Export Format
+
+The `CAL:DATA?` command returns calibration data in a human-readable format:
+
+```
+BOARD0:SN=GM-2024-001
+  DAC2:CH0:G=0.999313,O=0.006800,E=1
+  DAC2:CH1:G=1.000125,O=-0.003200,E=1
+BOARD1:SN=GM-2024-002
+  DAC0:CH0:G=1.000375,O=-0.018800,E=1
+```
+
+### Flash Storage Details
+
+- **Location**: Last 4KB sector of 2MB flash (offset 0x1FF000)
+- **Data integrity**: CRC-16 checksum validates stored data
+- **Magic number**: 0x47524D43 ("GRMC") identifies valid calibration data
+- **Wear leveling**: Flash is only written when `CAL:SAVE` is explicitly called
+- **Sector erase**: Each save erases and rewrites the entire sector (typical flash endurance: 100,000 cycles)
+
+### Calibration Best Practices
+
+1. **Temperature stability**: Allow 30 minutes warm-up before calibrating
+2. **Calibration points**: Use 10% and 90% of range to capture the full transfer function
+3. **Verification**: Always verify calibration by measuring at the midpoint
+4. **Documentation**: Record serial numbers and calibration dates
+5. **Periodic recalibration**: Recalibrate annually or after significant temperature excursions
+6. **Per-span calibration**: If using multiple spans, consider calibrating each span separately
+
+### Automated Calibration Script
+
+Here's a Python example for automated calibration using PyVISA:
+
+```python
+import pyvisa
+import time
+
+# Initialize instruments
+rm = pyvisa.ResourceManager()
+keithley = rm.open_resource('GPIB0::24::INSTR')  # Adjust address
+greymatter = rm.open_resource('ASRL/dev/tty.usbmodem1101::INSTR')
+
+def calibrate_voltage_channel(board, dac, channel, span_min, span_max):
+    """Calibrate a voltage DAC channel."""
+
+    # Calculate calibration points (10% and 90% of range)
+    v_low = span_min + 0.1 * (span_max - span_min)
+    v_high = span_min + 0.9 * (span_max - span_min)
+
+    # Measure low point
+    greymatter.write(f'BOARD{board}:DAC{dac}:CH{channel}:VOLT {v_low}')
+    time.sleep(0.5)  # Allow settling
+    v_meas_low = float(keithley.query(':MEAS:VOLT?'))
+
+    # Measure high point
+    greymatter.write(f'BOARD{board}:DAC{dac}:CH{channel}:VOLT {v_high}')
+    time.sleep(0.5)
+    v_meas_high = float(keithley.query(':MEAS:VOLT?'))
+
+    # Calculate calibration factors
+    gain = (v_high - v_low) / (v_meas_high - v_meas_low)
+    offset = v_low - (gain * v_meas_low)
+
+    # Apply calibration
+    greymatter.write(f'BOARD{board}:DAC{dac}:CH{channel}:CAL:GAIN {gain:.6f}')
+    greymatter.write(f'BOARD{board}:DAC{dac}:CH{channel}:CAL:OFFS {offset:.6f}')
+    greymatter.write(f'BOARD{board}:DAC{dac}:CH{channel}:CAL:EN 1')
+
+    print(f'Board {board}, DAC {dac}, CH {channel}:')
+    print(f'  Gain: {gain:.6f}, Offset: {offset:.6f} V')
+
+    return gain, offset
+
+# Example: Calibrate Board 0, DAC 2 (voltage), all channels
+for ch in range(4):
+    calibrate_voltage_channel(0, 2, ch, -10.0, 10.0)
+
+# Save calibration to flash
+greymatter.write('CAL:SAVE')
 ```
 
 ---
@@ -308,7 +612,7 @@ main()
 │   │   └── GP17 = output, HIGH (SPI chip select)
 │   │
 │   ├─► init_spi()
-│   │   ├── spi_init(spi0, 10_000_000)  // 10 MHz
+│   │   ├── spi_init(spi0, SPI_BAUDRATE)  // Configurable, default 10 MHz
 │   │   ├── Configure GP16 (MISO), GP18 (CLK), GP19 (MOSI)
 │   │   └── SPI Mode 0 (CPOL=0, CPHA=0)
 │   │
@@ -324,12 +628,15 @@ main()
 │
 ├─► BoardManager::init_all()
 │   │
-│   └─► For each board (0-7):
-│       ├── Create LTC2662 instances (DAC 0, 1)
-│       │   └── init(): set_span_all(0x6), update_all()
-│       │
-│       └── Create LTC2664 instance (DAC 2)
-│           └── init(): set_span_all(0x3), update_all()
+│   ├─► For each board (0-7):
+│   │   ├── Create LTC2662 instances (DAC 0, 1)
+│   │   │   └── init(): set_span_all(0x6), update_all()
+│   │   │
+│   │   └── Create LTC2664 instance (DAC 2)
+│   │       └── init(): set_span_all(0x3), update_all()
+│   │
+│   └─► CalStorage::load_from_flash()
+│       └── Load calibration data if valid
 │
 ├─► Check initial fault status
 │   └── If GP20 is LOW, read and report fault mask
@@ -353,15 +660,15 @@ main loop
 │   │   └── Match *IDN?, *RST
 │   │
 │   ├─► Try parse_system_command()
-│   │   └── Match FAULT?, SYST:ERR?, LDAC, UPDATE:ALL
+│   │   └── Match FAULT?, SYST:ERR?, LDAC, UPDATE:ALL, CAL:*
 │   │
 │   └─► Try parse_board_command()
 │       ├── Extract BOARD<n>
-│       ├── Extract :DAC<m>
+│       ├── Extract :DAC<m> or :SN
 │       └── Parse subcommand:
 │           ├── CH<c>:VOLT, CH<c>:CURR, CH<c>:CODE
-│           ├── CH<c>:PDOWN
-│           ├── SPAN, SPAN:ALL
+│           ├── CH<c>:PDOWN, CH<c>:CAL:*
+│           ├── SPAN, SPAN:ALL, RES
 │           ├── UPDATE
 │           └── PDOWN
 │
@@ -371,36 +678,21 @@ main loop
 │       │
 │       ├─► SET_VOLTAGE
 │       │   ├── Validate: DAC must be 2 (LTC2664)
+│       │   ├── Apply calibration if enabled
 │       │   ├── Get span range from LTC2664_SPAN_INFO[]
 │       │   ├── Clamp voltage to range
-│       │   ├── Calculate: code = normalize(voltage) × 65535
+│       │   ├── Calculate: code = normalize(voltage) × max_code
 │       │   └── dac->send_command(WRITE_UPDATE_N, channel, code)
 │       │
 │       ├─► SET_CURRENT
 │       │   ├── Validate: DAC must be 0 or 1 (LTC2662)
+│       │   ├── Apply calibration if enabled
 │       │   ├── Get full-scale from span setting
 │       │   ├── Clamp current to 0..full_scale
-│       │   ├── Calculate: code = (current / full_scale) × 65535
+│       │   ├── Calculate: code = (current / full_scale) × max_code
 │       │   └── dac->send_command(WRITE_UPDATE_N, channel, code)
 │       │
-│       ├─► SET_CODE
-│       │   └── dac->send_command(WRITE_UPDATE_N, channel, code)
-│       │
-│       ├─► SET_SPAN / SET_ALL_SPAN
-│       │   ├── Cache span in dac->span_[channel]
-│       │   └── dac->send_command(WRITE_SPAN_N, channel, span_code)
-│       │
-│       ├─► UPDATE / UPDATE_ALL
-│       │   ├── dac->send_command(UPDATE_ALL, 0, 0)
-│       │   └── io_expander.pulse_ldac()
-│       │
-│       ├─► FAULT_QUERY
-│       │   ├── Read EXPANDER_1 GPIO (faults 0-15)
-│       │   ├── Read EXPANDER_2 GPIO (faults 16-23)
-│       │   └── Invert and combine (active-low → active-high)
-│       │
-│       └─► POWER_DOWN / POWER_DOWN_CHIP
-│           └── dac->send_command(POWER_DOWN_N/CHIP, ...)
+│       └─► ... (other commands)
 │
 └─► Send response via USB serial
 ```
@@ -479,19 +771,18 @@ The three MCP23S17 expanders are addressed via hardware pins:
 ```
 EXPANDER_0 (Address 0x0): Control signals
 ├── Port A [7:0]:
-│   ├── [4:0] CS0-CS4: 5-bit DAC address
-│   ├── [5]   D_EN: Decoder enable
-│   ├── [6]   LDAC: Load DAC (active-low)
-│   └── [7]   CLR: Clear (active-low)
-└── Port B [7:0]: Reserved
+│   ├── [4:0] CS0-CS4: 5-bit DAC address (bit-reversed)
+│   └── [5]   D_EN: Decoder enable
+└── Port B [7:0]:
+    ├── [0]   LDAC: Load DAC (active-low)
+    └── [7]   CLR: Clear (active-low)
 
 EXPANDER_1 (Address 0x1): Fault inputs 0-15
-├── Port A [7:0]: FAULT0-7 (active-low)
-└── Port B [7:0]: FAULT8-15 (active-low)
+├── Port A [7:0]: Boards 0-3, DACs 0-1 (active-low)
+└── Port B [7:0]: Boards 4-7, DACs 0-1 (active-low)
 
-EXPANDER_2 (Address 0x2): Fault inputs 16-23
-├── Port A [7:0]: FAULT16-23 (active-low)
-└── Port B [7:0]: Reserved
+EXPANDER_2 (Address 0x2): Temperature fault inputs
+└── Port A [7:0]: All 8 boards, DAC 2 (active-low)
 ```
 
 **MCP23S17 SPI Protocol**:
@@ -516,11 +807,10 @@ Fault Monitoring:
 │   │   └── Return "OK"
 │   │
 │   └── If LOW (fault present):
-│       ├── Read EXPANDER_1 Port A (faults 0-7)
-│       ├── Read EXPANDER_1 Port B (faults 8-15)
+│       ├── Read EXPANDER_1 GPIO (faults 0-15)
 │       ├── Read EXPANDER_2 Port A (faults 16-23)
 │       ├── Invert bits (active-low → active-high)
-│       ├── Mask to 24 bits
+│       ├── Reorganize to DAC index order
 │       └── Return "FAULT:0xNNNNNN"
 │
 └─► Bit Position Mapping:
@@ -650,10 +940,22 @@ BOARD0:DAC0:SPAN:ALL 7      # 200 mA range
 BOARD0:DAC2:SPAN:ALL 3      # ±10V range
 ```
 
+### Calibration Not Applied
+
+- Verify calibration is enabled: `BOARD<n>:DAC<m>:CH<c>:CAL:EN?` should return `1`
+- Check gain and offset values are reasonable (gain near 1.0, offset near 0)
+
+### Calibration Lost After Power Cycle
+
+- Ensure `CAL:SAVE` was called after setting calibration
+- Verify calibration was loaded: `BOARD<n>:DAC<m>:CH<c>:CAL:EN?` should return `1`
+- Check for valid data in flash: `CAL:LOAD` should return `OK`
+- If flash is corrupted, recalibrate and save again
+
 ### Build Errors
 
 1. **Check PICO_SDK_PATH**: Must point to valid Pico SDK installation
-2. **Verify compiler**: GCC ARM cross-compiler required
+2. **Verify compiler**: ARM cross-compiler required
 3. **Clean build**: Delete `build/` directory and rebuild
 
 ```bash
@@ -661,31 +963,23 @@ rm -rf build
 mkdir build
 cd build
 cmake .. -DPICO_BOARD=pico2
-make
+make picotoolBuild
+C_INCLUDE_PATH= CPLUS_INCLUDE_PATH= make
 ```
 
 ---
 
 ## Appendix: Source File Reference
 
-| File | Lines | Purpose |
-|------|-------|---------|
-| `main.cpp` | 113 | Entry point, USB serial loop |
-| `scpi_parser.cpp` | 210 | SCPI command parsing |
-| `scpi_parser.hpp` | 94 | Parser types and interface |
-| `board_manager.cpp` | 188 | DAC routing and execution |
-| `board_manager.hpp` | 82 | Manager interface |
-| `spi_manager.cpp` | 140 | SPI peripheral control |
-| `spi_manager.hpp` | 57 | SPI interface |
-| `io_expander.cpp` | 300 | MCP23S17 driver |
-| `io_expander.hpp` | 135 | Expander interface |
-| `dac_device.cpp` | 36 | Abstract DAC base class |
-| `dac_device.hpp` | 39 | DAC interface |
-| `ltc2662.cpp` | 128 | Current DAC driver |
-| `ltc2662.hpp` | 58 | LTC2662 interface |
-| `ltc2664.cpp` | 130 | Voltage DAC driver |
-| `ltc2664.hpp` | 57 | LTC2664 interface |
-| `utils.cpp` | 86 | String utilities |
-| `utils.hpp` | 49 | Utility interface |
-
-**Total**: ~2,100 lines of C++ code
+| File | Purpose |
+|------|---------|
+| `main.cpp` | Entry point, USB serial loop |
+| `scpi_parser.cpp/hpp` | SCPI command parsing |
+| `board_manager.cpp/hpp` | DAC routing and execution |
+| `spi_manager.cpp/hpp` | SPI peripheral control |
+| `io_expander.cpp/hpp` | MCP23S17 driver |
+| `dac_device.cpp/hpp` | Abstract DAC base class |
+| `ltc2662.cpp/hpp` | Current DAC driver |
+| `ltc2664.cpp/hpp` | Voltage DAC driver |
+| `cal_storage.cpp/hpp` | Flash-based calibration persistence |
+| `utils.cpp/hpp` | String utilities |
