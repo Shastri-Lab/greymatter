@@ -12,11 +12,16 @@
 #include "ltc2662.hpp"
 #include "ltc2664.hpp"
 
-// Board configuration: 8 boards, each with 3 DACs
+// Board configuration
+// Each board has 3 DACs:
 // DAC 0: LTC2662 (5-channel current DAC)
 // DAC 1: LTC2662 (5-channel current DAC)
 // DAC 2: LTC2664 (4-channel voltage DAC)
-constexpr uint8_t NUM_BOARDS = 8;
+#ifdef SINGLE_BOARD_MODE
+constexpr uint8_t NUM_BOARDS = 1;  // Single-board mode: 1 board, 3 DACs
+#else
+constexpr uint8_t NUM_BOARDS = 8;  // Multi-board mode: 8 boards, 24 DACs
+#endif
 constexpr uint8_t DACS_PER_BOARD = 3;
 
 // Calibration constants

@@ -67,7 +67,11 @@ int main() {
     // Print startup banner
     printf("\r\n");
     printf("GreyMatter DAC Controller v0.1\r\n");
-    printf("8 boards x 3 DACs (2x LTC2662 + 1x LTC2664)\r\n");
+#ifdef SINGLE_BOARD_MODE
+    printf("Mode: Single-board (1 board, 3 DACs, direct GPIO CS)\r\n");
+#else
+    printf("Mode: Multi-board (8 boards, 24 DACs, IO expander CS)\r\n");
+#endif
 #ifdef DEBUG_SPI_MODE
     printf("*** DEBUG MODE ENABLED ***\r\n");
     printf("SPI: 1 Hz bit-banged for LED visibility\r\n");
@@ -90,8 +94,12 @@ int main() {
     // Check for any initial faults
     if (spi_manager.is_fault_active()) {
         printf("WARNING: FAULT line is active!\r\n");
+#ifndef SINGLE_BOARD_MODE
         uint32_t faults = spi_manager.io_expander().read_faults();
         printf("Fault mask: 0x%06lX\r\n", faults);
+#else
+        printf("(Cannot identify which DAC in single-board mode)\r\n");
+#endif
     } else {
         printf("No faults detected.\r\n");
     }

@@ -71,7 +71,7 @@ namespace MCP23S17 {
     }
 }
 
-// Hardware GPIO pin assignments (from CLAUDE.md)
+// Hardware GPIO pin assignments (from CLAUDE.md) - Multi-board mode
 namespace HW_PINS {
     constexpr uint SPI_MISO = 16;
     constexpr uint SPI_CS   = 17;
@@ -81,6 +81,21 @@ namespace HW_PINS {
     constexpr uint LEVEL_SHIFT_OE = 21;
     constexpr uint EXPANDER_RESET = 22;
 }
+
+#ifdef SINGLE_BOARD_MODE
+// Hardware GPIO pin assignments - Single-board mode
+// Direct GPIO chip select, no decoder tree or IO expanders
+namespace HW_PINS_SINGLE {
+    constexpr uint SPI_MISO = 16;  // Unchanged
+    constexpr uint SPI_CLK  = 18;  // Unchanged
+    constexpr uint SPI_MOSI = 19;  // Unchanged
+    constexpr uint CS_DAC0  = 17;  // Was SPI_CS in multi-board
+    constexpr uint CS_DAC1  = 21;  // Was LEVEL_SHIFT_OE in multi-board
+    constexpr uint CS_DAC2  = 15;  // New pin
+    constexpr uint CLR      = 22;  // Was EXPANDER_RESET in multi-board
+    constexpr uint FAULT    = 20;  // Unchanged (now NAND output of all 3 DAC faults)
+}
+#endif
 
 // MCP23S17 Hardware Addresses
 namespace EXPANDER_ADDR {

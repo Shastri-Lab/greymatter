@@ -102,10 +102,19 @@ uint8_t BoardManager::get_resolution(uint8_t board, uint8_t dac) {
 }
 
 std::string BoardManager::execute_idn() {
-    return "GreyMatter,DAC Controller,001,0.1";
+    return "GreyMatter,DAC Controller,001,0.1"; // TODO: set some global variables to populate the version information
 }
 
 std::string BoardManager::execute_fault_query() {
+#ifdef SINGLE_BOARD_MODE
+    // Single-board mode: FAULT is NAND of all 3 DAC faults
+    // Can only detect "any fault" vs "no fault", not which DAC
+    if (spi_.is_fault_active()) {
+        return "FAULT:ACTIVE";
+    }
+    return "OK";
+#else
+    // Multi-board mode: Per-DAC fault detection via IO expanders
     if (spi_.is_fault_active()) {
         uint32_t faults = spi_.io_expander().read_faults();
         char buf[32];
@@ -113,6 +122,7 @@ std::string BoardManager::execute_fault_query() {
         return buf;
     }
     return "OK";
+#endif
 }
 
 std::string BoardManager::execute_set_voltage(const ScpiCommand& cmd) {

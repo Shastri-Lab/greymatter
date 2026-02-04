@@ -148,7 +148,7 @@ bool ScpiParser::parse_board_command(const char* cmd, ScpiCommand& result) {
 
     // Extract board number
     int board = extract_index(cmd, "BOARD");
-    if (board < 0 || board > 7) {
+    if (board < 0 || board > 7) { // TODO: hard-coded 8 boards; should be a global parameter
         result.error_msg = "Invalid board number (0-7)";
         return false;
     }

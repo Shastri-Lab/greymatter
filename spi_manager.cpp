@@ -7,6 +7,34 @@
 #endif
 
 void SpiManager::init_gpio() {
+#ifdef SINGLE_BOARD_MODE
+    // Single-board mode: Direct GPIO chip select, no level shifter or expanders
+
+    // Initialize CS pins as outputs, all HIGH (deselected)
+    gpio_init(HW_PINS_SINGLE::CS_DAC0);
+    gpio_set_dir(HW_PINS_SINGLE::CS_DAC0, GPIO_OUT);
+    gpio_put(HW_PINS_SINGLE::CS_DAC0, 1);
+
+    gpio_init(HW_PINS_SINGLE::CS_DAC1);
+    gpio_set_dir(HW_PINS_SINGLE::CS_DAC1, GPIO_OUT);
+    gpio_put(HW_PINS_SINGLE::CS_DAC1, 1);
+
+    gpio_init(HW_PINS_SINGLE::CS_DAC2);
+    gpio_set_dir(HW_PINS_SINGLE::CS_DAC2, GPIO_OUT);
+    gpio_put(HW_PINS_SINGLE::CS_DAC2, 1);
+
+    // CLR pin: output, HIGH (not clearing)
+    gpio_init(HW_PINS_SINGLE::CLR);
+    gpio_set_dir(HW_PINS_SINGLE::CLR, GPIO_OUT);
+    gpio_put(HW_PINS_SINGLE::CLR, 1);
+
+    // FAULT pin: input with pull-up
+    gpio_init(HW_PINS_SINGLE::FAULT);
+    gpio_set_dir(HW_PINS_SINGLE::FAULT, GPIO_IN);
+    gpio_pull_up(HW_PINS_SINGLE::FAULT);
+#else
+    // Multi-board mode: Level shifter, IO expanders, decoder tree
+
     // Step 1: Enable level shifter FIRST (before any downstream communication)
     // TXB0106 OE is active-high
     gpio_init(HW_PINS::LEVEL_SHIFT_OE);
@@ -27,8 +55,10 @@ void SpiManager::init_gpio() {
     gpio_init(HW_PINS::SPI_CS);
     gpio_set_dir(HW_PINS::SPI_CS, GPIO_OUT);
     gpio_put(HW_PINS::SPI_CS, 1);  // Start high (deselected)
+#endif
 }
 
+#ifndef SINGLE_BOARD_MODE
 void SpiManager::reset_io_expanders() {
     // Pulse reset line low, then high
     gpio_put(HW_PINS::EXPANDER_RESET, 0);
@@ -36,6 +66,7 @@ void SpiManager::reset_io_expanders() {
     gpio_put(HW_PINS::EXPANDER_RESET, 1);
     sleep_us(SPI_CONFIG::RESET_SETTLE_US);
 }
+#endif
 
 void SpiManager::init_spi() {
 #ifdef DEBUG_SPI_MODE
@@ -62,7 +93,12 @@ void SpiManager::init_spi() {
 }
 
 void SpiManager::init() {
-    // Full initialization sequence per documentation:
+#ifdef SINGLE_BOARD_MODE
+    // Single-board mode: Simple initialization, no level shifter or expanders
+    init_gpio();
+    init_spi();
+#else
+    // Multi-board mode: Full initialization sequence per documentation:
     // 1. Set GP21 HIGH (enable TXB0106 level-shifter) - MUST BE FIRST
     // 2. Configure GP22 as output, pulse reset to IO expanders
     // 3. Configure GP20 as input (FAULT line)
@@ -76,17 +112,49 @@ void SpiManager::init() {
     // Step 5: Initialize IO expanders
     io_expander_.init(SPI_CONFIG::get_spi_instance());
 #endif
+#endif
     initialized_ = true;
 }
 
 void SpiManager::select_downstream(uint8_t board_id, uint8_t device_id) {
+#ifdef SINGLE_BOARD_MODE
+    (void)board_id;  // Always 0 in single-board mode
+    deselect();  // Deselect any previous DAC first
+
+    // Map device_id to GPIO pin
+    uint cs_pin;
+    switch (device_id) {
+        case 0: cs_pin = HW_PINS_SINGLE::CS_DAC0; break;
+        case 1: cs_pin = HW_PINS_SINGLE::CS_DAC1; break;
+        case 2: cs_pin = HW_PINS_SINGLE::CS_DAC2; break;
+        default: return;  // Invalid device_id
+    }
+    gpio_put(cs_pin, 0);  // Assert CS (active low)
+    current_selected_dac_ = device_id;
+#else
     // Use IO expander to set CS bits and enable decoder tree
     io_expander_.set_dac_select(board_id, device_id);
+#endif
 }
 
 void SpiManager::deselect() {
+#ifdef SINGLE_BOARD_MODE
+    // Deassert all CS pins
+    if (current_selected_dac_ < 3) {
+        uint cs_pin;
+        switch (current_selected_dac_) {
+            case 0: cs_pin = HW_PINS_SINGLE::CS_DAC0; break;
+            case 1: cs_pin = HW_PINS_SINGLE::CS_DAC1; break;
+            case 2: cs_pin = HW_PINS_SINGLE::CS_DAC2; break;
+            default: return;
+        }
+        gpio_put(cs_pin, 1);  // Deassert CS
+        current_selected_dac_ = 0xFF;
+    }
+#else
     // Disable decoder tree via IO expander
     io_expander_.deselect_dac();
+#endif
 }
 
 void SpiManager::raw_transfer(const uint8_t* tx_data, uint8_t* rx_data, size_t len) {
@@ -140,10 +208,33 @@ void SpiManager::transaction(uint8_t board_id, uint8_t device_id,
 }
 
 void SpiManager::pulse_ldac() {
+#ifndef SINGLE_BOARD_MODE
     io_expander_.pulse_ldac();
+#endif
+    // Single-board mode: DACs configured for immediate update, no LDAC needed
+}
+
+void SpiManager::assert_clear() {
+#ifdef SINGLE_BOARD_MODE
+    gpio_put(HW_PINS_SINGLE::CLR, 0);  // Assert CLR (active low)
+#else
+    io_expander_.assert_clear();
+#endif
+}
+
+void SpiManager::release_clear() {
+#ifdef SINGLE_BOARD_MODE
+    gpio_put(HW_PINS_SINGLE::CLR, 1);  // Release CLR
+#else
+    io_expander_.release_clear();
+#endif
 }
 
 bool SpiManager::is_fault_active() {
     // FAULT line is active-low
+#ifdef SINGLE_BOARD_MODE
+    return !gpio_get(HW_PINS_SINGLE::FAULT);
+#else
     return !gpio_get(HW_PINS::FAULT);
+#endif
 }

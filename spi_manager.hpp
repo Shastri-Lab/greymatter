@@ -5,7 +5,7 @@
 #include <cstddef>
 
 #include "hardware/spi.h"
-#include "io_expander.hpp"
+#include "io_expander.hpp"  // HW_PINS (multi-board) or HW_PINS_SINGLE (single-board)
 
 // SPI Configuration Constants
 namespace SPI_CONFIG {
@@ -44,19 +44,31 @@ public:
     // Pulse LDAC to update all DAC outputs
     void pulse_ldac();
 
-    // Access to IO expander for fault monitoring, etc.
+    // Assert/release CLR line (clear all DACs)
+    void assert_clear();
+    void release_clear();
+
+#ifndef SINGLE_BOARD_MODE
+    // Access to IO expander for fault monitoring, etc. (multi-board only)
     IoExpander& io_expander() { return io_expander_; }
+#endif
 
     // Check if FAULT line is asserted (active low)
     bool is_fault_active();
 
 private:
+#ifdef SINGLE_BOARD_MODE
+    uint8_t current_selected_dac_ = 0xFF;  // 0xFF = none selected
+#else
     IoExpander io_expander_;
+#endif
     bool initialized_ = false;
 
     // Internal helpers
     void init_gpio();          // Configure GPIO pins
-    void reset_io_expanders(); // Pulse reset line
+#ifndef SINGLE_BOARD_MODE
+    void reset_io_expanders(); // Pulse reset line (multi-board only)
+#endif
     void init_spi();           // Configure SPI peripheral
 
     void select_downstream(uint8_t board_id, uint8_t device_id);

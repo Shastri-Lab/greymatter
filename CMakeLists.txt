@@ -1,3 +1,4 @@
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 cmake_minimum_required(VERSION 3.13)
 include($ENV{PICO_SDK_PATH}/pico_sdk_init.cmake)
 
@@ -13,6 +14,15 @@ if(DEBUG_SPI_MODE)
     message(STATUS "Debug SPI mode ENABLED - 1 Hz bit-banged SPI")
 else()
     message(STATUS "Debug SPI mode disabled - normal 10 MHz hardware SPI")
+endif()
+
+# Single-board Mode - simplified interface with direct GPIO chip select
+option(SINGLE_BOARD_MODE "Single-board mode with direct GPIO chip select" OFF)
+if(SINGLE_BOARD_MODE)
+    add_compile_definitions(SINGLE_BOARD_MODE=1)
+    message(STATUS "Single-board mode ENABLED - 1 board, 3 DACs, direct GPIO CS")
+else()
+    message(STATUS "Single-board mode disabled - 8 boards, IO expander CS routing")
 endif()
 
 add_executable(greymatter
