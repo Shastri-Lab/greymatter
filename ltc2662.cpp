@@ -15,8 +15,8 @@ void LTC2662::setup(SpiManager* spi, uint8_t board_id, uint8_t device_id, uint8_
 
 void LTC2662::init() {
     // Power-on state: all outputs Hi-Z, all registers cleared
-    // Set a default span for all channels (100 mA is a common middle ground)
-    set_span_all(LTC2662_SPAN::MA_100);
+    // Set a default span for all channels (3.125 mA is the lowest active span)
+    set_span_all(LTC2662_SPAN::MA_3_125);
 
     // Update all channels to apply the span setting
     update_all();

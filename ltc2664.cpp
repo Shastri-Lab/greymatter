@@ -16,8 +16,8 @@ void LTC2664::setup(SpiManager* spi, uint8_t board_id, uint8_t device_id, uint8_
 void LTC2664::init() {
     // Power-on state depends on MSPAN pins (hardware configuration)
     // Assuming SoftSpan mode (all MSPAN pins = VCC): 0V to 5V, zero-scale
-    // Set a default span for all channels (±10V is most versatile)
-    set_span_all(LTC2664_SPAN::V_PM10);
+    // Set a default span for all channels (0 to 5 is most conservative)
+    set_span_all(LTC2664_SPAN::V_0_5);
 
     // Update all channels to apply the span setting
     update_all();
