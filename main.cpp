@@ -47,7 +47,8 @@ static bool read_line() {
             continue;
         }
 
-        if (line_pos < LINE_BUFFER_SIZE - 1) {
+        // Only accept printable ASCII characters
+        if (c >= 0x20 && c <= 0x7E && line_pos < LINE_BUFFER_SIZE - 1) {
             line_buffer[line_pos++] = static_cast<char>(c);
             putchar(c);  // Echo character
         }
@@ -96,6 +97,9 @@ int main() {
     } else {
         printf("No faults detected.\r\n");
     }
+
+    // Flush any garbage from USB buffer before accepting commands
+    while (getchar_timeout_us(0) != PICO_ERROR_TIMEOUT) {}
 
     printf("Ready. Enter SCPI commands:\r\n");
     printf("> ");
