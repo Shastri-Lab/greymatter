@@ -56,3 +56,6 @@ __pycache__/
 # Environment files
 .env
 .env.local
+
+# ccache
+.cache
