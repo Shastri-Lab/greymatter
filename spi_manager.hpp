@@ -12,8 +12,14 @@ namespace SPI_CONFIG {
     // SPI peripheral instance (spi0 is a macro, not constexpr-compatible)
     inline spi_inst_t* get_spi_instance() { return spi0; }
 
-    // SPI baudrate (10 MHz - conservative, max is 50 MHz for DACs)
+    // SPI baudrate - set via CMake SPI_BAUDRATE variable
+    // Default: 10 MHz. For logic analyzer debugging, use 1 MHz or lower.
+    // DACs support up to 50 MHz.
+#ifdef SPI_BAUDRATE
+    constexpr uint32_t BAUDRATE = SPI_BAUDRATE;
+#else
     constexpr uint32_t BAUDRATE = 10 * 1000 * 1000;
+#endif
 
     // GPIO pins (from HW_PINS namespace in io_expander.hpp)
     // SPI_MISO = GP16, SPI_CS = GP17, SPI_CLK = GP18, SPI_MOSI = GP19

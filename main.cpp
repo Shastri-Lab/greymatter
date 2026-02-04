@@ -72,13 +72,7 @@ int main() {
 #else
     printf("Mode: Multi-board (8 boards, 24 DACs, IO expander CS)\r\n");
 #endif
-#ifdef DEBUG_SPI_MODE
-    printf("*** DEBUG MODE ENABLED ***\r\n");
-    printf("SPI: 1 Hz bit-banged for LED visibility\r\n");
-    printf("Loopback pins: GP0=MOSI, GP1=MISO, GP2=CLK, GP3=CS\r\n");
-    printf("Commands: DEBUG:TRACE, DEBUG:STEP:MODE, DEBUG:STEP, DEBUG:STATUS?\r\n");
-    printf("          DEBUG:TEST:BYTE <hex>, DEBUG:TEST:EXPANDER <addr>\r\n");
-#endif
+    printf("SPI clock: %lu Hz\r\n", (unsigned long)SPI_CONFIG::BAUDRATE);
     printf("Initializing...\r\n");
 
     // Initialize SPI manager (includes GPIO, SPI peripheral, IO expanders)
@@ -87,7 +81,6 @@ int main() {
 
     // Initialize board manager with all DACs
     BoardManager board_manager(spi_manager);
-#ifndef DEBUG_SPI_MODE
     board_manager.init_all();
     printf("All DACs initialized.\r\n");
 
@@ -103,7 +96,6 @@ int main() {
     } else {
         printf("No faults detected.\r\n");
     }
-#endif
 
     printf("Ready. Enter SCPI commands:\r\n");
     printf("> ");

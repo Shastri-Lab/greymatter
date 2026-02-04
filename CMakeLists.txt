@@ -7,14 +7,12 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 pico_sdk_init()
 
-# Debug SPI Mode - enables 1 Hz bit-banged SPI for LED debugging
-option(DEBUG_SPI_MODE "Enable 1 Hz bit-banged SPI for LED debugging" OFF)
-if(DEBUG_SPI_MODE)
-    add_compile_definitions(DEBUG_SPI_MODE=1)
-    message(STATUS "Debug SPI mode ENABLED - 1 Hz bit-banged SPI")
-else()
-    message(STATUS "Debug SPI mode disabled - normal 10 MHz hardware SPI")
-endif()
+# SPI Baud Rate - configurable for debugging with logic analyzers
+# Default: 10 MHz (conservative). DACs support up to 50 MHz.
+# For logic analyzer debugging, use lower values (e.g., 1000000 for 1 MHz)
+set(SPI_BAUDRATE "10000000" CACHE STRING "SPI clock rate in Hz (default 10 MHz)")
+add_compile_definitions(SPI_BAUDRATE=${SPI_BAUDRATE})
+message(STATUS "SPI baud rate: ${SPI_BAUDRATE} Hz")
 
 # Single-board Mode - simplified interface with direct GPIO chip select
 option(SINGLE_BOARD_MODE "Single-board mode with direct GPIO chip select" OFF)
@@ -35,7 +33,6 @@ add_executable(greymatter
     ltc2664.cpp
     board_manager.cpp
     scpi_parser.cpp
-    debug_spi.cpp
     cal_storage.cpp
 )
 

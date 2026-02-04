@@ -42,7 +42,12 @@ export PICO_SDK_PATH=/path/to/pico-sdk
 ```bash
 cd build
 cmake .. -DPICO_BOARD=pico2
-CC=gcc-15 CXX=g++-15 make
+make picotoolBuild
+C_INCLUDE_PATH= CPLUS_INCLUDE_PATH= make
+
+# Optional: Custom SPI clock rate (default 10 MHz)
+cmake .. -DPICO_BOARD=pico2 -DSPI_BAUDRATE=1000000  # 1 MHz for logic analyzer
+make picotoolBuild && C_INCLUDE_PATH= CPLUS_INCLUDE_PATH= make
 ```
 
 ### Flash
@@ -139,7 +144,7 @@ FAULT?
 |------|----------|-------------|
 | GP16 | SPI_MISO | Data from DACs/expanders |
 | GP17 | SPI_CS | Chip select (expanders only) |
-| GP18 | SPI_CLK | SPI clock (10 MHz) |
+| GP18 | SPI_CLK | SPI clock (configurable, default 10 MHz) |
 | GP19 | SPI_MOSI | Data to DACs/expanders |
 | GP20 | FAULT | Combined fault input |
 | GP21 | LEVEL_SHIFT_OE | Level shifter enable |
