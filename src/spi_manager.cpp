@@ -24,10 +24,10 @@ void SpiManager::init_gpio() {
     gpio_set_dir(HW_PINS_SINGLE::CLR, GPIO_OUT);
     gpio_put(HW_PINS_SINGLE::CLR, 1);
 
-    // FAULT pin: input with pull-up
+    // FAULT pin: driven by NAND gate
     gpio_init(HW_PINS_SINGLE::FAULT);
     gpio_set_dir(HW_PINS_SINGLE::FAULT, GPIO_IN);
-    gpio_pull_up(HW_PINS_SINGLE::FAULT);
+    gpio_disable_pulls(HW_PINS_SINGLE::FAULT);
 #else
     // Multi-board mode: Level shifter, IO expanders, decoder tree
 
@@ -224,9 +224,8 @@ void SpiManager::release_clear() {
 }
 
 bool SpiManager::is_fault_active() {
-    // FAULT line is active-low
 #ifdef SINGLE_BOARD_MODE
-    return !gpio_get(HW_PINS_SINGLE::FAULT);
+    return gpio_get(HW_PINS_SINGLE::FAULT);
 #else
     return !gpio_get(HW_PINS::FAULT);
 #endif
