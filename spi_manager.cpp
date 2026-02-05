@@ -69,11 +69,15 @@ void SpiManager::init_spi() {
     spi_inst_t* spi = SPI_CONFIG::get_spi_instance();
     spi_init(spi, SPI_CONFIG::BAUDRATE);
 
-    // Configure SPI pins
-    gpio_set_function(HW_PINS::SPI_MISO, GPIO_FUNC_SPI);
-    gpio_set_function(HW_PINS::SPI_CLK, GPIO_FUNC_SPI);
-    gpio_set_function(HW_PINS::SPI_MOSI, GPIO_FUNC_SPI);
-    // Note: CS is GPIO-controlled, not SPI peripheral controlled
+    // Configure only the data and clock SPI pins.
+    // IMPORTANT: Do NOT configure any CS pin as GPIO_FUNC_SPI. The PL022 SPI
+    // peripheral automatically generates a frame sync (SSPFSSOUT) signal during
+    // every transfer. If a GPIO is set to GPIO_FUNC_SPI for the CSn function,
+    // the hardware will toggle it on every spi_write_blocking() call, overriding
+    // any software GPIO control. We manage CS entirely via GPIO (SIO function).
+    gpio_set_function(HW_PINS::SPI_MISO, GPIO_FUNC_SPI);  // GP16: SPI0 RX
+    gpio_set_function(HW_PINS::SPI_CLK, GPIO_FUNC_SPI);   // GP18: SPI0 SCK
+    gpio_set_function(HW_PINS::SPI_MOSI, GPIO_FUNC_SPI);  // GP19: SPI0 TX
 
     // SPI Mode 0: CPOL=0, CPHA=0 (data sampled on rising edge)
     spi_set_format(spi,
@@ -86,8 +90,11 @@ void SpiManager::init_spi() {
 void SpiManager::init() {
 #ifdef SINGLE_BOARD_MODE
     // Single-board mode: Simple initialization, no level shifter or expanders
-    init_gpio();
+    // IMPORTANT: Initialize SPI first, THEN configure CS pins as GPIO.
+    // This ensures the GPIO function selection overrides any SPI peripheral
+    // automatic CS behavior on GP17 (which is a valid SPI0_CSn pin).
     init_spi();
+    init_gpio();
 #else
     // Multi-board mode: Full initialization sequence per documentation:
     // 1. Set GP21 HIGH (enable TXB0106 level-shifter) - MUST BE FIRST
@@ -160,20 +167,25 @@ void SpiManager::raw_transfer(const uint8_t* tx_data, uint8_t* rx_data, size_t l
 void SpiManager::transaction(uint8_t board_id, uint8_t device_id,
                               const uint8_t* tx_data, uint8_t* rx_data, size_t len) {
     // DAC transaction protocol:
-    // 1. Write to IO expander: set CS0-CS4 bits + assert D_EN
-    //    (IO expander handles its own CS via cs_assert/cs_release)
-    // 2. Perform DAC SPI transaction WITHOUT asserting GP17 CS
-    //    (decoder tree provides CS to selected DAC)
-    // 3. Deassert D_EN via IO expander when done
+    //
+    // Single-board mode:
+    //   1. Assert the correct CS GPIO pin for the target DAC
+    //   2. Perform SPI transaction (CS held low throughout)
+    //   3. Release CS GPIO pin
+    //
+    // Multi-board mode:
+    //   1. Write to IO expander: set CS0-CS4 bits + assert D_EN
+    //      (decoder tree provides CS to selected DAC)
+    //   2. Perform DAC SPI transaction (decoder tree holds CS)
+    //   3. Deassert D_EN via IO expander
 
-    // Step 1: Select the DAC via decoder tree
+    // Step 1: Select the target DAC
     select_downstream(board_id, device_id);
 
-    // Small delay to ensure decoder output is stable
+    // Small delay to ensure CS is stable before clocking data
     sleep_us(1);
 
     // Step 2: Perform SPI transaction to DAC
-    // Note: We do NOT assert GP17 CS here - decoder tree handles CS
     spi_inst_t* spi = SPI_CONFIG::get_spi_instance();
     if (rx_data != nullptr) {
         spi_write_read_blocking(spi, tx_data, rx_data, len);
