@@ -1,4 +1,4 @@
-# GreyMatter DAC Controller - User Guide
+# greymatter DAC controller - User Guide
 
 This guide provides comprehensive documentation for operating the GreyMatter DAC Controller, including all available commands, addressing schemes, calibration procedures, and detailed implementation information.
 

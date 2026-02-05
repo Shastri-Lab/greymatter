@@ -1,4 +1,4 @@
-# GreyMatter DAC Controller
+# greymatter DAC controller
 
 Embedded firmware for the Raspberry Pi Pico 2 (RP2350) controlling a multi-board DAC system for precision analog output generation. Designed for photonic neural network research applications.
 
