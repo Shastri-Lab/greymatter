@@ -71,7 +71,7 @@ screen /dev/tty.usbmodem1101 115200
 ```
 *IDN?
 ```
-Response: `GreyMatter,DAC Controller,001,0.1`
+Response: `greymatter,DAC Controller,001,0.1`
 
 ## Basic Usage
 

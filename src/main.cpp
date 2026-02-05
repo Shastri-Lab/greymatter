@@ -67,7 +67,7 @@ int main() {
 
     // Print startup banner
     printf("\r\n");
-    printf("GreyMatter DAC Controller v0.1\r\n");
+    printf("greymatter DAC Controller v0.1\r\n");
 #ifdef SINGLE_BOARD_MODE
     printf("Mode: Single-board (1 board, 3 DACs, direct GPIO CS)\r\n");
 #else

@@ -28,7 +28,7 @@ constexpr float LTC2662_FS_CURRENT[] = {
     100.0,    // 0x6
     200.0,    // 0x7
     0.0,      // 0x8: Switch to V-
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0,  // 0x9-0xE: undefined
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0,  // 0x9-0xE: undefined (Hi-Z)
     300.0     // 0xF
 };
 

@@ -19,7 +19,7 @@ constexpr uint32_t FLASH_PAGE_SIZE = 256;               // 256-byte write page
 constexpr uint32_t CAL_FLASH_OFFSET = FLASH_SIZE - FLASH_SECTOR_SIZE;  // 0x1FF000
 
 // Magic number to identify valid calibration data
-constexpr uint32_t CAL_MAGIC = 0x47524D43;  // "GRMC" (GreyMatter Calibration)
+constexpr uint32_t CAL_MAGIC = 0x47524D43;  // "GRMC" (greymatter Calibration)
 constexpr uint16_t CAL_VERSION = 1;
 
 // Calibration data structure stored in flash

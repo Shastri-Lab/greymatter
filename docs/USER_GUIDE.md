@@ -1,6 +1,6 @@
 # greymatter DAC controller - User Guide
 
-This guide provides comprehensive documentation for operating the GreyMatter DAC Controller, including all available commands, addressing schemes, calibration procedures, and detailed implementation information.
+This guide provides comprehensive documentation for operating the greymatter DAC Controller, including all available commands, addressing schemes, calibration procedures, and detailed implementation information.
 
 ## Table of Contents
 
@@ -18,7 +18,7 @@ This guide provides comprehensive documentation for operating the GreyMatter DAC
 
 ## System Overview
 
-The GreyMatter DAC Controller manages 24 Digital-to-Analog Converters distributed across 8 daughter boards. Each board contains:
+The greymatter DAC Controller manages 24 Digital-to-Analog Converters distributed across 8 daughter boards. Each board contains:
 
 - **2x LTC2662**: 5-channel current DACs (DAC 0 and DAC 1)
 - **1x LTC2664**: 4-channel voltage DAC (DAC 2)
@@ -80,7 +80,7 @@ All commands follow the SCPI (Standard Commands for Programmable Instruments) st
 
 | Command | Description | Response |
 |---------|-------------|----------|
-| `*IDN?` | Query device identification | `GreyMatter,DAC Controller,001,0.1` |
+| `*IDN?` | Query device identification | `greymatter,DAC Controller,001,0.1` |
 | `*RST` | Reset all DACs to power-on state | `OK` |
 
 ### System Commands
@@ -318,7 +318,7 @@ Where `max_code` is 4095 for 12-bit or 65535 for 16-bit resolution.
 
 ## Calibration
 
-The GreyMatter firmware supports two-point linear calibration for each DAC channel to correct for gain and offset errors.
+The greymatter firmware supports two-point linear calibration for each DAC channel to correct for gain and offset errors.
 
 ### Calibration Model
 

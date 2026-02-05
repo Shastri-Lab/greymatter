@@ -98,7 +98,7 @@ uint8_t BoardManager::get_resolution(uint8_t board, uint8_t dac) {
 }
 
 std::string BoardManager::execute_idn() {
-    return "GreyMatter,DAC Controller,001,0.1"; // TODO: set some global variables to populate the version information
+    return "greymatter,DAC Controller,001,0.1"; // TODO: set some global variables to populate the version information
 }
 
 std::string BoardManager::execute_fault_query() {
