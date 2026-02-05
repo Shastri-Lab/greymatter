@@ -16,11 +16,11 @@ Embedded firmware for the Raspberry Pi Pico 2 (RP2350) controlling a multi-board
 ## Hardware Requirements
 
 - Raspberry Pi Pico 2 (RP2350)
-- GreyMatter motherboard with:
+- Greymatter motherboard with:
   - 3x MCP23S17 I/O expanders
   - TXB0106 level shifter
   - 8 daughter board slots
-- Daughter boards (per slot):
+- Microcyte daughter boards (per slot):
   - 2x LTC2662 current DAC (5 channels each)
   - 1x LTC2664 voltage DAC (4 channels)
 
