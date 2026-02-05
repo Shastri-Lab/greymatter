@@ -72,6 +72,9 @@ public:
     // Get full-scale current for current span setting
     float get_full_scale_ma(uint8_t channel) const;
 
+    // Convert voltage to 16-bit code for given span
+    uint16_t current_ma_to_code(uint8_t channel, float current_ma) const;
+
     // Configure device options
     // ref_disable: true = use external reference
     // thermal_disable: true = disable thermal shutdown
