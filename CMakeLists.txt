@@ -1,10 +1,13 @@
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 cmake_minimum_required(VERSION 3.13)
-include($ENV{PICO_SDK_PATH}/pico_sdk_init.cmake)
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+include(pico_sdk_import.cmake)
 
 project(greymatter C CXX ASM)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
+
 pico_sdk_init()
 
 # SPI Baud Rate - configurable for debugging with logic analyzers
@@ -23,26 +26,4 @@ else()
     message(STATUS "Single-board mode disabled - 8 boards, IO expander CS routing")
 endif()
 
-add_executable(greymatter
-    main.cpp
-    utils.cpp
-    io_expander.cpp
-    spi_manager.cpp
-    dac_device.cpp
-    ltc2662.cpp
-    ltc2664.cpp
-    board_manager.cpp
-    scpi_parser.cpp
-    cal_storage.cpp
-)
-
-pico_enable_stdio_usb(greymatter 1)
-
-pico_add_extra_outputs(greymatter)
-target_link_libraries(greymatter
-    pico_stdlib
-    hardware_spi
-    hardware_gpio
-    hardware_flash
-    hardware_sync
-)
+add_subdirectory(src)
