@@ -25,11 +25,13 @@ void LTC2664::init() {
 
 void LTC2664::write_code(uint8_t channel, uint16_t code) {
     if (channel >= NUM_CHANNELS) return;
+    code = (resolution_bits_ == 12) ? code << 4 : code;
     send_command(DAC_CMD::WRITE_CODE_N, channel, code);
 }
 
 void LTC2664::write_and_update(uint8_t channel, uint16_t code) {
     if (channel >= NUM_CHANNELS) return;
+    code = (resolution_bits_ == 12) ? code << 4 : code;
     send_command(DAC_CMD::WRITE_UPDATE_N, channel, code);
 }
 

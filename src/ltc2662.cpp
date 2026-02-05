@@ -24,11 +24,13 @@ void LTC2662::init() {
 
 void LTC2662::write_code(uint8_t channel, uint16_t code) {
     if (channel >= NUM_CHANNELS) return;
+    code = (resolution_bits_ == 12) ? code << 4 : code;
     send_command(DAC_CMD::WRITE_CODE_N, channel, code);
 }
 
 void LTC2662::write_and_update(uint8_t channel, uint16_t code) {
     if (channel >= NUM_CHANNELS) return;
+    code = (resolution_bits_ == 12) ? code << 4 : code;
     send_command(DAC_CMD::WRITE_UPDATE_N, channel, code);
 }
 
@@ -73,19 +75,24 @@ float LTC2662::get_full_scale_ma(uint8_t channel) const {
     return LTC2662_FS_CURRENT[span];
 }
 
-void LTC2662::set_current_ma(uint8_t channel, float current_ma) {
-    if (channel >= NUM_CHANNELS) return;
-
+uint16_t LTC2662::current_ma_to_code(uint8_t channel, float current_ma) const {
+    if (channel >= NUM_CHANNELS) return 0;
+    
     float fs = get_full_scale_ma(channel);
-    if (fs <= 0.0f) return;  // Hi-Z or invalid span
-
+    if (fs <= 0.0f) return 0;  // Hi-Z or invalid span
+    
     // Clamp to valid range
     if (current_ma < 0.0f) current_ma = 0.0f;
     if (current_ma > fs) current_ma = fs;
-
+    
     // Convert to code: CODE = (I_OUT / I_FS) * max_code
     uint16_t code = static_cast<uint16_t>((current_ma / fs) * static_cast<float>(max_code_) + 0.5f);
+}
 
+void LTC2662::set_current_ma(uint8_t channel, float current_ma) {
+    if (channel >= NUM_CHANNELS) return;
+
+    uint16_t code = current_ma_to_code(channel, current_ma);
     write_and_update(channel, code);
 }
 
