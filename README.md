@@ -91,10 +91,7 @@ FAULT?
 
 ## Documentation
 
-- **[User Guide](USER_GUIDE.md)** - Complete command reference and implementation details
-- **[docs/LTC2662_PROGRAMMING.md](docs/LTC2662_PROGRAMMING.md)** - Current DAC programming
-- **[docs/LTC2664_PROGRAMMING.md](docs/LTC2664_PROGRAMMING.md)** - Voltage DAC programming
-- **[docs/MCP23S17_PROGRAMMING.md](docs/MCP23S17_PROGRAMMING.md)** - I/O expander programming
+The **[user guide](docs/USER_GUIDE.md)** for the firmware contains a complete command reference, implementation details, calibration routines, and more details.
 
 ## Architecture
 
