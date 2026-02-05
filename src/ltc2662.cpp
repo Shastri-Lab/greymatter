@@ -86,7 +86,7 @@ uint16_t LTC2662::current_ma_to_code(uint8_t channel, float current_ma) const {
     if (current_ma > fs) current_ma = fs;
     
     // Convert to code: CODE = (I_OUT / I_FS) * max_code
-    uint16_t code = static_cast<uint16_t>((current_ma / fs) * static_cast<float>(max_code_) + 0.5f);
+    return static_cast<uint16_t>((current_ma / fs) * static_cast<float>(max_code_) + 0.5f);
 }
 
 void LTC2662::set_current_ma(uint8_t channel, float current_ma) {
