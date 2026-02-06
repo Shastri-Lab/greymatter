@@ -356,6 +356,19 @@ bool ScpiParser::parse_board_command(const char* cmd, ScpiCommand& result) {
             return false;
         }
 
+        if (strncasecmp_local(p, "SPAN", 4) == 0) {
+            result.type = ScpiCommandType::SET_SPAN;
+            p += 4;
+            p = skip_whitespace(p);
+            if (!parse_int(p, result.int_value)) {
+                result.error_msg = "Invalid span value";
+                return false;
+            }
+            result.has_int = true;
+            result.valid = true;
+            return true;
+        }
+
         result.error_msg = "Unknown channel command";
         return false;
     }

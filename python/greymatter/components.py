@@ -132,6 +132,10 @@ class CurrentChannel:
         """Set output current in mA."""
         self._gm.command(f"{self._prefix}:CURR {milliamps}")
 
+    def set_span(self, span: CurrentSpan) -> None:
+        """Set span for this channel."""
+        self._gm.command(f"{self._prefix}:SPAN {int(span)}")
+
     def set_code(self, code: int) -> None:
         """Set raw DAC code."""
         self._gm.command(f"{self._prefix}:CODE {code}")
@@ -150,6 +154,10 @@ class VoltageChannel:
     def set_voltage(self, volts: float) -> None:
         """Set output voltage in volts."""
         self._gm.command(f"{self._prefix}:VOLT {volts}")
+
+    def set_span(self, span: VoltageSpan) -> None:
+        """Set span for this channel."""
+        self._gm.command(f"{self._prefix}:SPAN {int(span)}")
 
     def set_code(self, code: int) -> None:
         """Set raw DAC code."""

@@ -225,7 +225,7 @@ std::string BoardManager::execute_set_span(const ScpiCommand& cmd) {
         //     dac->set_span(ch, static_cast<uint8_t>(cmd.int_value));
         // }
         dac->set_span_all(static_cast<uint8_t>(cmd.int_value));
-    } else {
+    } else { // ScpiCommandType::SET_SPAN
         // Need channel for single-channel span
         if (cmd.channel_id < 0) {
             return "ERROR:Missing channel";

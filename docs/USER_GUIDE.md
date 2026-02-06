@@ -97,7 +97,7 @@ All commands follow the SCPI (Standard Commands for Programmable Instruments) st
 | Command | Format | Example |
 |---------|--------|---------|
 | Set Voltage | `BOARD<n>:DAC2:CH<c>:VOLT <value>` | `BOARD0:DAC2:CH0:VOLT 5.0` |
-| Set Span | `BOARD<n>:DAC2:SPAN <code>` | `BOARD0:DAC2:SPAN 3` |
+| Set Channel Span | `BOARD<n>:DAC2:CH<c>:SPAN <code>` | `BOARD0:DAC2:CH0:SPAN 3` |
 | Set All Spans | `BOARD<n>:DAC2:SPAN:ALL <code>` | `BOARD0:DAC2:SPAN:ALL 3` |
 
 ### Current Commands (LTC2662 - DAC 0, DAC 1)
@@ -105,7 +105,7 @@ All commands follow the SCPI (Standard Commands for Programmable Instruments) st
 | Command | Format | Example |
 |---------|--------|---------|
 | Set Current | `BOARD<n>:DAC<0-1>:CH<c>:CURR <value>` | `BOARD0:DAC0:CH0:CURR 50.0` |
-| Set Span | `BOARD<n>:DAC<0-1>:SPAN <code>` | `BOARD0:DAC0:SPAN 6` |
+| Set Channel Span | `BOARD<n>:DAC<0-1>:CH<c>:SPAN <code>` | `BOARD0:DAC0:CH0:SPAN 6` |
 | Set All Spans | `BOARD<n>:DAC<0-1>:SPAN:ALL <code>` | `BOARD0:DAC0:SPAN:ALL 6` |
 
 ### Raw Code Commands (All DACs)
@@ -667,8 +667,8 @@ main loop
 │       ├── Extract :DAC<m> or :SN
 │       └── Parse subcommand:
 │           ├── CH<c>:VOLT, CH<c>:CURR, CH<c>:CODE
-│           ├── CH<c>:PDOWN, CH<c>:CAL:*
-│           ├── SPAN, SPAN:ALL, RES
+│           ├── CH<c>:SPAN, CH<c>:PDOWN, CH<c>:CAL:*
+│           ├── SPAN:ALL, RES
 │           ├── UPDATE
 │           └── PDOWN
 │
