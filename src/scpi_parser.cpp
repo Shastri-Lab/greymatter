@@ -213,6 +213,22 @@ bool ScpiParser::parse_board_command(const char* cmd, ScpiCommand& result) {
     }
     p++;  // Skip :
 
+    // FAULT? - read fault register (LTC2662 only)
+    if (strncasecmp_local(p, "FAULT?", 6) == 0) {
+        result.type = ScpiCommandType::DAC_FAULT_QUERY;
+        result.is_query = true;
+        result.valid = true;
+        return true;
+    }
+
+    // ECHO? - echo readback test
+    if (strncasecmp_local(p, "ECHO?", 5) == 0) {
+        result.type = ScpiCommandType::DAC_ECHO_QUERY;
+        result.is_query = true;
+        result.valid = true;
+        return true;
+    }
+
     // Parse subcommand: CH<n>:VOLT, CH<n>:CURR, CH<n>:CODE, SPAN, UPDATE, PDOWN
     if (strncasecmp_local(p, "CH", 2) == 0) {
         // CH<n>:...

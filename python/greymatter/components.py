@@ -80,6 +80,28 @@ class CurrentDAC:
     def update(self) -> None:
         self._gm.command(f"{self._prefix()}:UPDATE")
 
+    def fault_status(self) -> str:
+        """Read fault register from the LTC2662 via SPI readback.
+
+        Returns "OK" if no faults, or a string like
+        "FAULT:OC0,OVERTEMP" listing active fault conditions.
+
+        Fault bits:
+          OC0-OC4: Open-circuit on OUT0-OUT4
+          OVERTEMP: Die temperature >175C
+          POWER_LIMIT: VDDx-VOUTx >10V at >=200mA (auto-reduced to 100mA)
+          INVALID_SPI: Bad SPI sequence length
+        """
+        return self._gm.query(f"{self._prefix()}:FAULT?")
+
+    def echo_readback(self) -> str:
+        """Echo readback test (32-bit NOP).
+
+        Returns a string like "FR=0xNN ECHO=0xNNNNNN" where FR is the
+        fault register and ECHO is the previous SPI command echoed back.
+        """
+        return self._gm.query(f"{self._prefix()}:ECHO?")
+
 
 class VoltageDAC:
     """LTC2664 voltage DAC (4 channels)."""
@@ -119,6 +141,14 @@ class VoltageDAC:
 
     def update(self) -> None:
         self._gm.command(f"{self._prefix()}:UPDATE")
+
+    def echo_readback(self) -> str:
+        """Echo readback test (32-bit NOP).
+
+        Returns a string like "ECHO=0xNNNNNNNN" — the previous SPI
+        command echoed back. Only works in 32-bit mode.
+        """
+        return self._gm.query(f"{self._prefix()}:ECHO?")
 
 
 class CurrentChannel:

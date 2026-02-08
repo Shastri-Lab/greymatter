@@ -75,6 +75,13 @@ protected:
     // Low-level 24-bit SPI command
     void send_command(uint8_t command, uint8_t address, uint16_t data);
 
+    // Send 24-bit command and capture MISO response (3 bytes)
+    void send_command_read24(uint8_t command, uint8_t address, uint16_t data, uint8_t rx[3]);
+
+    // Send 32-bit command and capture MISO response (4 bytes)
+    // 32-bit format: [0x00][CMD|ADDR][DATA_H][DATA_L]
+    void send_command_read32(uint8_t command, uint8_t address, uint16_t data, uint8_t rx[4]);
+
     SpiManager* spi_ = nullptr;
     uint8_t board_id_ = 0;
     uint8_t device_id_ = 0;

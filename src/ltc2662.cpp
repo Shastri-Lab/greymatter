@@ -107,3 +107,18 @@ void LTC2662::configure(bool ref_disable, bool thermal_disable,
 
     send_command(DAC_CMD::CONFIG, 0, config);
 }
+
+uint8_t LTC2662::read_fault_register() {
+    uint8_t rx[3];
+    send_command_read24(DAC_CMD::NOP, 0, 0, rx);
+    return rx[0];
+}
+
+void LTC2662::echo_readback(uint8_t& fault_reg, uint32_t& echo) {
+    uint8_t rx[4];
+    send_command_read32(DAC_CMD::NOP, 0, 0, rx);
+    fault_reg = rx[0];
+    echo = (static_cast<uint32_t>(rx[1]) << 16) |
+           (static_cast<uint32_t>(rx[2]) << 8) |
+           static_cast<uint32_t>(rx[3]);
+}

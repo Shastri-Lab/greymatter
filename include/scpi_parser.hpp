@@ -38,6 +38,9 @@ enum class ScpiCommandType {
     CAL_CLEAR,       // CAL:CLEAR - Clear all calibration data
     CAL_SAVE,        // CAL:SAVE - Save calibration to flash
     CAL_LOAD,        // CAL:LOAD - Load calibration from flash
+    // Per-DAC readback commands
+    DAC_FAULT_QUERY, // BOARD<n>:DAC<m>:FAULT? (LTC2662 only)
+    DAC_ECHO_QUERY,  // BOARD<n>:DAC<m>:ECHO?
     // System commands
     FAULT_QUERY,     // FAULT?
     SYST_ERR_QUERY,  // SYST:ERR?

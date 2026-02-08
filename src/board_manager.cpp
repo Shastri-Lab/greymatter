@@ -527,6 +527,70 @@ std::string BoardManager::execute_cal_load() {
     return "ERROR:No valid calibration data";
 }
 
+std::string BoardManager::execute_dac_fault_query(const ScpiCommand& cmd) {
+    if (cmd.board_id < 0 || cmd.dac_id < 0) {
+        return "ERROR:Missing address";
+    }
+
+    // Only valid for LTC2662 (DAC 0 or 1)
+    if (cmd.dac_id == 2) {
+        return "ERROR:FAULT? only for current DACs (DAC 0,1)";
+    }
+
+    LTC2662* dac = current_dacs_[cmd.board_id][cmd.dac_id];
+    if (!dac) return "ERROR:DAC not initialized";
+
+    uint8_t fr = dac->read_fault_register();
+    if (fr == 0) return "OK";
+
+    // Build human-readable fault string
+    std::string result = "FAULT:";
+    bool first = true;
+    auto append = [&](const char* name) {
+        if (!first) result += ",";
+        result += name;
+        first = false;
+    };
+
+    if (fr & 0x01) append("OC0");
+    if (fr & 0x02) append("OC1");
+    if (fr & 0x04) append("OC2");
+    if (fr & 0x08) append("OC3");
+    if (fr & 0x10) append("OC4");
+    if (fr & 0x20) append("OVERTEMP");
+    if (fr & 0x40) append("POWER_LIMIT");
+    if (fr & 0x80) append("INVALID_SPI");
+
+    return result;
+}
+
+std::string BoardManager::execute_dac_echo_query(const ScpiCommand& cmd) {
+    if (cmd.board_id < 0 || cmd.dac_id < 0) {
+        return "ERROR:Missing address";
+    }
+
+    char buf[64];
+    if (cmd.dac_id < 2) {
+        // LTC2662: returns fault reg + 24-bit echo
+        LTC2662* dac = current_dacs_[cmd.board_id][cmd.dac_id];
+        if (!dac) return "ERROR:DAC not initialized";
+
+        uint8_t fault_reg;
+        uint32_t echo;
+        dac->echo_readback(fault_reg, echo);
+        snprintf(buf, sizeof(buf), "FR=0x%02X ECHO=0x%06lX",
+                 fault_reg, (unsigned long)echo);
+    } else {
+        // LTC2664: returns 32-bit echo
+        LTC2664* dac = voltage_dacs_[cmd.board_id];
+        if (!dac) return "ERROR:DAC not initialized";
+
+        uint32_t echo = dac->echo_readback();
+        snprintf(buf, sizeof(buf), "ECHO=0x%08lX", (unsigned long)echo);
+    }
+    return buf;
+}
+
 std::string BoardManager::execute(const ScpiCommand& cmd) {
     if (!cmd.valid) {
         return "ERROR:" + cmd.error_msg;
@@ -542,6 +606,12 @@ std::string BoardManager::execute(const ScpiCommand& cmd) {
 
         case ScpiCommandType::FAULT_QUERY:
             return execute_fault_query();
+
+        case ScpiCommandType::DAC_FAULT_QUERY:
+            return execute_dac_fault_query(cmd);
+
+        case ScpiCommandType::DAC_ECHO_QUERY:
+            return execute_dac_echo_query(cmd);
 
         case ScpiCommandType::SET_VOLTAGE:
             return execute_set_voltage(cmd);

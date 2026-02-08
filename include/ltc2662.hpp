@@ -83,6 +83,16 @@ public:
     void configure(bool ref_disable, bool thermal_disable,
                    bool power_limit_disable, bool open_circuit_disable);
 
+    // Read fault register via SPI readback (sends 24-bit NOP, returns first MISO byte)
+    // FR[0-4]: Open-circuit on OUT[0-4]
+    // FR5: Overtemperature (>175C)
+    // FR6: Power limit (VDDx-VOUTx>10V at >=200mA, auto-reduced to 100mA)
+    // FR7: Invalid SPI sequence length
+    uint8_t read_fault_register();
+
+    // Echo readback test (sends 32-bit NOP, captures fault byte + 24-bit echo)
+    void echo_readback(uint8_t& fault_reg, uint32_t& echo);
+
 private:
     uint8_t span_[NUM_CHANNELS] = {0};  // Current span setting per channel
     uint8_t resolution_bits_ = 16;       // 12 or 16 bit resolution

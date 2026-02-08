@@ -140,3 +140,12 @@ void LTC2664::configure(bool ref_disable, bool thermal_disable) {
 
     send_command(DAC_CMD::CONFIG, 0, config);
 }
+
+uint32_t LTC2664::echo_readback() {
+    uint8_t rx[4];
+    send_command_read32(DAC_CMD::NOP, 0, 0, rx);
+    return (static_cast<uint32_t>(rx[0]) << 24) |
+           (static_cast<uint32_t>(rx[1]) << 16) |
+           (static_cast<uint32_t>(rx[2]) << 8) |
+           static_cast<uint32_t>(rx[3]);
+}

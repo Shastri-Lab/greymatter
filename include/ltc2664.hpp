@@ -81,6 +81,9 @@ public:
     // Convert 16-bit code to voltage for given span
     float code_to_voltage(uint8_t channel, uint16_t code) const;
 
+    // Echo readback test (sends 32-bit NOP, returns 32-bit echo)
+    uint32_t echo_readback();
+
 private:
     uint8_t span_[NUM_CHANNELS] = {0};  // Current span setting per channel
     uint8_t resolution_bits_ = 16;       // 12 or 16 bit resolution

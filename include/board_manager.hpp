@@ -141,6 +141,8 @@ private:
     std::string execute_cal_clear();
     std::string execute_cal_save();
     std::string execute_cal_load();
+    std::string execute_dac_fault_query(const ScpiCommand& cmd);
+    std::string execute_dac_echo_query(const ScpiCommand& cmd);
 };
 
 #endif // BOARD_MANAGER_HPP
