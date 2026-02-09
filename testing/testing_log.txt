@@ -1,0 +1,34 @@
+MCT0001-1 - old paste, stencil - good
+- stopped working after IPA clean
+- I think I7, I6 were still working, but not all channels
+- gave it a second IPA bath, air in a can, then 1 hr under a fan, more air in a can, dropped it on the ground, then put it on warm surface (Keithley 2606B) for 1 hr
+
+MCT0001-2 - old paste, stencil - good
+- gave it an IPA bath but haven't tested yet
+- gave it a second IPA bath, air in a can, then 1 hr under a fan, more air in a can, then put it on warm surface (Keithley 2606B) for 1 hr
+
+MCT0014-1 - sam + hugh collab - only some current channels, fault light went on, then off, but never back on again (even when it should have)
+- H, W6, W8 working
+- sam touched up solder; mostly working; VN and W4 don't work
+- hugh touched up solder; all good
+
+MCT0014-2 - sam + hugh collab 2 - only voltage channels, no fault light ever
+- Vn, Vp, Vb working
+- no evidence that communication even works with other DACs (PDOWN doesn't change current)
+- 4mA through V+ and 3mA through V- when everything is "powered down"
+- sam touched up solder; W1,2,3,4,5 don't work
+ -- clearly data unconnected
+- hugh touched up solder; all good
+
+MCT0014-3 - Sam solo, sparse solder paste
+- nothing working, no fault lights
+- sam touched up solder; still doesn't work
+
+MCT0014-4 - new paste, stencil, hugh touch up - good
+
+MCT0014-5 - sam soldered (new paste, stencil? no touch up) - good
+- hugh accidentally removed the chip from testing rig without ESD protection; haven't tested for damage yet
+
+
+
+
