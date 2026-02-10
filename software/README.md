@@ -1,5 +1,3 @@
-The following README is just for the Raspberry Pi firmware (the same one found at [software/README.md](software/README.md)); it should be updated to include details of the PCBs found under the [hardware](hardware/) directory.
-
 # greymatter DAC controller
 
 Embedded firmware for the Raspberry Pi Pico 2 (RP2350) controlling a multi-board DAC system for precision analog output generation. Designed for photonic neural network research applications.
