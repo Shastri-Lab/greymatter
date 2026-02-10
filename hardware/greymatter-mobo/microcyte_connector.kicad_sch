@@ -1,0 +1,6416 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "977a62d6-d841-4041-a87d-fba48e8e046d")
+	(paper "A4")
+	(lib_symbols
+		(symbol "MDT350M01001VT:M2-J-67-V-SMT-5.30-KE-KT"
+			(pin_names
+				(offset 1.016)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "J"
+				(at -7.62 48.26 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+					(hide yes)
+				)
+			)
+			(property "Value" "M2-J-67-V-SMT-5.30-KE-KT"
+				(at 0 -51.816 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+					(hide yes)
+				)
+			)
+			(property "Footprint" "MDT350M01001VT:ADAMTECH_M2-J-67-V-SMT-5.30-KE-KT"
+				(at 0 55.88 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "PARTREV" "2"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "STANDARD" "Manufacturer Recommendations"
+				(at 0 53.594 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "MAXIMUM_PACKAGE_HEIGHT" "5.3 mm"
+				(at 0 51.562 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "MANUFACTURER" "Adam Tech"
+				(at 0 58.42 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(symbol "M2-J-67-V-SMT-5.30-KE-KT_0_0"
+				(rectangle
+					(start -6.35 44.45)
+					(end 8.89 -49.53)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin passive line
+					(at -11.43 41.91 0)
+					(length 5.08)
+					(name "1"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 39.37 0)
+					(length 5.08)
+					(name "3"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 36.83 0)
+					(length 5.08)
+					(name "5"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 34.29 0)
+					(length 5.08)
+					(name "7"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 31.75 0)
+					(length 5.08)
+					(name "9"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "9"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 29.21 0)
+					(length 5.08)
+					(name "11"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "11"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 26.67 0)
+					(length 5.08)
+					(name "13"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "13"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 24.13 0)
+					(length 5.08)
+					(name "15"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "15"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 21.59 0)
+					(length 5.08)
+					(name "17"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "17"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 19.05 0)
+					(length 5.08)
+					(name "19"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "19"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 16.51 0)
+					(length 5.08)
+					(name "21"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "21"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 13.97 0)
+					(length 5.08)
+					(name "23"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "23"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 6.35 0)
+					(length 5.08)
+					(name "33"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "33"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 3.81 0)
+					(length 5.08)
+					(name "35"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "35"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 1.27 0)
+					(length 5.08)
+					(name "37"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "37"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 -1.27 0)
+					(length 5.08)
+					(name "39"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "39"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 -3.81 0)
+					(length 5.08)
+					(name "41"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "41"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 -6.35 0)
+					(length 5.08)
+					(name "43"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "43"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 -8.89 0)
+					(length 5.08)
+					(name "45"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "45"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 -11.43 0)
+					(length 5.08)
+					(name "47"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "47"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 -13.97 0)
+					(length 5.08)
+					(name "49"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "49"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 -16.51 0)
+					(length 5.08)
+					(name "51"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "51"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 -19.05 0)
+					(length 5.08)
+					(name "53"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "53"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 -21.59 0)
+					(length 5.08)
+					(name "55"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "55"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 -24.13 0)
+					(length 5.08)
+					(name "57"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "57"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 -36.83 0)
+					(length 5.08)
+					(name "67"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "67"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 -39.37 0)
+					(length 5.08)
+					(name "69"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "69"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 -41.91 0)
+					(length 5.08)
+					(name "71"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "71"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 -44.45 0)
+					(length 5.08)
+					(name "73"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "73"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 -46.99 0)
+					(length 5.08)
+					(name "75"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "75"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 41.91 180)
+					(length 5.08)
+					(name "2"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 39.37 180)
+					(length 5.08)
+					(name "4"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 36.83 180)
+					(length 5.08)
+					(name "6"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 34.29 180)
+					(length 5.08)
+					(name "8"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "8"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 31.75 180)
+					(length 5.08)
+					(name "10"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "10"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 29.21 180)
+					(length 5.08)
+					(name "12"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "12"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 26.67 180)
+					(length 5.08)
+					(name "14"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "14"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 24.13 180)
+					(length 5.08)
+					(name "16"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "16"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 21.59 180)
+					(length 5.08)
+					(name "18"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "18"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 19.05 180)
+					(length 5.08)
+					(name "20"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "20"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 16.51 180)
+					(length 5.08)
+					(name "22"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "22"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 8.89 180)
+					(length 5.08)
+					(name "32"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "32"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 6.35 180)
+					(length 5.08)
+					(name "34"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "34"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 3.81 180)
+					(length 5.08)
+					(name "36"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "36"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 1.27 180)
+					(length 5.08)
+					(name "38"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "38"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 -1.27 180)
+					(length 5.08)
+					(name "40"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "40"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 -3.81 180)
+					(length 5.08)
+					(name "42"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "42"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 -6.35 180)
+					(length 5.08)
+					(name "44"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "44"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 -8.89 180)
+					(length 5.08)
+					(name "46"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "46"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 -11.43 180)
+					(length 5.08)
+					(name "48"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "48"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 -13.97 180)
+					(length 5.08)
+					(name "50"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "50"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 -16.51 180)
+					(length 5.08)
+					(name "52"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "52"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 -19.05 180)
+					(length 5.08)
+					(name "54"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "54"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 -21.59 180)
+					(length 5.08)
+					(name "56"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "56"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 -24.13 180)
+					(length 5.08)
+					(name "58"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "58"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 -36.83 180)
+					(length 5.08)
+					(name "68"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "68"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 -39.37 180)
+					(length 5.08)
+					(name "70"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "70"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 -41.91 180)
+					(length 5.08)
+					(name "72"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "72"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 -44.45 180)
+					(length 5.08)
+					(name "74"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "74"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+			)
+			(symbol "M2-J-67-V-SMT-5.30-KE-KT_0_1"
+				(polyline
+					(pts
+						(xy -11.43 10.16) (xy 1.27 10.16) (xy 1.27 12.7) (xy 13.97 12.7)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "M2-J-67-V-SMT-5.30-KE-KT_1_0"
+				(pin passive line
+					(at -11.43 -26.67 0)
+					(length 5.08)
+					(name "59"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "59"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 -29.21 0)
+					(length 5.08)
+					(name "61"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "61"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 -31.75 0)
+					(length 5.08)
+					(name "63"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "63"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 -34.29 0)
+					(length 5.08)
+					(name "65"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "65"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 -26.67 180)
+					(length 5.08)
+					(name "60"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "60"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 -29.21 180)
+					(length 5.08)
+					(name "62"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "62"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 -31.75 180)
+					(length 5.08)
+					(name "64"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "64"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 13.97 -34.29 180)
+					(length 5.08)
+					(name "66"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "66"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+			)
+			(symbol "M2-J-67-V-SMT-5.30-KE-KT_1_1"
+				(text "E"
+					(at 0 11.43 0)
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "power:+10V"
+			(power)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "+10V"
+				(at 0 3.556 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"+10V\""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "+10V_0_1"
+				(polyline
+					(pts
+						(xy -0.762 1.27) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "+10V_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "power:+5V"
+			(power)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "+5V"
+				(at 0 3.556 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"+5V\""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "+5V_0_1"
+				(polyline
+					(pts
+						(xy -0.762 1.27) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "+5V_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "power:-10V"
+			(power)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "-10V"
+				(at 0 3.556 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"-10V\""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "-10V_0_0"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "-10V_0_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 1.27) (xy 0.762 1.27) (xy 0 2.54) (xy -0.762 1.27) (xy 0 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "power:GND"
+			(power)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#PWR"
+				(at 0 -6.35 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "GND"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "GND_0_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 -1.27) (xy 1.27 -1.27) (xy 0 -2.54) (xy -1.27 -1.27) (xy 0 -1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "GND_1_1"
+				(pin power_in line
+					(at 0 0 270)
+					(length 0)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+	)
+	(text "CLK and MOSI need buffers"
+		(exclude_from_sim no)
+		(at 69.342 90.424 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "d3178681-0143-44a6-8a83-186a9305f91a")
+	)
+	(hierarchical_label "I7"
+		(shape input)
+		(at 125.73 110.49 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "10cd3103-6d0d-46a1-902c-21ceddd8ef61")
+	)
+	(hierarchical_label "I10"
+		(shape input)
+		(at 151.13 113.03 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "17048f54-516a-4b39-ab58-841ff7ffe9ee")
+	)
+	(hierarchical_label "I8"
+		(shape input)
+		(at 151.13 107.95 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "1709cd64-4dec-42b9-8f29-4659bbc6a798")
+	)
+	(hierarchical_label "CS_3"
+		(shape input)
+		(at 125.73 49.53 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "1b298671-e0c2-4159-bc77-84fde1a3b52f")
+	)
+	(hierarchical_label "I4"
+		(shape input)
+		(at 151.13 97.79 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "22d9418c-511d-4eb3-89a1-8b5e4f4df50f")
+	)
+	(hierarchical_label "FAULT_1"
+		(shape input)
+		(at 125.73 69.85 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "269ad411-3470-4c9b-8693-111ce3c6b69e")
+	)
+	(hierarchical_label "CS_1"
+		(shape input)
+		(at 125.73 54.61 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "2d908139-d4c6-4280-a535-21678bd61901")
+	)
+	(hierarchical_label "FAULT_3"
+		(shape input)
+		(at 151.13 69.85 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "495f1133-9785-4736-bd56-103993438bd3")
+	)
+	(hierarchical_label "LDAC"
+		(shape input)
+		(at 151.13 64.77 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "56b10d2f-b0df-41ba-a454-068eb08004ff")
+	)
+	(hierarchical_label "I9"
+		(shape input)
+		(at 125.73 115.57 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "6d867b85-68c3-4307-8f26-9c7217c0b806")
+	)
+	(hierarchical_label "V2"
+		(shape input)
+		(at 125.73 120.65 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "6e780289-27dc-4f99-ac97-c695bb752713")
+	)
+	(hierarchical_label "CLR"
+		(shape input)
+		(at 151.13 57.15 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "83eb2ea5-3e13-4d1b-8cf5-dbb9b6d31dc9")
+	)
+	(hierarchical_label "I5"
+		(shape input)
+		(at 125.73 105.41 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "88b3aaa9-5801-46a3-a5e9-6f414ae52b22")
+	)
+	(hierarchical_label "MISO"
+		(shape input)
+		(at 125.73 57.15 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "8ac77264-59b2-445f-8a75-333e785b3e7b")
+	)
+	(hierarchical_label "I1"
+		(shape input)
+		(at 125.73 95.25 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "8eb63e6f-944f-451a-835a-b29e6ea76c60")
+	)
+	(hierarchical_label "I6"
+		(shape input)
+		(at 151.13 102.87 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "8f9879ec-072f-4687-b893-4ba3bc04a75c")
+	)
+	(hierarchical_label "CLK"
+		(shape input)
+		(at 151.13 59.69 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "95eeb9eb-5825-4f62-9b28-6818869fb2f1")
+	)
+	(hierarchical_label "MOSI"
+		(shape input)
+		(at 151.13 52.07 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "a0512976-8c53-49af-b7c9-efa30605a5e5")
+	)
+	(hierarchical_label "V3"
+		(shape input)
+		(at 151.13 123.19 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "b3c37c1c-622d-4369-8395-1c5386c39560")
+	)
+	(hierarchical_label "CS_2"
+		(shape input)
+		(at 125.73 52.07 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "bb64ed3a-bb83-4355-b480-783398c86fd7")
+	)
+	(hierarchical_label "V1"
+		(shape input)
+		(at 125.73 125.73 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "c26aee51-f09a-41e3-8499-6ff900b58dd5")
+	)
+	(hierarchical_label "I2"
+		(shape input)
+		(at 151.13 92.71 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "cacf6ca2-bac2-46ff-b70d-d1a07f435653")
+	)
+	(hierarchical_label "V4"
+		(shape input)
+		(at 151.13 118.11 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "d67ab1b1-a6a2-4d1e-b562-2ccd40733d84")
+	)
+	(hierarchical_label "I3"
+		(shape input)
+		(at 125.73 100.33 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "f7e8c5f1-4e53-439e-b869-5a499959cc46")
+	)
+	(hierarchical_label "FAULT_2"
+		(shape input)
+		(at 151.13 67.31 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "faec7cbb-72df-4a72-87fc-e21acb50742f")
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 151.13 46.99 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "0b365052-663f-479e-8070-776deaa52742")
+		(property "Reference" "#PWR02"
+			(at 157.48 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 154.94 46.9899 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 151.13 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 151.13 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 151.13 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "39aca574-9bbc-45be-9a4f-991eb4d19bfa")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR09")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR08")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR02")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR06")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR03")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR07")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR04")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR05")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 125.73 123.19 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "0d1f7778-0be3-4c31-ac4b-053781bb83a1")
+		(property "Reference" "#PWR0222"
+			(at 119.38 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 121.92 123.1901 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 125.73 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 125.73 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 125.73 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8e89aa1e-639d-4d51-adda-0810588ee2cb")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0230")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0228")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR0222")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0226")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR0223")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0227")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR0224")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0225")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 151.13 72.39 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "1b433aa6-7c30-48b9-b0b7-d291c5a489ac")
+		(property "Reference" "#PWR072"
+			(at 157.48 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 154.94 72.3899 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 151.13 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 151.13 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 151.13 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "1f3d8f64-427a-4cc5-9530-7f31202f9aa6")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR079")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR078")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR072")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR076")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR073")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR077")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR074")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR075")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 125.73 64.77 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "2a7bfeb1-e771-483d-b180-76dcfa27c5f4")
+		(property "Reference" "#PWR036"
+			(at 119.38 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 121.92 64.7699 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 125.73 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 125.73 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 125.73 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "2a685e41-9b03-422d-8804-33ecd56e891d")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR052")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR050")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR036")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR046")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR038")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR048")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR040")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR044")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 125.73 97.79 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "2ad39f4a-7727-44f2-9e0e-fed7ffd049a9")
+		(property "Reference" "#PWR0178"
+			(at 119.38 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 121.92 97.7901 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 125.73 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 125.73 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 125.73 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "fd2b54c0-7c3c-4fe9-baf0-1185f1d4e85f")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0185")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0184")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR0178")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0182")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR0179")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0183")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR0180")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0181")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 151.13 54.61 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "32e13f3e-20d9-460d-b2a8-e31e1e31d72a")
+		(property "Reference" "#PWR080"
+			(at 157.48 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 154.94 54.6099 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 151.13 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 151.13 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 151.13 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f1120b7d-90fe-4fc6-bcbc-597e63c719b2")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR089")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR088")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR080")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR086")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR081")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR087")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR082")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR083")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 125.73 67.31 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "3444fcc0-2497-4251-993c-43c4b66831a1")
+		(property "Reference" "#PWR037"
+			(at 119.38 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 121.92 67.3099 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 125.73 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 125.73 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 125.73 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "83fd6484-5dac-4e11-a77b-946766a7693d")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR053")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR051")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR037")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR047")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR039")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR049")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR041")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR045")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 151.13 80.01 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "39cb7a0e-9449-4c91-969b-66e2aae5fde2")
+		(property "Reference" "#PWR0108"
+			(at 157.48 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 154.94 80.0099 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 151.13 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 151.13 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 151.13 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "bd36602a-615a-46c7-b3ca-6946df9080aa")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0115")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0114")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR0108")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0112")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR0109")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0113")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR0110")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0111")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 151.13 125.73 90)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "3d143c0b-b003-4e82-936e-792c0c9ad78c")
+		(property "Reference" "#PWR0277"
+			(at 157.48 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 154.94 125.7301 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 151.13 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 151.13 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 151.13 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "4f934598-ffd3-45f8-bfc1-6bba4c0d28a6")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0284")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0283")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR0277")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0281")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR0278")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0282")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR0279")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0280")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 151.13 100.33 90)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "406609c4-0d49-4fd4-b490-6c8142d494cc")
+		(property "Reference" "#PWR0320"
+			(at 157.48 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 154.94 100.3301 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 151.13 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 151.13 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 151.13 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "2c3db8c1-f83f-4e5c-a72d-04b89f9d6e8e")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0327")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0326")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR0320")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0324")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR0321")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0325")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR0322")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0323")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 151.13 133.35 90)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "45df646b-908f-4cdc-90cc-6cf9776f9be2")
+		(property "Reference" "#PWR0268"
+			(at 157.48 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 154.94 133.3501 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 151.13 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 151.13 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 151.13 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c554b8ae-871e-4853-8585-e5271827187d")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0276")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0275")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR0268")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0272")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR0269")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0274")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR0270")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0271")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 151.13 115.57 90)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "48230863-7f64-4ecc-b08f-d8d631dbb8a8")
+		(property "Reference" "#PWR0293"
+			(at 157.48 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 154.94 115.5701 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 151.13 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 151.13 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 151.13 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d289e022-d209-46ef-8b27-0cb8ff115d77")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0302")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0301")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR0293")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0299")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR0296")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0300")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR0297")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0298")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 151.13 105.41 90)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "4d21485c-2437-4133-9111-62cde4edb134")
+		(property "Reference" "#PWR0311"
+			(at 157.48 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 154.94 105.4101 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 151.13 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 151.13 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 151.13 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "003ce50e-6111-4e3e-a4c2-c74045614116")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0319")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0318")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR0311")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0316")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR0312")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0317")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR0313")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0314")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 125.73 59.69 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "4e388552-3439-478a-8d3e-7d95e0435aa3")
+		(property "Reference" "#PWR018"
+			(at 119.38 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 121.92 59.6899 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 125.73 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 125.73 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 125.73 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "094cf8ef-7638-45dd-9091-7e7b93e55ee5")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR027")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR026")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR018")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR024")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR020")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR025")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR022")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR023")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 125.73 128.27 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "4f4e08fb-88d1-495e-b748-8a542d77e648")
+		(property "Reference" "#PWR0232"
+			(at 119.38 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 121.92 128.2701 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 125.73 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 125.73 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 125.73 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "5f1addb0-b3a6-4eb0-ba38-d2a1a122e2e6")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0239")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0238")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR0232")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0236")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR0233")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0237")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR0234")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0235")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+10V")
+		(at 151.13 85.09 270)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "4f9990d8-1930-4085-a97f-9567e41535cd")
+		(property "Reference" "#PWR0125"
+			(at 147.32 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+10V"
+			(at 154.94 85.0901 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 151.13 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 151.13 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+10V\""
+			(at 151.13 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e2ee0a67-469f-4f4a-a473-7bb09485db5d")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0141")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0139")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR0125")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0135")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR0129")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0137")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR0131")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0133")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 125.73 74.93 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "51a18c8d-1b72-4612-8055-b8e091d8e493")
+		(property "Reference" "#PWR064"
+			(at 119.38 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 121.92 74.9299 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 125.73 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 125.73 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 125.73 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "4c98b27f-6d0d-43bb-93bd-c04437c92309")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR071")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR070")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR064")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR068")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR065")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR069")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR066")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR067")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 125.73 46.99 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "5739e8de-8f31-4cce-ac58-e3f5adce8249")
+		(property "Reference" "#PWR01"
+			(at 119.38 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 121.92 46.9899 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 125.73 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 125.73 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 125.73 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "701a200c-82c1-4eb8-bdfa-0cdef8923037")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0295")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0253")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR01")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0169")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR043")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0211")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR085")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0127")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+10V")
+		(at 125.73 87.63 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "6809aadf-dc3d-4f21-b35c-c08f9e987fd0")
+		(property "Reference" "#PWR0116"
+			(at 129.54 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+10V"
+			(at 121.92 87.6301 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 125.73 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 125.73 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+10V\""
+			(at 125.73 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "91b97bf7-196d-4d3a-83e7-7bfd06f8f08f")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0123")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0122")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR0116")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0120")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR0117")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0121")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR0118")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0119")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 125.73 107.95 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "743ec9da-f72b-44a6-bb38-f915859b36fe")
+		(property "Reference" "#PWR0196"
+			(at 119.38 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 121.92 107.9501 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 125.73 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 125.73 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 125.73 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "bb8964d7-1b92-4dae-9872-29d87d9d4f9f")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0203")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0202")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR0196")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0200")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR0197")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0201")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR0198")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0199")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 125.73 72.39 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "7abc5bdb-f8c6-45dd-ab80-dc494e3fca35")
+		(property "Reference" "#PWR054"
+			(at 129.54 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 121.92 72.3899 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 125.73 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 125.73 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 125.73 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a124fe64-d003-4136-b454-37e45c1dec0e")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR062")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR060")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR054")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR058")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR055")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR059")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR056")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR057")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 125.73 113.03 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "80425d44-8a6a-423b-9188-a13d29815a91")
+		(property "Reference" "#PWR0204"
+			(at 119.38 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 121.92 113.0301 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 125.73 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 125.73 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 125.73 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c7027284-e4c2-411f-97a6-b59d7d4acec1")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0213")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0212")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR0204")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0208")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR0205")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0209")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR0206")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0207")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 151.13 87.63 90)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "92398351-fd98-40ea-9be8-4fe5e01c1a40")
+		(property "Reference" "#PWR0160"
+			(at 157.48 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 154.94 87.6301 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 151.13 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 151.13 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 151.13 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "785846c2-074c-4616-97b4-47a5e3e2f4ca")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0176")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0174")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR0160")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0170")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR0162")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0172")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR0164")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0166")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+10V")
+		(at 151.13 82.55 270)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "93b2561b-e97a-4967-9bd5-834ec4fef5cc")
+		(property "Reference" "#PWR0124"
+			(at 147.32 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+10V"
+			(at 154.94 82.5501 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 151.13 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 151.13 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+10V\""
+			(at 151.13 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9abbb46b-8065-42af-8028-b04a8af373c0")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0140")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0138")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR0124")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0134")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR0128")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0136")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR0130")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0132")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:-10V")
+		(at 125.73 130.81 90)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "942afa06-57a7-4617-b515-6132478be94b")
+		(property "Reference" "#PWR042"
+			(at 129.54 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "-10V"
+			(at 121.92 130.8101 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 125.73 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 125.73 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"-10V\""
+			(at 125.73 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "6a08f7b1-aa44-4e1a-8157-5b46c9437528")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0336")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0294")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR042")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0210")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR084")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0252")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR0126")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0168")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 151.13 110.49 90)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "a51ce9bf-8c9f-41ec-a177-2981bece104b")
+		(property "Reference" "#PWR0303"
+			(at 157.48 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 154.94 110.4901 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 151.13 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 151.13 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 151.13 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "6cfbb384-a3a5-46ff-abe6-c19912013246")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0310")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0309")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR0303")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0307")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR0304")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0308")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR0305")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0306")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 151.13 49.53 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b4bb8d98-3d94-4520-9f27-f5b86770b6f9")
+		(property "Reference" "#PWR010"
+			(at 147.32 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 154.94 49.5299 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 151.13 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 151.13 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 151.13 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "48f29112-d00e-48a2-819e-5d34ca00cfea")
+		)
+		(instances
+			(project ""
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR017")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR016")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR010")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR014")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR011")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR015")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR012")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR013")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:-10V")
+		(at 151.13 130.81 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "b67feb20-7df1-4980-9cd4-1034b85b6870")
+		(property "Reference" "#PWR0243"
+			(at 147.32 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "-10V"
+			(at 154.94 130.8101 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 151.13 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 151.13 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"-10V\""
+			(at 151.13 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8078857e-5633-44fd-b640-07fbf9120e0d")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0259")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0257")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR0243")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0251")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR0245")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0255")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR0247")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0249")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 151.13 90.17 90)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ba895f60-5893-4faf-b476-c88573858f1c")
+		(property "Reference" "#PWR0161"
+			(at 157.48 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 154.94 90.1701 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 151.13 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 151.13 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 151.13 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "42d03a50-5b30-425a-b03b-46a9b69a5374")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0177")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0175")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR0161")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0171")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR0163")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0173")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR0165")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0167")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:-10V")
+		(at 125.73 133.35 90)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "bf36bfe7-a3cb-4c35-82a2-94df92924fd0")
+		(property "Reference" "#PWR019"
+			(at 129.54 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "-10V"
+			(at 121.92 133.3501 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 125.73 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 125.73 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"-10V\""
+			(at 125.73 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "fdcafb53-17a0-4544-adf0-45e183b820f1")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0241")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0240")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR019")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0187")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR061")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0229")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR0103")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0145")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "MDT350M01001VT:M2-J-67-V-SMT-5.30-KE-KT")
+		(at 137.16 88.9 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "bfccdcc7-ae29-49e2-9b30-1765e83f437f")
+		(property "Reference" "J1"
+			(at 129.54 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "M2-J-67-V-SMT-5.30-KE-KT"
+			(at 137.16 146.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "MDT350M01001VT:ADAMTECH_M2-J-67-V-SMT-5.30-KE-KT"
+			(at 137.16 33.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 137.16 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 137.16 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "PARTREV" "2"
+			(at 137.16 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "STANDARD" "Manufacturer Recommendations"
+			(at 137.16 35.306 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MAXIMUM_PACKAGE_HEIGHT" "5.3 mm"
+			(at 137.16 37.338 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Adam Tech"
+			(at 137.16 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(pin "35"
+			(uuid "2b620ebc-d356-4f69-8a16-fca84f0d54b4")
+		)
+		(pin "37"
+			(uuid "7ba948e9-cfce-4b6a-a377-736d36079d97")
+		)
+		(pin "23"
+			(uuid "21f4c1bc-63c4-4e43-9658-5a99db1a7c63")
+		)
+		(pin "21"
+			(uuid "086222c5-5b95-4454-8d86-1f4dcc9b0750")
+		)
+		(pin "39"
+			(uuid "cead126f-0d74-45d1-8393-608c423abc41")
+		)
+		(pin "33"
+			(uuid "f6e2738d-9599-4ca8-9dd5-e1c64b9205ae")
+		)
+		(pin "51"
+			(uuid "6aa172d3-380e-4261-9de2-8056900196bb")
+		)
+		(pin "53"
+			(uuid "4241e138-b0c9-4726-b9f1-a155f2ae37d5")
+		)
+		(pin "55"
+			(uuid "9b5ae25f-f465-4611-9290-d72bd278e4e5")
+		)
+		(pin "57"
+			(uuid "82d5dc35-ba4a-4c1e-ae18-925d6231a8ef")
+		)
+		(pin "67"
+			(uuid "7edb08bd-6b2f-4c5f-9195-e82124816ee7")
+		)
+		(pin "69"
+			(uuid "c29c3039-9c33-486e-b9fd-0ddb323dd0ea")
+		)
+		(pin "71"
+			(uuid "fe3f0871-7d9e-4893-bbc7-4682ea80ad50")
+		)
+		(pin "73"
+			(uuid "dbec16a6-969b-4657-ab14-0998a82f6566")
+		)
+		(pin "75"
+			(uuid "b828f8cb-9755-4e50-ab51-c597f1e2d776")
+		)
+		(pin "2"
+			(uuid "bfd4d7a7-dc27-42b0-8529-578f8de60683")
+		)
+		(pin "4"
+			(uuid "038f61a2-5a11-4419-86db-57eeed47a198")
+		)
+		(pin "6"
+			(uuid "4330167b-40ed-49f2-b6e4-9bdb5b3958bf")
+		)
+		(pin "8"
+			(uuid "7949af01-19f6-4f10-81be-b837ecddc819")
+		)
+		(pin "56"
+			(uuid "9fe93152-daf1-4dfd-af40-d892d4abec69")
+		)
+		(pin "58"
+			(uuid "6ec2b2b6-b05b-4c33-afd2-729cfc7f9a1b")
+		)
+		(pin "68"
+			(uuid "d355d560-d603-486e-9097-2933bfe45b74")
+		)
+		(pin "70"
+			(uuid "774608b2-40ef-4dfc-89d9-2f4b8f952f7c")
+		)
+		(pin "72"
+			(uuid "e2867141-ab44-42de-aa2f-0dbd745caa59")
+		)
+		(pin "74"
+			(uuid "a526d674-0f4e-47b5-8ef6-b68f60a57967")
+		)
+		(pin "59"
+			(uuid "a66179e2-98fc-4b50-916e-aaa75bbe6099")
+		)
+		(pin "61"
+			(uuid "bc920a10-fc4a-45b0-906a-e1d80bb60412")
+		)
+		(pin "63"
+			(uuid "ac91e40a-b888-4059-a07f-a857c469abea")
+		)
+		(pin "65"
+			(uuid "75c6876d-4c49-42d1-b208-aa51812af009")
+		)
+		(pin "19"
+			(uuid "265d2ec7-2a0f-4d05-bb87-a07c868c39ab")
+		)
+		(pin "13"
+			(uuid "aa0e4658-2897-421f-a4ce-4597f062b34c")
+		)
+		(pin "7"
+			(uuid "67f8ab23-e896-4d34-abcc-1eb69fbcfc53")
+		)
+		(pin "54"
+			(uuid "a8eee0a0-0eb7-49e2-8be4-2ab7708de271")
+		)
+		(pin "5"
+			(uuid "3d89eec2-5757-4368-a197-d9274f0160f7")
+		)
+		(pin "3"
+			(uuid "68f86cea-2d9b-400c-acaa-33da2f8a2332")
+		)
+		(pin "11"
+			(uuid "69e355a3-0ab0-4e0b-967d-74ec9bd6f268")
+		)
+		(pin "17"
+			(uuid "03f07bc8-7ca5-4aae-ac35-dc5739f6695d")
+		)
+		(pin "47"
+			(uuid "7908f333-e2ff-46c2-a5a5-f676cd9f20ef")
+		)
+		(pin "49"
+			(uuid "aaa2559b-b11c-4ec6-8f51-1e5c48432934")
+		)
+		(pin "50"
+			(uuid "0dda1a7c-ca39-4e3f-a009-0b806fab49c5")
+		)
+		(pin "52"
+			(uuid "f1eb2902-fac4-4630-b2c2-0ed1b0d9ec98")
+		)
+		(pin "60"
+			(uuid "8e8f1552-260a-4b1f-abca-14294d66b60c")
+		)
+		(pin "62"
+			(uuid "f1d03a46-eda2-4421-8caa-b927d7b9937b")
+		)
+		(pin "64"
+			(uuid "47d63616-4b66-49f8-85c9-8f4132848f7e")
+		)
+		(pin "66"
+			(uuid "3fdb8589-c0e9-43f5-9ea3-68e6271012b8")
+		)
+		(pin "9"
+			(uuid "3d909d11-335b-4ba9-ade7-258c48551f34")
+		)
+		(pin "41"
+			(uuid "9491728e-22a0-4a20-b157-ba9bfde8a22f")
+		)
+		(pin "43"
+			(uuid "ba7a4aa9-9b4c-452b-9856-ac8ac4f9d4d4")
+		)
+		(pin "15"
+			(uuid "b4fd456f-9898-4a8c-b51c-82b9fd23e38b")
+		)
+		(pin "45"
+			(uuid "d763b061-fcc3-49f0-899d-e6b9098e5a6b")
+		)
+		(pin "10"
+			(uuid "d554571e-0df4-4e40-b747-6b9fd9dd4cf5")
+		)
+		(pin "12"
+			(uuid "14e1eef8-475d-4fee-8e4e-0f71b32d49d0")
+		)
+		(pin "14"
+			(uuid "09c02fa9-50c0-4a08-9aa9-04b6f2927b50")
+		)
+		(pin "16"
+			(uuid "d16ec123-e7a3-4767-a4cb-fce3bf2f91f4")
+		)
+		(pin "18"
+			(uuid "3f72d814-fac0-4677-98cd-c25428e6bd75")
+		)
+		(pin "20"
+			(uuid "a7be0c3c-b861-4a23-adb2-0cbec5a05c03")
+		)
+		(pin "22"
+			(uuid "31014808-fd1f-4a8d-a83a-d6ffe0af8458")
+		)
+		(pin "32"
+			(uuid "02aefca5-568d-4823-b6eb-2dcde703452b")
+		)
+		(pin "34"
+			(uuid "59650bc1-8ad2-4a67-9fc3-2e1715f4f337")
+		)
+		(pin "36"
+			(uuid "ee9f5291-b406-400a-bd6a-6059886563da")
+		)
+		(pin "38"
+			(uuid "a3549393-bfa0-4939-9b15-145dc55066a7")
+		)
+		(pin "40"
+			(uuid "af9cbd31-01a2-4071-abef-934ce6784377")
+		)
+		(pin "42"
+			(uuid "b2decb74-0dae-4e8d-be76-b1ab0ba19550")
+		)
+		(pin "44"
+			(uuid "16deb550-1f0d-48eb-974b-664f928d06f3")
+		)
+		(pin "46"
+			(uuid "78e4f58c-a279-4134-9afa-e67b6e0b8e8d")
+		)
+		(pin "48"
+			(uuid "4d70a82e-9a70-455b-9f22-6e936f6c7875")
+		)
+		(pin "1"
+			(uuid "6f4e756b-bfc7-418b-aa8d-1a610ffbd74f")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "J8")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "J7")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "J1")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "J5")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "J2")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "J6")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "J3")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "J4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 125.73 62.23 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "c4d2e718-bee9-4a09-b11c-3fa080829347")
+		(property "Reference" "#PWR028"
+			(at 119.38 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 121.92 62.2299 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 125.73 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 125.73 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 125.73 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "4c0f4fcb-7de0-47e0-b307-319add5dda09")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR035")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR034")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR028")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR032")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR029")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR033")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR030")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR031")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 151.13 120.65 90)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d3232a7e-b2f9-4d49-9d23-adb3e8b7e19b")
+		(property "Reference" "#PWR0285"
+			(at 157.48 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 154.94 120.6501 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 151.13 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 151.13 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 151.13 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "17ce5a12-00b3-44bb-b23c-6aa44c1adbf4")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0292")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0291")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR0285")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0289")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR0286")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0290")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR0287")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0288")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 151.13 62.23 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d41b44ba-96b4-4247-a154-bdcfbf6a770a")
+		(property "Reference" "#PWR090"
+			(at 157.48 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 154.94 62.2299 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 151.13 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 151.13 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 151.13 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0af1fa9f-b856-4f4d-a223-36490867b469")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR097")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR096")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR090")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR094")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR091")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR095")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR092")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR093")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 125.73 90.17 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d88dca02-0a26-44f7-9556-7197046569d0")
+		(property "Reference" "#PWR0142"
+			(at 119.38 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 121.92 90.1701 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 125.73 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 125.73 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 125.73 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "22fbbd69-492b-460e-860a-1587a30fbd61")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0151")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0150")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR0142")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0148")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR0143")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0149")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR0144")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0146")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 125.73 82.55 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "dffa198d-3bd3-4067-a166-cc252342455d")
+		(property "Reference" "#PWR098"
+			(at 119.38 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 121.92 82.5501 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 125.73 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 125.73 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 125.73 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b9110240-fa7d-405b-a109-a7bcd00def4c")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0107")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0106")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR098")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0102")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR099")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0104")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR0100")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0101")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 151.13 95.25 90)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "e500b1aa-8a60-4e61-822e-dcb417d3baf7")
+		(property "Reference" "#PWR0328"
+			(at 157.48 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 154.94 95.2501 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 151.13 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 151.13 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 151.13 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "27a3a6e3-0091-4d8a-a03f-8632ed1f2787")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0335")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0334")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR0328")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0332")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR0329")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0333")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR0330")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0331")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 125.73 135.89 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e676c722-83e7-4727-ae38-d12667fcb06c")
+		(property "Reference" "#PWR0260"
+			(at 119.38 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 121.92 135.8901 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 125.73 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 125.73 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 125.73 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "87b96f36-f442-4e26-8fd6-37fbc6b869f4")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0267")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0266")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR0260")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0264")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR0261")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0265")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR0262")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0263")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 125.73 92.71 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e6a231a5-e98d-4860-b2ce-4687e772fc79")
+		(property "Reference" "#PWR0152"
+			(at 119.38 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 121.92 92.7101 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 125.73 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 125.73 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 125.73 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "568351af-59eb-4ec8-8847-2a15c864aaaf")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0159")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0158")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR0152")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0156")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR0153")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0157")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR0154")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0155")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+10V")
+		(at 125.73 85.09 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e6ec1e05-81b8-4fd1-8d5d-c50c490a0741")
+		(property "Reference" "#PWR021"
+			(at 129.54 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+10V"
+			(at 121.92 85.0901 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 125.73 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 125.73 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+10V\""
+			(at 125.73 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "1ce0e7be-d688-4d88-9805-57da90f31a4d")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0315")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0273")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR021")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0189")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR063")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0231")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR0105")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0147")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 125.73 118.11 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ec8988b7-7843-4271-8026-14ccb476a762")
+		(property "Reference" "#PWR0214"
+			(at 119.38 118.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 121.92 118.1101 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 125.73 118.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 125.73 118.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 125.73 118.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a78a9a97-edfa-4e57-adc6-8221a4c20cf4")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0221")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0220")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR0214")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0218")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR0215")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0219")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR0216")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0217")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 125.73 102.87 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "faff471c-205c-4a14-ab1a-53414ffb5a4f")
+		(property "Reference" "#PWR0186"
+			(at 119.38 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 121.92 102.8701 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 125.73 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 125.73 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 125.73 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "cd88f7ff-ed59-45df-980d-00ddfc793823")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0195")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0194")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR0186")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0192")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR0188")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0193")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR0190")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0191")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:-10V")
+		(at 151.13 128.27 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "fdc1014f-2665-4cc5-a827-a6b008ab01cd")
+		(property "Reference" "#PWR0242"
+			(at 147.32 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "-10V"
+			(at 154.94 128.2701 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 151.13 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 151.13 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"-10V\""
+			(at 151.13 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c15aeaf4-f0b7-4d1c-82f8-816639ddda0a")
+		)
+		(instances
+			(project "greymatter-mobo"
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/005cd5a7-8f90-4899-aa99-836a4b9f9f07"
+					(reference "#PWR0258")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/020c3bee-43dc-4322-862a-b3ba45b3582f"
+					(reference "#PWR0256")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0a1f15f5-e795-41ac-905c-8b7d29e718eb"
+					(reference "#PWR0242")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/0f086c58-a3bc-43d2-b4a9-ba5c97f0dfac"
+					(reference "#PWR0250")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/40ab7b25-e2ca-487f-a312-cbbc832c755b"
+					(reference "#PWR0244")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/42809027-308a-468a-83db-e1bbdedfaaf0"
+					(reference "#PWR0254")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/b34166fc-2c29-4278-a492-4b80a1bff34b"
+					(reference "#PWR0246")
+					(unit 1)
+				)
+				(path "/d2a0d6ba-d632-41fc-b65b-e3ce7475449d/c3d8474c-d532-439c-b4ea-fe4feae0c5b6"
+					(reference "#PWR0248")
+					(unit 1)
+				)
+			)
+		)
+	)
+)
