@@ -1,0 +1,33 @@
+{
+    "layout": {
+        "alternation": "rows",
+        "rows": "2",
+        "cols": "4",
+        "rotation": "180deg",
+        "space": "2mm"
+    },
+    "cuts": {
+        "type": "vcuts"
+    },
+    "tabs":{
+        "type": "fixed",
+        "hwidth": "38mm",
+        "vwidth": "12mm"
+    },
+    "framing": {
+        "type": "railslr",
+        "width": "5mm"
+    },
+    "tooling": {
+        "type": "3hole",
+        "hoffset": "2.5mm",
+        "voffset": "7.5mm"
+    },
+    "fiducials": {
+        "type": "3fid",
+        "hoffset": "2.5mm",
+        "voffset": "5mm",
+        "coppersize": "2mm",
+        "opening": "1mm"
+    }
+}
