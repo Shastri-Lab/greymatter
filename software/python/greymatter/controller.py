@@ -1,46 +1,56 @@
-import threading
-
-import serial
+from __future__ import annotations
 
 from .errors import GreyMatterError
-
-
-# Sentinel bytes for detecting the prompt
-_PROMPT = b"> "
-
-# How long to wait for the startup banner to finish (seconds)
-_CONNECT_TIMEOUT = 5.0
-
-# Per-command timeout (seconds)
-_CMD_TIMEOUT = 2.0
+from .transport import SerialTransport, ZmqTransport, _CMD_TIMEOUT
 
 
 class GreyMatter:
     """Top-level driver for the greymatter DAC controller.
 
-    Communicates with the firmware over USB serial using SCPI commands.
+    Communicates with the firmware either directly over USB serial
+    or remotely via a ZMQ server running on the host machine.
 
-    Usage::
+    Direct serial connection::
 
         gm = GreyMatter("/dev/tty.usbmodem1101")
         gm.board(0).dac(0).channel(0).set_current(50.0)
         gm.close()
 
-    Or as a context manager::
+    Remote connection via server::
+
+        gm = GreyMatter(address="192.168.1.100", pico="pico_0")
+        gm.board(0).dac(0).channel(0).set_current(50.0)
+        gm.close()
+
+    As a context manager::
 
         with GreyMatter("/dev/tty.usbmodem1101") as gm:
             gm.board(0).dac(0).channel(0).set_current(50.0)
     """
 
-    def __init__(self, port: str, baudrate: int = 115200,
-                 num_boards: int = 8, timeout: float = _CMD_TIMEOUT):
-        self._lock = threading.Lock()
-        self._timeout = timeout
+    def __init__(
+        self,
+        port: str | None = None,
+        *,
+        address: str | None = None,
+        pico: str | None = None,
+        zmq_port: int = 5556,
+        baudrate: int = 115200,
+        num_boards: int = 8,
+        timeout: float = _CMD_TIMEOUT,
+    ):
         self._num_boards = num_boards
-        self._ser = serial.Serial(port, baudrate, timeout=timeout)
 
-        # Drain startup banner — read until we see the "> " prompt
-        self._drain_until_prompt(_CONNECT_TIMEOUT)
+        if port is not None:
+            self._transport = SerialTransport(port, baudrate, timeout)
+        elif address is not None:
+            self._transport = ZmqTransport(
+                address, pico, zmq_port, timeout=max(timeout, 10.0)
+            )
+        else:
+            raise ValueError(
+                "Provide 'port' for direct serial or 'address' for remote"
+            )
 
         # Lazily-constructed board cache
         self._boards: dict[int, "Board"] = {}
@@ -54,9 +64,8 @@ class GreyMatter:
         self.close()
 
     def close(self):
-        """Close the serial connection."""
-        if self._ser and self._ser.is_open:
-            self._ser.close()
+        """Close the underlying connection."""
+        self._transport.close()
 
     # -- Navigation --
 
@@ -110,7 +119,7 @@ class GreyMatter:
 
         Raises GreyMatterError if the firmware returns an ERROR: response.
         """
-        resp = self._transact(cmd)
+        resp = self._transport.send_command(cmd)
         if resp.startswith("ERROR:"):
             raise GreyMatterError(resp)
         return resp
@@ -122,63 +131,36 @@ class GreyMatter:
         """
         return self.command(cmd)
 
-    # -- Internal serial I/O --
+    # -- Server utilities --
 
-    def _drain_until_prompt(self, timeout: float) -> None:
-        """Read and discard bytes until the '> ' prompt is seen."""
-        old_timeout = self._ser.timeout
-        self._ser.timeout = timeout
-        buf = b""
-        try:
-            while True:
-                byte = self._ser.read(1)
-                if not byte:
-                    break  # timeout
-                buf += byte
-                if buf.endswith(_PROMPT):
-                    break
-        finally:
-            self._ser.timeout = old_timeout
+    @staticmethod
+    def list_picos(
+        address: str, zmq_port: int = 5556, timeout: float = 5.0
+    ) -> list[dict]:
+        """Query the server for a list of connected Pico boards.
 
-    def _transact(self, cmd: str) -> str:
-        """Send a command and return the response body, thread-safe.
+        Returns a list of dicts with keys: name, port, idn.
 
-        Protocol:
-        1. Flush input buffer
-        2. Send cmd + newline
-        3. Read until prompt '> ' appears
-        4. Strip echo (first line) and prompt, return response body
+        Example::
+
+            picos = GreyMatter.list_picos("192.168.1.100")
+            for p in picos:
+                print(f"{p['name']} on {p['port']}: {p['idn']}")
         """
-        with self._lock:
-            self._ser.reset_input_buffer()
-            self._ser.write((cmd + "\n").encode("ascii"))
+        import json
+        import zmq
 
-            # Read until we see the prompt after the response
-            buf = b""
-            while True:
-                byte = self._ser.read(1)
-                if not byte:
-                    raise GreyMatterError("Timeout waiting for response")
-                buf += byte
-                if buf.endswith(_PROMPT):
-                    break
-
-            # Parse: the buffer contains "ECHO\r\nRESPONSE\r\n> "
-            text = buf.decode("ascii", errors="replace")
-
-            # Remove trailing prompt
-            text = text[:-len("> ")]
-
-            # Split into lines and strip
-            lines = text.split("\r\n")
-
-            # Remove empty trailing entries
-            while lines and lines[-1] == "":
-                lines.pop()
-
-            # First line is the echo, rest is the response
-            if len(lines) <= 1:
-                return ""
-
-            # Response is everything after the echo line
-            return "\r\n".join(lines[1:])
+        context = zmq.Context()
+        socket = context.socket(zmq.REQ)
+        socket.setsockopt(zmq.RCVTIMEO, int(timeout * 1000))
+        socket.setsockopt(zmq.LINGER, 1000)
+        socket.connect(f"tcp://{address}:{zmq_port}")
+        try:
+            socket.send_string(json.dumps({"cmd": "__list__"}))
+            reply = json.loads(socket.recv_string())
+            if reply.get("ok"):
+                return reply["data"]
+            raise GreyMatterError(reply.get("error", "Unknown error"))
+        finally:
+            socket.close()
+            context.destroy()

@@ -4,10 +4,14 @@ build-backend = "setuptools.backends._legacy:_Backend"
 
 [project]
 name = "greymatter"
-version = "0.1.0"
+version = "0.2.0"
 description = "Python driver for the greymatter DAC controller"
 requires-python = ">=3.10"
 dependencies = ["pyserial>=3.5"]
 
 [project.optional-dependencies]
+server = ["pyzmq>=25.0"]
 dev = ["pytest"]
+
+[project.scripts]
+greymatter-server = "greymatter.server:main"

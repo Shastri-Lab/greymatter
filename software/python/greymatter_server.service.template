@@ -1,0 +1,16 @@
+[Unit]
+Description=greymatter DAC controller ZMQ server
+After=network.target
+
+[Service]
+Environment=PYTHONUNBUFFERED=1
+ExecStart=%USER_HOME%/.virtualenvs/greymatter/bin/greymatter-server
+User=%USERNAME%
+Group=%GROUPNAME%
+Restart=always
+RestartSec=5
+StandardOutput=append:%USER_HOME%/greymatter_server.log
+StandardError=append:%USER_HOME%/greymatter_server.log
+
+[Install]
+WantedBy=multi-user.target
