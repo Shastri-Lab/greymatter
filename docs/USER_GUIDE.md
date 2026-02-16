@@ -80,7 +80,7 @@ All commands follow the SCPI (Standard Commands for Programmable Instruments) st
 
 | Command | Description | Response |
 |---------|-------------|----------|
-| `*IDN?` | Query device identification | `greymatter,DAC Controller,001,0.1` |
+| `*IDN?` | Query device identification | `greymatter,DAC Controller,<SN>,0.1` |
 | `*RST` | Reset all DACs to power-on state | `OK` |
 
 ### System Commands
@@ -89,6 +89,8 @@ All commands follow the SCPI (Standard Commands for Programmable Instruments) st
 |---------|-------------|----------|
 | `FAULT?` | Query 24-bit fault status | `OK` or `FAULT:0xNNNNNN` |
 | `SYST:ERR?` | Query error queue | `0,No error` |
+| `SYST:SN <string>` | Set controller serial number (max 31 chars, auto-saved to flash) | `OK` |
+| `SYST:SN?` | Query controller serial number | Serial number or `(not set)` |
 | `LDAC` | Pulse LDAC to update all outputs | `OK` |
 | `UPDATE:ALL` | Update all DAC outputs | `OK` |
 
@@ -468,6 +470,26 @@ offset_cal = V_set_low - (gain_cal × V_meas_low)
    BOARD0:DAC0:CH0:CURR 50.0
    ```
    SMU should now read closer to 50.000 mA
+
+### Controller Identification
+
+Each Pico controller can be assigned a unique serial number to identify it when multiple controllers are connected via USB. This is stored in a separate flash sector from calibration data, so `CAL:CLEAR` will not erase it.
+
+```
+# Set controller serial number (auto-saved to flash)
+SYST:SN GM-CTRL-001
+OK
+
+# Query controller serial number
+SYST:SN?
+GM-CTRL-001
+
+# Serial number appears in *IDN? response
+*IDN?
+greymatter,DAC Controller,GM-CTRL-001,0.1
+```
+
+The serial number also appears in the startup banner and is used by the ZMQ server to name discovered controllers.
 
 ### Storing Calibration Data
 

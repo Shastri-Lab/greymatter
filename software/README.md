@@ -71,7 +71,7 @@ screen /dev/tty.usbmodem1101 115200
 ```
 *IDN?
 ```
-Response: `greymatter,DAC Controller,001,0.1`
+Response: `greymatter,DAC Controller,<SN>,0.1` (SN is `000` if not set; use `SYST:SN` to assign)
 
 ## Basic Usage
 

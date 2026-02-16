@@ -85,6 +85,12 @@ int main() {
     board_manager.init_all();
     printf("All DACs initialized.\r\n");
 
+    // Print controller serial number if set
+    const char* ctrl_sn = board_manager.get_controller_serial();
+    if (ctrl_sn[0] != '\0') {
+        printf("Controller S/N: %s\r\n", ctrl_sn);
+    }
+
     // Check for any initial faults
     if (spi_manager.is_fault_active()) {
         printf("WARNING: FAULT line is active!\r\n");

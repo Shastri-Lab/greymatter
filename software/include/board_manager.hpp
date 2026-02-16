@@ -90,6 +90,10 @@ public:
     // Get calibration structure (for applying calibration in DAC methods)
     const ChannelCalibration* get_calibration(uint8_t board, uint8_t dac, uint8_t channel) const;
 
+    // Set/get controller serial number
+    void set_controller_serial(const char* sn);
+    const char* get_controller_serial() const;
+
     // Clear all calibration data
     void clear_all_calibration();
 
@@ -118,6 +122,9 @@ private:
     // Calibration data: [board][dac][channel]
     ChannelCalibration calibration_[NUM_BOARDS][DACS_PER_BOARD][MAX_CHANNELS_PER_DAC];
 
+    // Controller serial number (identifies the Pico, separate from board SNs)
+    char controller_serial_[SERIAL_NUMBER_MAX_LEN];
+
     // Execute specific command types
     std::string execute_idn();
     std::string execute_fault_query();
@@ -143,6 +150,8 @@ private:
     std::string execute_cal_load();
     std::string execute_dac_fault_query(const ScpiCommand& cmd);
     std::string execute_dac_echo_query(const ScpiCommand& cmd);
+    std::string execute_set_controller_sn(const ScpiCommand& cmd);
+    std::string execute_get_controller_sn();
 };
 
 #endif // BOARD_MANAGER_HPP

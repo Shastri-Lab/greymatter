@@ -18,9 +18,16 @@ constexpr uint32_t FLASH_PAGE_SIZE = 256;               // 256-byte write page
 // This leaves plenty of room for program code
 constexpr uint32_t CAL_FLASH_OFFSET = FLASH_SIZE - FLASH_SECTOR_SIZE;  // 0x1FF000
 
+// Controller serial number stored in the sector before calibration
+constexpr uint32_t CONTROLLER_FLASH_OFFSET = FLASH_SIZE - 2 * FLASH_SECTOR_SIZE;  // 0x1FE000
+
 // Magic number to identify valid calibration data
 constexpr uint32_t CAL_MAGIC = 0x47524D43;  // "GRMC" (greymatter Calibration)
 constexpr uint16_t CAL_VERSION = 1;
+
+// Magic number for controller serial number data
+constexpr uint32_t CONTROLLER_MAGIC = 0x474D4353;  // "GMCS" (GreyMatter Controller Serial)
+constexpr uint16_t CONTROLLER_VERSION = 1;
 
 // Calibration data structure stored in flash
 // Total size must fit in one sector (4KB)
@@ -51,6 +58,20 @@ struct __attribute__((packed)) FlashCalibrationData {
 static_assert(sizeof(FlashCalibrationData) <= FLASH_SECTOR_SIZE,
               "Calibration data exceeds flash sector size");
 
+// Controller serial number structure stored in flash
+struct __attribute__((packed)) FlashControllerData {
+    // Header (8 bytes)
+    uint32_t magic;
+    uint16_t version;
+    uint16_t checksum;
+
+    // Serial number (32 bytes)
+    char serial_number[SERIAL_NUMBER_MAX_LEN];
+};
+
+static_assert(sizeof(FlashControllerData) <= FLASH_SECTOR_SIZE,
+              "Controller data exceeds flash sector size");
+
 // Calculate CRC-16 (CCITT) for data integrity
 uint16_t calculate_crc16(const uint8_t* data, size_t length);
 
@@ -67,6 +88,13 @@ bool has_valid_data();
 
 // Erase calibration data from flash
 void erase_flash();
+
+// Save controller serial number to flash (separate sector from calibration)
+bool save_controller_sn(const char* sn);
+
+// Load controller serial number from flash
+// Returns true if valid data was found
+bool load_controller_sn(char* sn, size_t max_len);
 
 }  // namespace CalStorage
 

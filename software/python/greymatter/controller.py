@@ -112,6 +112,16 @@ class GreyMatter:
         """Send LDAC to pulse the load-DAC line."""
         self.command("LDAC")
 
+    @property
+    def serial_number(self) -> str:
+        """Query the controller serial number (SYST:SN?)."""
+        return self.query("SYST:SN?")
+
+    @serial_number.setter
+    def serial_number(self, value: str) -> None:
+        """Set the controller serial number (SYST:SN <value>)."""
+        self.command(f"SYST:SN {value}")
+
     # -- Raw SCPI --
 
     def command(self, cmd: str) -> str:

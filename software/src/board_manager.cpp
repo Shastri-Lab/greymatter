@@ -5,6 +5,9 @@
 #include <cstring>
 
 BoardManager::BoardManager(SpiManager& spi) : spi_(spi) {
+    // Initialize controller serial number to empty
+    controller_serial_[0] = '\0';
+
     // Initialize DAC pointers and storage
     // Each board has: DAC0=LTC2662, DAC1=LTC2662, DAC2=LTC2664
     for (uint8_t board = 0; board < NUM_BOARDS; board++) {
@@ -56,6 +59,9 @@ void BoardManager::init_all() {
 
     // Load calibration data from flash (if valid data exists)
     CalStorage::load_from_flash(*this);
+
+    // Load controller serial number from flash (separate sector)
+    CalStorage::load_controller_sn(controller_serial_, SERIAL_NUMBER_MAX_LEN);
 }
 
 void BoardManager::reset_all() {
@@ -97,8 +103,20 @@ uint8_t BoardManager::get_resolution(uint8_t board, uint8_t dac) {
     return resolution_[board][dac];
 }
 
+void BoardManager::set_controller_serial(const char* sn) {
+    strncpy(controller_serial_, sn, SERIAL_NUMBER_MAX_LEN - 1);
+    controller_serial_[SERIAL_NUMBER_MAX_LEN - 1] = '\0';
+}
+
+const char* BoardManager::get_controller_serial() const {
+    return controller_serial_;
+}
+
 std::string BoardManager::execute_idn() {
-    return "greymatter,DAC Controller,001,0.1"; // TODO: set some global variables to populate the version information
+    const char* sn = (controller_serial_[0] != '\0') ? controller_serial_ : "000";
+    char buf[128];
+    snprintf(buf, sizeof(buf), "greymatter,DAC Controller,%s,0.1", sn);
+    return buf;
 }
 
 std::string BoardManager::execute_fault_query() {
@@ -591,6 +609,24 @@ std::string BoardManager::execute_dac_echo_query(const ScpiCommand& cmd) {
     return buf;
 }
 
+std::string BoardManager::execute_set_controller_sn(const ScpiCommand& cmd) {
+    if (cmd.string_value.length() >= SERIAL_NUMBER_MAX_LEN) {
+        return "ERROR:Serial number too long (max 31 chars)";
+    }
+    set_controller_serial(cmd.string_value.c_str());
+    if (CalStorage::save_controller_sn(controller_serial_)) {
+        return "OK";
+    }
+    return "ERROR:Flash write failed";
+}
+
+std::string BoardManager::execute_get_controller_sn() {
+    if (controller_serial_[0] == '\0') {
+        return "(not set)";
+    }
+    return controller_serial_;
+}
+
 std::string BoardManager::execute(const ScpiCommand& cmd) {
     if (!cmd.valid) {
         return "ERROR:" + cmd.error_msg;
@@ -646,6 +682,12 @@ std::string BoardManager::execute(const ScpiCommand& cmd) {
 
         case ScpiCommandType::SYST_ERR_QUERY:
             return "0,\"No error\"";  // TODO: Implement error queue
+
+        case ScpiCommandType::SET_CONTROLLER_SN:
+            return execute_set_controller_sn(cmd);
+
+        case ScpiCommandType::GET_CONTROLLER_SN:
+            return execute_get_controller_sn();
 
         case ScpiCommandType::GET_VOLTAGE:
         case ScpiCommandType::GET_CURRENT:

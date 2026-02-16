@@ -69,7 +69,18 @@ def discover_picos(
             _log(f"Trying {port} ...")
             transport = SerialTransport(port, baudrate, timeout)
             idn = transport.send_command("*IDN?")
-            name = f"pico_{idx}"
+
+            # Extract serial number from IDN string (field 3 of 4):
+            # "greymatter,DAC Controller,<SN>,0.1"
+            idn_fields = idn.split(",")
+            sn = idn_fields[2].strip() if len(idn_fields) >= 3 else ""
+
+            # Use SN as name if it's set (not "000" or empty)
+            if sn and sn != "000":
+                name = sn
+            else:
+                name = f"pico_{idx}"
+
             picos[name] = PicoConnection(name, port, transport, idn)
             _log(f"  -> {name}: {idn}")
             idx += 1

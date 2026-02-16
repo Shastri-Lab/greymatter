@@ -161,4 +161,62 @@ void erase_flash() {
     printf("[CAL] Calibration data erased from flash\r\n");
 }
 
+bool save_controller_sn(const char* sn) {
+    FlashControllerData data;
+    memset(&data, 0xFF, sizeof(data));
+
+    data.magic = CONTROLLER_MAGIC;
+    data.version = CONTROLLER_VERSION;
+
+    strncpy(data.serial_number, sn, SERIAL_NUMBER_MAX_LEN - 1);
+    data.serial_number[SERIAL_NUMBER_MAX_LEN - 1] = '\0';
+
+    // CRC over the serial number field
+    const uint8_t* crc_start = reinterpret_cast<const uint8_t*>(&data.serial_number);
+    size_t crc_size = sizeof(data.serial_number);
+    data.checksum = calculate_crc16(crc_start, crc_size);
+
+    uint32_t interrupts = save_and_disable_interrupts();
+
+    flash_range_erase(CONTROLLER_FLASH_OFFSET, FLASH_SECTOR_SIZE);
+
+    const uint8_t* src = reinterpret_cast<const uint8_t*>(&data);
+    size_t bytes_to_write = sizeof(FlashControllerData);
+    size_t pages = (bytes_to_write + FLASH_PAGE_SIZE - 1) / FLASH_PAGE_SIZE;
+    size_t write_size = pages * FLASH_PAGE_SIZE;
+
+    uint8_t write_buffer[write_size];
+    memset(write_buffer, 0xFF, write_size);
+    memcpy(write_buffer, src, bytes_to_write);
+
+    flash_range_program(CONTROLLER_FLASH_OFFSET, write_buffer, write_size);
+
+    restore_interrupts(interrupts);
+
+    // Verify
+    const FlashControllerData* verify =
+        reinterpret_cast<const FlashControllerData*>(XIP_BASE + CONTROLLER_FLASH_OFFSET);
+    if (verify->magic != CONTROLLER_MAGIC) return false;
+
+    const uint8_t* v_start = reinterpret_cast<const uint8_t*>(&verify->serial_number);
+    uint16_t v_crc = calculate_crc16(v_start, sizeof(verify->serial_number));
+    return (v_crc == verify->checksum);
+}
+
+bool load_controller_sn(char* sn, size_t max_len) {
+    const FlashControllerData* data =
+        reinterpret_cast<const FlashControllerData*>(XIP_BASE + CONTROLLER_FLASH_OFFSET);
+
+    if (data->magic != CONTROLLER_MAGIC) return false;
+    if (data->version != CONTROLLER_VERSION) return false;
+
+    const uint8_t* crc_start = reinterpret_cast<const uint8_t*>(&data->serial_number);
+    uint16_t calculated = calculate_crc16(crc_start, sizeof(data->serial_number));
+    if (calculated != data->checksum) return false;
+
+    strncpy(sn, data->serial_number, max_len - 1);
+    sn[max_len - 1] = '\0';
+    return true;
+}
+
 }  // namespace CalStorage

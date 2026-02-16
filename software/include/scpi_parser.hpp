@@ -42,9 +42,11 @@ enum class ScpiCommandType {
     DAC_FAULT_QUERY, // BOARD<n>:DAC<m>:FAULT? (LTC2662 only)
     DAC_ECHO_QUERY,  // BOARD<n>:DAC<m>:ECHO?
     // System commands
-    FAULT_QUERY,     // FAULT?
-    SYST_ERR_QUERY,  // SYST:ERR?
-    PULSE_LDAC,      // LDAC
+    FAULT_QUERY,        // FAULT?
+    SYST_ERR_QUERY,     // SYST:ERR?
+    SET_CONTROLLER_SN,  // SYST:SN <string>
+    GET_CONTROLLER_SN,  // SYST:SN?
+    PULSE_LDAC,         // LDAC
 };
 
 // Parsed SCPI command structure

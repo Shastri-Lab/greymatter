@@ -100,6 +100,34 @@ bool ScpiParser::parse_system_command(const char* cmd, ScpiCommand& result) {
         return true;
     }
 
+    // SYST:SN? / SYST:SN <string>
+    if (strncasecmp_local(cmd, "SYST:SN", 7) == 0) {
+        const char* p = cmd + 7;
+        if (*p == '?') {
+            result.type = ScpiCommandType::GET_CONTROLLER_SN;
+            result.is_query = true;
+            result.valid = true;
+        } else {
+            result.type = ScpiCommandType::SET_CONTROLLER_SN;
+            p = skip_whitespace(p);
+            std::string sn;
+            while (*p && *p != '\n' && *p != '\r') {
+                sn += *p++;
+            }
+            while (!sn.empty() && std::isspace(sn.back())) {
+                sn.pop_back();
+            }
+            if (sn.empty()) {
+                result.error_msg = "Serial number required";
+                return false;
+            }
+            result.string_value = sn;
+            result.has_string = true;
+            result.valid = true;
+        }
+        return true;
+    }
+
     // SYST:ERR?
     if (strncasecmp_local(cmd, "SYST:ERR?", 9) == 0) {
         result.type = ScpiCommandType::SYST_ERR_QUERY;
