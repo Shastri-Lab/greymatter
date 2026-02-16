@@ -10,16 +10,16 @@
 namespace CalStorage {
 
 // Flash configuration for RP2350 (Pico 2)
-constexpr uint32_t FLASH_SIZE = 2 * 1024 * 1024;        // 2MB flash
+constexpr uint32_t FLASH_SIZE = 4 * 1024 * 1024;        // 2MB flash
 constexpr uint32_t FLASH_SECTOR_SIZE = 4096;            // 4KB erase sector
 constexpr uint32_t FLASH_PAGE_SIZE = 256;               // 256-byte write page
 
 // Use the last sector for calibration storage
 // This leaves plenty of room for program code
-constexpr uint32_t CAL_FLASH_OFFSET = FLASH_SIZE - FLASH_SECTOR_SIZE;  // 0x1FF000
+constexpr uint32_t CAL_FLASH_OFFSET = FLASH_SIZE - FLASH_SECTOR_SIZE;  // 0x3FF000
 
 // Controller serial number stored in the sector before calibration
-constexpr uint32_t CONTROLLER_FLASH_OFFSET = FLASH_SIZE - 2 * FLASH_SECTOR_SIZE;  // 0x1FE000
+constexpr uint32_t CONTROLLER_FLASH_OFFSET = FLASH_SIZE - 2 * FLASH_SECTOR_SIZE;  // 0x3FE000
 
 // Magic number to identify valid calibration data
 constexpr uint32_t CAL_MAGIC = 0x47524D43;  // "GRMC" (greymatter Calibration)
